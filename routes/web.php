@@ -22,3 +22,9 @@ Route::get('/firms', function () {
 })->middleware(['auth'])->name('firms');
 
 require __DIR__.'/auth.php';
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+//    Route::resource('workers',\App\Http\Controllers\WorkerController::class); // Route [admin.workers] not defined. --> bunda iwlamin durpdi
+    Route::get('workers',[\App\Http\Controllers\WorkerController::class,'index'])->name('workers');
+});
