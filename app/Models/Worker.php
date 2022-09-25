@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Worker extends Model
 {
-    protected $fillable = [ 'ism', 'summa'];
+    protected $fillable = [ 'name', 'summ'];
     use HasFactory;
 }

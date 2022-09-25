@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
-            $table->string('ism');
-            $table->integer('summa');
+            $table->string('name');
+            $table->integer('summ');
             $table->timestamps();
         });
     }
