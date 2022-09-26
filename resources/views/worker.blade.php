@@ -7,8 +7,8 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-create">
-                        Qo'shish
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-create">
+                        <i class="fa fa-plus"></i>   Qo'shish
                     </button>
 
                     <div class="modal fade" id="modal-create">

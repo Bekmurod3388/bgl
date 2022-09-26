@@ -21,7 +21,7 @@ class WorkController extends Controller
         foreach ($works as $ish){
             $ishs[$ish->id]=$ish;
         }
-        dd($ish);
+
 
 
 
