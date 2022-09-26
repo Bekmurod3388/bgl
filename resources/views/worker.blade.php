@@ -84,7 +84,7 @@
                                     <form action="{{route('worker.destroy', $worker->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
+                                        <button type="submit" class="btn btn-danger show_confirm"><i class="fa fa-trash"></i>
                                         </button>
                                     </form>
 
@@ -162,6 +162,7 @@
 
 @endsection
 @section('custom-scripts')
+
     <script>
 
         //     toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
@@ -190,6 +191,6 @@
             document.getElementById('edit_name').value = worker['name'];
             document.getElementById('edit_id').value = id;
         }
-    </script>
 
+    </script>
 @endsection

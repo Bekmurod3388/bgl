@@ -67,6 +67,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <!-- Toastr -->
 <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
+<script src="{{asset('custom/sweetalert.min.js')}}"></script>
+
 @yield('custom-scripts')
 <script>
     let errors = @json($errors->all());
@@ -77,6 +79,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
     }
     toastr.error(msg);
     @endif
+    $('.show_confirm').click(function (event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: `Haqiqatan ham bu yozuvni oʻchirib tashlamoqchimisiz?`,
+            text: "Agar siz buni o'chirib tashlasangiz, u abadiy yo'qoladi.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            buttons: ['Yo`q', 'Ha']
+        }).then((willDelete) => {
+            if (willDelete) {
+                form.submit();
+            }
+        });
+    });
 </script>
 </body>
 </html>

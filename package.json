@@ -94,6 +94,7 @@
     "run-parallel": "^1.2.0",
     "source-map-js": "^1.0.2",
     "supports-preserve-symlinks-flag": "^1.0.0",
+    "sweetalert": "^2.1.2",
     "to-regex-range": "^5.0.1",
     "update-browserslist-db": "^1.0.9",
     "util-deprecate": "^1.0.2",
