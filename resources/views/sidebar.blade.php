@@ -45,6 +45,12 @@
                                 <p>Ish turi</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('type.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tur</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

@@ -21,6 +21,7 @@ class WorkController extends Controller
         foreach ($works as $ish){
             $ishs[$ish->id]=$ish;
         }
+        dd($ish);
 
 
 
@@ -94,6 +95,7 @@ return redirect()->route('work.index');
      */
     public function update(Request $request,$id)
     {
+        $id = $request->id;
         $result=$request->validate(
             [
                 'name'=>'required',
@@ -101,7 +103,7 @@ return redirect()->route('work.index');
                 'price'=>'required'
             ]
         );
-        $ish=new Work();
+        $ish=Work::find($id);
         $ish->name=$request->name;
         $ish->type=$request->type;
         $ish->price=$request->price;

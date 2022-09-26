@@ -183,6 +183,5 @@
        document.getElementById('edit_id').value=id;
        document.getElementById('type_edit').value=ish['type'];
        document.getElementById('price_edit').value=ish['price'];
-
    }
 </script>
