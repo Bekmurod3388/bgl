@@ -22,4 +22,9 @@ Route::get('/firms', function () {
 })->middleware(['auth'])->name('firms');
 Route::resource('work',\App\Http\Controllers\WorkController::class);
 
+
+Route::resource('firms',\App\Http\Controllers\FirmController::class);
+Route::resource('workers',\App\Http\Controllers\WorkerController::class);
+
+
 require __DIR__.'/auth.php';
