@@ -13,8 +13,15 @@ class WorkerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $workers=Worker::all();
-        return view('worker',['workers'=>$workers]);
+    {
+        $workers = Worker::all();
+        $workers_obj=[];
+        foreach ($workers as $worker) {
+            $workers_obj[$worker->id]=$worker;
+        }
+        $workers_obj=(object)$workers_obj;
+
+        return view('worker', ['workers' => $workers,'workers_obj'=>$workers_obj]);
     }
 
     /**
@@ -30,18 +37,34 @@ class WorkerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        $worker = new Worker();
+        $worker->name = $request->name;
+        $worker->save();
+        $status = 'success';
+        $message = "Yangi ishchi muvaffaqqiyatli yaratildi";
+        $workers = Worker::all();
+        $workers_obj=[];
+        foreach ($workers as $worker) {
+            $workers_obj[$worker->id]=$worker;
+        }
+        $workers_obj=(object)$workers_obj;
+
+        return view('worker', ['workers' => $workers,'workers_obj'=>$workers_obj, 'status' => $status, 'message' => $message])->with('ok','Yangi ishchi yaratildi');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Worker  $worker
+     * @param \App\Models\Worker $worker
      * @return \Illuminate\Http\Response
      */
     public function show(Worker $worker)
@@ -52,7 +75,7 @@ class WorkerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Worker  $worker
+     * @param \App\Models\Worker $worker
      * @return \Illuminate\Http\Response
      */
     public function edit(Worker $worker)
@@ -63,23 +86,50 @@ class WorkerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Worker  $worker
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Worker $worker
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Worker $worker)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        $worker =Worker::find($request->id);
+        $worker->name = $request->name;
+        $worker->save();
+        $status = 'success';
+        $message = "Ishchi muvaffaqqiyatli tahrirlandi";
+        $workers = Worker::all();
+        $workers_obj=[];
+        foreach ($workers as $worker) {
+            $workers_obj[$worker->id]=$worker;
+        }
+        $workers_obj=(object)$workers_obj;
+
+        return view('worker', ['workers' => $workers,'workers_obj'=>$workers_obj, 'status' => $status, 'message' => $message])->with('ok','Yangi ishchi yaratildi');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Worker  $worker
+     * @param \App\Models\Worker $worker
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Worker $worker)
+    public function destroy(Request $request, $worker)
     {
-        //
+        $worker = Worker::find($worker);
+        $worker->delete();
+        $status = 'success';
+        $message = "Ishchi muvaffaqqiyatli o`chirildi";
+        $workers = Worker::all();
+        $workers_obj=[];
+        foreach ($workers as $worker) {
+            $workers_obj[$worker->id]=$worker;
+        }
+        $workers_obj=(object)$workers_obj;
+
+        return view('worker', ['workers' => $workers,'workers_obj'=>$workers_obj, 'status' => $status, 'message' => $message]);
     }
 }
