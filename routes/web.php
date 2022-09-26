@@ -13,16 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/',function (){ return view('master'); });
+    Route::resource('firms', \App\Http\Controllers\FirmController::class);
+    Route::resource('workers', \App\Http\Controllers\WorkerController::class);
 });
 
 
-
-Route::resource('firms',\App\Http\Controllers\FirmController::class);
-Route::resource('workers',\App\Http\Controllers\WorkerController::class);
-
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
