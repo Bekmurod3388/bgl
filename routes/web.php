@@ -20,11 +20,9 @@ Route::get('/', function () {
 
 
 Route::resource('firms',\App\Http\Controllers\FirmController::class);
+Route::resource('workers',\App\Http\Controllers\WorkerController::class);
 
 
 require __DIR__.'/auth.php';
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('workers',\App\Http\Controllers\WorkerController::class); // Route [admin.workers] not defined. --> bunda iwlamin durpdi
-});
