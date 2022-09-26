@@ -28,19 +28,19 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('firms.index')}}" class="nav-link active">
+                            <a href="{{route('firms.index')}}" class="nav-link @if(request()->routeIs('firms.index')) active @endif">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Firmalar</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('worker.index')}}" class="nav-link @if(request()->routeIs('worker.index')) active @endif">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ishchilar</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('work.index')}}" class="nav-link">
+                            <a href="{{route('work.index')}}" class="nav-link @if(request()->routeIs('work.index')) active @endif">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ish turi</p>
                             </a>
