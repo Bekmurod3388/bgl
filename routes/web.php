@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/',function (){ return view('master'); });
     Route::resource('firms', \App\Http\Controllers\FirmController::class);
-    Route::resource('workers', \App\Http\Controllers\WorkerController::class);
+    Route::resource('worker', \App\Http\Controllers\WorkerController::class);
     Route::resource('work',\App\Http\Controllers\WorkController::class);
 });
 
