@@ -14,8 +14,7 @@ class WorkerController extends Controller
      */
     public function index()
     {
-        $data = Worker::orderBy('created_at','desc')->paginate(6);
-        return view('admin.workers.index',['workers'=>$data]);
+
     }
 
     /**
@@ -25,8 +24,7 @@ class WorkerController extends Controller
      */
     public function create()
     {
-        $data = Worker::all();
-        return view('admin.workers.create',['workers'=>$data]);
+
     }
 
     /**

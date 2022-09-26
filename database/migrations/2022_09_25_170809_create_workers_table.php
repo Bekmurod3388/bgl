@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('summ');
+            $table->integer('all_sum');
+            $table->integer('indebtedness');
+            $table->integer('given_sum');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
