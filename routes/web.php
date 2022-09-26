@@ -17,11 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/firms', function () {
-    return view('firms');
-})->middleware(['auth'])->name('firms');
 
-Route::resource('firms',\App\Http\Controllers\FirmaCantroller::class);
+
+Route::resource('firms',\App\Http\Controllers\FirmController::class);
 
 
 require __DIR__.'/auth.php';
