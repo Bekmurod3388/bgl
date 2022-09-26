@@ -20,5 +20,6 @@ Route::get('/', function () {
 Route::get('/firms', function () {
     return view('firms');
 })->middleware(['auth'])->name('firms');
+Route::resource('work',\App\Http\Controllers\WorkController::class);
 
 require __DIR__.'/auth.php';
