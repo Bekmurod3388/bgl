@@ -13,8 +13,8 @@ class WorkerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-
+    {   $workers=Worker::all();
+        return view('worker',['workers'=>$workers]);
     }
 
     /**
