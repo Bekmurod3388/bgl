@@ -43,7 +43,7 @@ class WorkerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required|unique:workers'
         ]);
         $worker = new Worker();
         $worker->name = $request->name;
