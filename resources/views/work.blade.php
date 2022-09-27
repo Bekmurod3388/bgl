@@ -17,11 +17,11 @@
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>Work name</th>
-                            <th>Type</th>
-                            <th>Price</th>
+                            <th>Nomi</th>
+                            <th>Tur</th>
+                            <th>Narxi</th>
 
-                            <th>Action</th>
+                            <th>Amallar</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,7 +29,7 @@
                         <tr>
                             <td>{{$work->id}}</td>
                             <td>{{$work->name}}</td>
-                            <td>{{$work->type}}</td>
+                            <td>{{$work->types->name}}</td>
                             <td>{{$work->price}}</td>
                             <td class="col-2">
                                 <form action="{{route('work.destroy',$work->id)}}" method="POST">
@@ -43,7 +43,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button title="O'chirish" type="submit"
-                                                class="btn btn-danger active btn-sm"><span class="btn-label">
+                                                class="btn btn-danger active btn-md pl-3 pr-3 show_confirm"><span class="btn-label">
                                         <i class="fa fa-trash"></i>
                                     </span></button>
                                     </a>
@@ -90,11 +90,11 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Work Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Work Name" name="name">
+                                <label for="name">Nomi</label>
+                                <input type="text" class="form-control" id="name" placeholder="Nomi" name="name">
                             </div>
                             <div class="form-group">
-                                <label for="type">Type</label>
+                                <label for="type">Tur</label>
                                 <select class="custom-select" id="type" name="type">
                                   @foreach($create as $tur)
 
@@ -103,13 +103,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="prive">Price</label>
-                                <input type="number" class="form-control" id="price" placeholder="price" name="price">
+                                <label for="prive">Narxi</label>
+                                <input type="number" class="form-control" id="price" placeholder="Narxi" name="price">
                             </div>
 
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Bekor qilish</button>
+                    <button type="submit" class="btn btn-primary">Saqlash</button>
                 </div>
                         </div>
                         <!-- /.card-body -->
@@ -142,8 +142,8 @@
                         <input type="hidden" name="id" id="edit_id">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for='name'>Name</label>
-                                <input type="text" class="form-control" id="name_edit" placeholder="Name" name="name">
+                                <label for='name'>Nomi</label>
+                                <input type="text" class="form-control" id="name_edit" placeholder="Nomi" name="name">
                             </div>
                             <div class="form-group">
                                 <label for="tur">Tur</label>
@@ -155,13 +155,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="narxi">price</label>
-                                <input type="number" class="form-control" id="price_edit" placeholder="price" name="price">
+                                <label for="narxi">Narxi</label>
+                                <input type="number" class="form-control" id="price_edit" placeholder="Narxi" name="price">
                             </div>
 
                             <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Bekor qilish</button>
+                                <button type="submit" class="btn btn-primary">Saqlash</button>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -174,7 +174,18 @@
         <!-- /.modal-dialog -->
     </div>
 @endsection
+@section('custom-scripts')
 <script>
+    @if(isset($status))
+    @if($status=='success')
+    toastr.success("{{$message}}");
+    @endif
+    @if($status=="error" )
+    toastr.error("{{$message}}");
+    @endif
+
+    @endif
+
    let ishs=@json($ishs);
    console.log(ishs)
    function edit(id){
@@ -186,3 +197,4 @@
        document.getElementById('price_edit').value=ish['price'];
    }
 </script>
+@endsection

@@ -10,13 +10,57 @@ use Illuminate\View\View;
 class WorkController extends Controller
 {
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $result=$request->validate(
+            [
+                'name'=>'required',
+                'type'=>'required',
+                'price'=>'required'
+            ]
+        );
+        $ish=new Work();
+        $ish->name=$request->name;
+        $ish->type=$request->type;
+        $ish->price=$request->price;
+        $ish->save();
+        $status = 'success';
+        $message = "Yangi Ish nomi muvaffaqqiyatli yaratildi";
+
+        $works=Work::orderBy('created_at','desc')->paginate(4);
+        $ishs=[];
+        foreach ($works as $ish){
+            $ishs[$ish->id]=$ish;
+        }
+        $create=Tur::all();
+        return view('work',compact('status','message','ishs','works','create'))->with('success','Ish nomi yaratildi');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Work  $work
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Work $work)
+    {
+        //
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        $works=Work::orderBy('created_at','desc')->paginate(6);
+
+        $works=Work::orderBy('created_at','desc')->paginate(4);
         $ishs=[];
         foreach ($works as $ish){
             $ishs[$ish->id]=$ish;
@@ -39,40 +83,6 @@ class WorkController extends Controller
 
 
 //        return  view('ishturi',compact('create'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $result=$request->validate(
-            [
-                'name'=>'required',
-                'type'=>'required',
-                'price'=>'required'
-            ]
-        );
-      $ish=new Work();
-      $ish->name=$request->name;
-      $ish->type=$request->type;
-      $ish->price=$request->price;
-   $ish->save();
-return redirect()->route('work.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Work  $work
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Work $work)
-    {
-        //
     }
 
     /**
@@ -108,7 +118,16 @@ return redirect()->route('work.index');
         $ish->type=$request->type;
         $ish->price=$request->price;
         $ish->save();
-        return  redirect()->route('work.index');
+        $status = 'success';
+        $message = "Yangi Ish nomi muvaffaqqiyatli tahirilandi";
+
+        $works=Work::orderBy('created_at','desc')->paginate(4);
+        $ishs=[];
+        foreach ($works as $ish){
+            $ishs[$ish->id]=$ish;
+        }
+        $create=Tur::all();
+        return view('work',compact('status','message','ishs','works','create'))->with('success','Ish nomi yaratildi');
     }
 
     /**
@@ -119,8 +138,17 @@ return redirect()->route('work.index');
      */
     public function destroy($id)
     {
-        $works=Work::find($id);
-        $works->delete();
-        return redirect()->route('work.index');
+        $work=Work::find($id);
+        $work->delete();
+        $status = 'success';
+        $message = "Yangi Ish nomi muvaffaqqiyatli O'chiriildi";
+
+        $works=Work::orderBy('created_at','desc')->paginate(4);
+        $ishs=[];
+        foreach ($works as $ish){
+            $ishs[$ish->id]=$ish;
+        }
+        $create=Tur::all();
+        return view('work',compact('status','message','ishs','works','create'))->with('success','Ish nomi yaratildi');
     }
 }
