@@ -57,7 +57,7 @@ class FirmIncomeController extends Controller
         $firm_income['price'] = $request['price'];
         $firm_income['total_price'] = intval($request['price'] * $netto);
         $firm_income->save();
-        return redirect()->route("firm_incomes.index");
+        return redirect()->route("firm_incomes.index")->with("success", "Firma kirim muvaffaqqiyatli yaratildi");
     }
 
     /**
@@ -98,7 +98,7 @@ class FirmIncomeController extends Controller
         $firm_income['netto'] = $netto;
         $firm_income['total_price'] = $netto * $firm_income['price'];
         $firm_income->save();
-        return redirect()->route("firm_incomes.index");
+        return redirect()->route("firm_incomes.index")->with("success", "Firma kirim muvaffaqqiyatli tahrirlandi");;
     }
 
     /**
@@ -110,6 +110,6 @@ class FirmIncomeController extends Controller
     public function destroy(FirmIncome $firmIncome)
     {
         $firmIncome->delete();
-        return redirect()->route("firm_incomes.index");
+        return redirect()->route("firm_incomes.index")->with("success", "Firma kirim muvaffaqqiyatli o'chirildi");;
     }
 }

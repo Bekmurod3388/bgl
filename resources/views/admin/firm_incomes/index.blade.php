@@ -44,7 +44,7 @@
                                     <form action="{{route('firm_incomes.destroy', $firm->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger show_confirm"><i class="fa fa-trash"></i></button>
                                     </form>
 
                                 </td>
@@ -64,7 +64,14 @@
         </div>
         <!-- /.col-md-6 -->
     </div>
+@endsection
+@section('custom-scripts')
     <script>
+
+        @if ($message = Session::get('success'))
+        toastr.success("{{$message}}");
+        @endif
+
         let firmes=@json($firm_incomes);
         function edit(id){
             for (let i = 0; i < firmes.length; i++) {
