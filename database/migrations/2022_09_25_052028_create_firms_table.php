@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('firms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('all_sum');
-            $table->unsignedBigInteger('indebtedness');
-            $table->unsignedBigInteger('given_sum');
+            $table->bigInteger('all_sum');
+            $table->bigInteger('indebtedness');
+            $table->bigInteger('given_sum');
             $table->timestamps();
             $table->softDeletes();
         });
