@@ -39,7 +39,7 @@ class FirmController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -52,8 +52,7 @@ class FirmController extends Controller
         $firm->indebtedness=0;
         $firm->given_sum=0;
         $firm->save();
-
-        return redirect()->route('firms.index')->with('succes','Firma muvaffaqqiyatli yaratildi');
+        return redirect()->route('firms.index')->with('success', 'Firma muvaffaqqiyatli yaratildi');
     }
 
     /**
@@ -83,10 +82,18 @@ class FirmController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
+        $id=$request['id'];
+        $request->validate([
+            'name'=>'required'
+        ]);
+        $firm= Firm::find($id);
+        $firm->name=$request['name'];
+        $firm->save();
+        return redirect()->route('firms.index')->with('success', 'Firma muvaffaqqiyatli tahrirlandi');
 
     }
 
@@ -94,12 +101,12 @@ class FirmController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request,$firm)
     {
         $firm=Firm::find($firm);
         $firm->delete();
-        return redirect()->route('firms.index');
+        return redirect()->route('firms.index')->with('success'   ,'Firma muvaffaqqiyatli o`chirildi');
     }
 }

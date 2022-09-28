@@ -48,12 +48,6 @@ class WorkerController extends Controller
         $worker = new Worker();
         $worker->name = $request->name;
         $worker->save();
-        $workers = Worker::all();
-        $workers_obj=[];
-        foreach ($workers as $worker) {
-            $workers_obj[$worker->id]=$worker;
-        }
-        $workers_obj=(object)$workers_obj;
 
         return redirect()->route('worker.index')->with('success'    ,'Yangi ishchi yaratildi');
 
