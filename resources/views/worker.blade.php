@@ -170,19 +170,22 @@
         //     toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
         //     toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
 
-
-        {{--            @if(session()->has('ok'))--}}
+       {{--            @if(session()->has('ok'))--}}
         {{--        toastr.success("{{session()->get('ok')}}");--}}
         {{--        @endif--}}
-        @if(isset($status))
-        @if($status=='success')
-        toastr.success("{{$message}}");
-        @endif
-        @if($status=="error" )
-        toastr.error("{{$message}}");
+        @if(session('success'))
+           toastr.options =
+           {
+               "closeButton" : true,
+               "progressBar" : true
+           }
+        toastr.success("{{ session()->get('success') }}");
         @endif
 
-        @endif
+        @if(session('error'))
+        session.error("{{$message}}");
+           @endif
+
         let workers =@json($workers_obj);
 
         function edit(id) {

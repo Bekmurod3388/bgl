@@ -38,7 +38,7 @@ class WorkerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -48,8 +48,6 @@ class WorkerController extends Controller
         $worker = new Worker();
         $worker->name = $request->name;
         $worker->save();
-        $status = 'success';
-        $message = "Yangi ishchi muvaffaqqiyatli yaratildi";
         $workers = Worker::all();
         $workers_obj=[];
         foreach ($workers as $worker) {
@@ -57,7 +55,7 @@ class WorkerController extends Controller
         }
         $workers_obj=(object)$workers_obj;
 
-        return view('worker', ['workers' => $workers,'workers_obj'=>$workers_obj, 'status' => $status, 'message' => $message])->with('ok','Yangi ishchi yaratildi');
+        return redirect()->route('worker.index')->with('success'    ,'Yangi ishchi yaratildi');
 
     }
 
@@ -98,16 +96,8 @@ class WorkerController extends Controller
         $worker =Worker::find($request->id);
         $worker->name = $request->name;
         $worker->save();
-        $status = 'success';
-        $message = "Ishchi muvaffaqqiyatli tahrirlandi";
-        $workers = Worker::all();
-        $workers_obj=[];
-        foreach ($workers as $worker) {
-            $workers_obj[$worker->id]=$worker;
-        }
-        $workers_obj=(object)$workers_obj;
 
-        return view('worker', ['workers' => $workers,'workers_obj'=>$workers_obj, 'status' => $status, 'message' => $message])->with('ok','Yangi ishchi yaratildi');
+        return redirect()->route('worker.index')->with('success'    ,'Tahrirlandi');
 
     }
 
@@ -121,15 +111,7 @@ class WorkerController extends Controller
     {
         $worker = Worker::find($worker);
         $worker->delete();
-        $status = 'success';
-        $message = "Ishchi muvaffaqqiyatli o`chirildi";
-        $workers = Worker::all();
-        $workers_obj=[];
-        foreach ($workers as $worker) {
-            $workers_obj[$worker->id]=$worker;
-        }
-        $workers_obj=(object)$workers_obj;
+        return redirect()->route('worker.index')->with('success'    ,'Muvaffiqiyatli o`chirildi');
 
-        return view('worker', ['workers' => $workers,'workers_obj'=>$workers_obj, 'status' => $status, 'message' => $message]);
     }
 }
