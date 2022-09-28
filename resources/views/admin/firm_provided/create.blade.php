@@ -23,7 +23,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="date">Sana:</label>
-                                <input type="date" name="date" class="form-control" id="date">
+                                <input type="date" name="date" class="form-control" id="date" value="<?php echo date("Y-m-d");?>">
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -32,8 +32,8 @@
 
                         </div>
                         <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Bekor qilish</button>
+                            <button type="submit" class="btn btn-primary">Saqlash</button>
                         </div>
                     </form>
                 </div>
