@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('firm_incomes',\App\Http\Controllers\FirmIncomeController::class);
     Route::resource('type',\App\Http\Controllers\TypeController::class);
     Route::resource('worker_gaves',\App\Http\Controllers\WorkerGaveController::class);
+    Route::resource('jobs',\App\Http\Controllers\JobsController::class);
 
 });
 

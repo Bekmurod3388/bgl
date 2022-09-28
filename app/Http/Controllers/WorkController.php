@@ -9,6 +9,21 @@ use Illuminate\View\View;
 
 class WorkController extends Controller
 {
+    public function index()
+    {
+
+        $works=Work::orderBy('created_at','desc')->paginate(4);
+        $ishs=[];
+        foreach ($works as $ish){
+            $ishs[$ish->id]=$ish;
+        }
+
+
+
+
+        $create=Tur::all();
+        return view('work.work',compact('works','ishs','create'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -38,7 +53,7 @@ class WorkController extends Controller
             $ishs[$ish->id]=$ish;
         }
         $create=Tur::all();
-        return view('work',compact('status','message','ishs','works','create'))->with('success','Ish nomi yaratildi');
+        return view('work.work',compact('status','message','ishs','works','create'))->with('success','Ish nomi yaratildi');
     }
 
     /**
@@ -57,21 +72,6 @@ class WorkController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
-    {
-
-        $works=Work::orderBy('created_at','desc')->paginate(4);
-        $ishs=[];
-        foreach ($works as $ish){
-            $ishs[$ish->id]=$ish;
-        }
-
-
-
-
-        $create=Tur::all();
-        return view('work',compact('works','ishs','create'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -127,7 +127,7 @@ class WorkController extends Controller
             $ishs[$ish->id]=$ish;
         }
         $create=Tur::all();
-        return view('work',compact('status','message','ishs','works','create'))->with('success','Ish nomi yaratildi');
+        return view('work.work',compact('status','message','ishs','works','create'))->with('success','Ish nomi yaratildi');
     }
 
     /**
@@ -149,6 +149,6 @@ class WorkController extends Controller
             $ishs[$ish->id]=$ish;
         }
         $create=Tur::all();
-        return view('work',compact('status','message','ishs','works','create'))->with('success','Ish nomi yaratildi');
+        return view('work.work',compact('status','message','ishs','works','create'))->with('success','Ish nomi yaratildi');
     }
 }
