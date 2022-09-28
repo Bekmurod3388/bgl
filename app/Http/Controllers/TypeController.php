@@ -38,7 +38,8 @@ class TypeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
+     *
      */
     public function store(Request $request)
     {
@@ -50,7 +51,7 @@ class TypeController extends Controller
         $type=new Tur();
         $type->name=$request->name;
         $type->save();
-        return redirect()->route('type.index');
+        return redirect()->route('type.index')->with('success'   ,'Muvaffaqqiyatli yaratildi');
     }
 
     /**
@@ -94,7 +95,7 @@ class TypeController extends Controller
         $type=Tur::find($request->id);
         $type->name=$request->name;
         $type->save();
-        return  redirect()->route('type.index');
+        return redirect()->route('type.index')->with('success'   ,'Muvaffaqqiyatli yangilandi');
     }
 
     /**
@@ -107,6 +108,6 @@ class TypeController extends Controller
     {
         $type=Tur::find($id);
         $type->delete();
-        return redirect()->route('type.index');
+        return redirect()->route('type.index')->with('success'   ,'Muvaffaqqiyatli o`chirildi');
     }
 }

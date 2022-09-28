@@ -27,23 +27,24 @@
                                 <td>{{$t->id}}</td>
                                 <td>{{$t->name}}</td>
 
-                                <td class="col-2">
-                                    <form action="{{route('type.destroy',$t->id)}}" method="POST">
+                                <td class=" d-flex">
+                                    <button onclick="edit({{$t->id}})" type="button" class="btn btn-warning m-1" data-toggle="modal" data-target="#modal-default2">
 
-                                        <button onclick="edit({{$t->id}})" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default2">
+                                        <i class="fa fa-pen"></i>
 
-                                            <i class="fa fa-pen"></i>
+                                    </button>
+                                    <form action="{{route('type.destroy',$t->id)}}" class="m-1" method="POST">
 
-                                        </button>
 
-                                        <a href="{{route('type.destroy',$t->id)}}">
+
+
                                             @csrf
                                             @method('DELETE')
                                             <button title="O'chirish" type="submit"
-                                                    class="btn btn-danger active btn-sm show_confirm"><span class="btn-label">
+                                                    class="btn btn-danger show_confirm">
                                         <i class="fa fa-trash"></i>
-                                    </span></button>
-                                        </a>
+                                    </button>
+
                                     </form>
                                 </td>
                             </tr>
@@ -145,7 +146,20 @@
         <!-- /.modal-dialog -->
     </div>
 @endsection
+@section('custom-scripts')
 <script>
+    @if(session('success'))
+        toastr.options =
+        {
+            "closeButton": true,
+            "progressBar": true
+        }
+    toastr.success("{{ session()->get('success') }}");
+    @endif
+
+    @if(session('error'))
+    session.error("{{$message}}");
+    @endif
     let ishs=@json($ishs);
     console.log(ishs)
     function edit(id){
@@ -158,3 +172,4 @@
 
     }
 </script>
+@endsection
