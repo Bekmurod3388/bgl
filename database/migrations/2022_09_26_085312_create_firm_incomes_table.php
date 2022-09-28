@@ -16,12 +16,12 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger("firm_id");
             $table->string("car_number");
-            $table->unsignedBigInteger("brutto");
-            $table->unsignedBigInteger("netto");
-            $table->unsignedBigInteger("tara");
-            $table->unsignedBigInteger("soil");
-            $table->unsignedBigInteger("price");
-            $table->unsignedBigInteger("total_price");
+            $table->bigInteger("brutto");
+            $table->bigInteger("netto");
+            $table->bigInteger("tara");
+            $table->bigInteger("soil");
+            $table->bigInteger("price");
+            $table->bigInteger("total_price");
             $table->timestamps();
             $table->softDeletes();
         });

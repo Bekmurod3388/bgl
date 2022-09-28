@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('firm_provideds', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("firm_id");
-            $table->unsignedBigInteger("price");
+            $table->bigInteger("firm_id");
+            $table->bigInteger("price");
             $table->date("date");
             $table->softDeletes();
         });
