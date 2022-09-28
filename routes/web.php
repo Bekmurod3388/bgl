@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('worker', \App\Http\Controllers\WorkerController::class);
     Route::resource('work',\App\Http\Controllers\WorkController::class);
     Route::resource('firm_incomes',\App\Http\Controllers\FirmIncomeController::class);
+    Route::resource('firm_provided',\App\Http\Controllers\FirmProvidedController::class);
     Route::resource('type',\App\Http\Controllers\TypeController::class);
     Route::resource('worker_gaves',\App\Http\Controllers\WorkerGaveController::class);
     Route::resource('jobs',\App\Http\Controllers\JobsController::class);
