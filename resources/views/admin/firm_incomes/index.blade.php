@@ -1,4 +1,5 @@
 @extends('master')
+@section('title','Firma kirim')
 @section('content')
     <div class="row">
 
@@ -28,15 +29,15 @@
                                 <td>{{$loop->index +1}}</td>
                                 <td>{{$firm->firm->name}}</td>
                                 <td>{{$firm->car_number}}</td>
-                                <td>{{$firm->brutto}}</td>
-                                <td>{{$firm->netto}}</td>
-                                <td>{{$firm->tara}}</td>
-                                <td>{{$firm->soil}}</td>
-                                <td>{{$firm->price}}</td>
-                                <td>{{$firm->total_price}}</td>
-                                <td>
+                                <td>{{ number_format($firm->brutto, 2, ',', ' ') }}</td>
+                                <td>{{ number_format($firm->netto, 2, ',',' ')}}</td>
+                                <td>{{ number_format($firm->tara, 2, ',',' ')}}</td>
+                                <td>{{ number_format($firm->soil, 2, ',',' ')}}</td>
+                                <td>{{ number_format($firm->price, 2, ',',' ')}}</td>
+                                <td>{{ number_format($firm->total_price, 2, ',',' ')}}</td>
+                                <td class="d-flex">
 
-                                    <button type="button" onclick="edit({{$firm->id}})" class="btn btn-primary" data-toggle="modal" data-target="#modal-edit">
+                                    <button type="button" onclick="edit({{$firm->id}})" class="btn btn-warning" data-toggle="modal" data-target="#modal-edit">
                                         <i class="fa fa-pen"></i>
                                     </button>
 
@@ -54,6 +55,15 @@
                         <tfoot>
                         <tr>
                             <th>Jami</th>
+                            <th></th>
+                            <th></th>
+                            <th>{{ number_format($sum_brutto,2,',',' ') }}</th>
+                            <th>{{ number_format($sum_netto,2,',',' ') }}</th>
+                            <th>{{ number_format($sum_tara,2,',',' ') }}</th>
+                            <th>{{ number_format($sum_soil,2,',',' ') }}</th>
+                            <th></th>
+                            <th>{{ number_format($sum_total_price,2,',',' ') }}</th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>

@@ -66,20 +66,24 @@
                        <tr>
                            <td>{{$loop->index +1}}</td>
                             <td>{{$firm->name}}</td>
-                            <td>{{$firm->all_sum}}</td>
-                            <td>{{$firm->indebtedness}}</td>
-                            <td>{{$firm->given_sum}}</td>
-                          <td>
-
-                              <button type="button" onclick="edit({{$firm->id}})" class="btn btn-primary" data-toggle="modal" data-target="#modal-edit">
+                            <td>{{number_format($firm->all_sum,2,',',' ')}}</td>
+                            <td>{{number_format($firm->indebtedness,2,',',' ')}}</td>
+                            <td>{{number_format($firm->given_sum,2,',',' ')}}</td>
+                          <td class="d-flex">
+                              <a href="{{ route("firm_incomes.index",['id' => $firm->id]) }}" class="btn btn-success m-1">
+                                  <i class="fa fa-car"></i>
+                              </a>
+                              <a href="{{ route("firm_provided.index",['id' => $firm->id]) }}" class="btn btn-info m-1">
+                                  <i class="fa fa-clipboard-list"></i>
+                              </a>
+                              <button type="button" onclick="edit({{$firm->id}})" class="btn btn-warning m-1" data-toggle="modal" data-target="#modal-edit">
                                   <i class="fa fa-pen"></i>
                               </button>
-
 
                                <form action="{{route('firms.destroy', $firm->id)}}" method="post">
                                    @method('DELETE')
                                    @csrf
-                                   <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                   <button type="submit" class="btn btn-danger m-1"><i class="fa fa-trash"></i></button>
                                </form>
 
                                </td>

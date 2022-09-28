@@ -7,31 +7,23 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Firma kirim yaratish</h4>
+                    <h4 class="modal-title">Firma oldi berdi yaratish</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{route('firm_incomes.store')}}">
+                    <form method="post" action="{{route('firm_provided.store')}}">
                         @csrf
                         <div class="card-body">
                             <input type="hidden" name="firm_id" value="{{ $id }}">
                             <div class="form-group">
-                                <label for="car_number">Mashina raqamini kiriting:</label>
-                                <input type="text" name="car_number" class="form-control" id="car_number">
-                            </div>
-                            <div class="form-group">
-                                <label for="brutto">Brutto:</label>
-                                <input type="number" name="brutto" class="form-control" id="brutto">
-                            </div>
-                            <div class="form-group">
-                                <label for="tara">Tara:</label>
-                                <input type="number" name="tara" class="form-control" id="tara">
-                            </div>
-                            <div class="form-group">
-                                <label for="price">1kg narxi:</label>
+                                <label for="price">Berilgan summa:</label>
                                 <input type="number" name="price" class="form-control" id="price">
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Sana:</label>
+                                <input type="date" name="date" class="form-control" id="date">
                             </div>
                         </div>
                         <!-- /.card-body -->
