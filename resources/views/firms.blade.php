@@ -79,7 +79,7 @@
                                <form action="{{route('firms.destroy', $firm->id)}}" method="post">
                                    @method('DELETE')
                                    @csrf
-                                   <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                   <button type="submit" class="btn btn-danger show_confirm"><i class="fa fa-trash"></i></button>
                                </form>
 
                                </td>

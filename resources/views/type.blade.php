@@ -40,7 +40,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button title="O'chirish" type="submit"
-                                                    class="btn btn-danger active btn-sm"><span class="btn-label">
+                                                    class="btn btn-danger active btn-sm show_confirm"><span class="btn-label">
                                         <i class="fa fa-trash"></i>
                                     </span></button>
                                         </a>
