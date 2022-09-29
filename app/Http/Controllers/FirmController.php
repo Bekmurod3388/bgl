@@ -16,12 +16,24 @@ class FirmController extends Controller
     {
         $firms = Firm::all();
         $firmes=[];
+        $sum_price = 0;
+        $sum_indebtedness = 0;
+        $sum_given = 0;
+        $cnt = 0;
         foreach ($firms as $firm){
             $firmes[$firm->id]=$firm;
+            $sum_price += $firm['all_sum'];
+            $sum_indebtedness += $firm['indebtedness'];
+            $sum_given += $firm['given_sum'];
+            $cnt++;
         }
         return view('firm.firms',[
             'firms'=>$firms,
-            'firmes'=>$firmes
+            'firmes'=>$firmes,
+            'sum_price' => $sum_price,
+            'sum_indebtedness' => $sum_indebtedness,
+            'sum_given' => $sum_given,
+            'cnt' => $cnt,
         ]);
     }
 
