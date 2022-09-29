@@ -139,7 +139,7 @@
 
                         @method('put')
                         @csrf
-                        <input type="hidden" name="id" id="edit_id">
+                        <input type="hidden"   name="id" id="edit_id">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for='name'>Nomi</label>

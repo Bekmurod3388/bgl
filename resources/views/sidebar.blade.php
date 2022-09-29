@@ -51,12 +51,12 @@
                                 <p>Tur</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('jobs.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ish</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{route('jobs.index')}}" class="nav-link">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Ish</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li class="nav-item">
                             <a href="{{route('products.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

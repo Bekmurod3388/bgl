@@ -71,24 +71,42 @@
                                 <td>{{$worker->name}}</td>
                                 <td>{{$worker->all_sum}}</td>
                                 <td>{{$worker->indebtedness}}</td>
-                                <td>{{$worker->indebtedness}}</td>
-                                @php  $ind+=1;$allsum+=$worker->all_sum;$indeb+=$worker->indebtedness;$given+=$worker->indebtedness; @endphp
-                                <td class="d-flex justify-content-end">
-
-                                    <button type="button" onclick="edit({{$worker->id}})" class="btn btn-warning"
-                                            data-toggle="modal" data-target="#modal-edit">
+                                <td>{{$worker->given_sum}}</td>
+                                @php  $ind+=1;$allsum+=$worker->all_sum;$indeb+=$worker->indebtedness;$given+=$worker->given_sum; @endphp
+                                <td class="d-flex">
+                                    <a href="{{ route("jobs.index",['id' => $worker->id]) }}" class="btn btn-success m-1">
+                                        <i class="fa fa-car"></i>
+                                    </a>
+                                    <a href="{{ route("worker_gaves.index",['id' => $worker->id]) }}" class="btn btn-info m-1">
+                                        <i class="fa fa-clipboard-list"></i>
+                                    </a>
+                                    <button type="button" onclick="edit({{$worker->id}})" class="btn btn-warning m-1" data-toggle="modal" data-target="#modal-edit">
                                         <i class="fa fa-pen"></i>
                                     </button>
-
 
                                     <form action="{{route('worker.destroy', $worker->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-danger show_confirm"><i class="fa fa-trash"></i>
-                                        </button>
+                                        <button type="submit" class="btn btn-danger m-1"><i class="fa fa-trash"></i></button>
                                     </form>
 
                                 </td>
+{{--                                <td class="d-flex justify-content-end">--}}
+
+{{--                                    <button type="button" onclick="edit({{$worker->id}})" class="btn btn-warning"--}}
+{{--                                            data-toggle="modal" data-target="#modal-edit">--}}
+{{--                                        <i class="fa fa-pen"></i>--}}
+{{--                                    </button>--}}
+
+
+{{--                                    <form action="{{route('worker.destroy', $worker->id)}}" method="post">--}}
+{{--                                        @method('DELETE')--}}
+{{--                                        @csrf--}}
+{{--                                        <button type="submit" class="btn btn-danger show_confirm"><i class="fa fa-trash"></i>--}}
+{{--                                        </button>--}}
+{{--                                    </form>--}}
+
+{{--                                </td>--}}
                             </tr>
                         @endforeach
                         </tbody>
