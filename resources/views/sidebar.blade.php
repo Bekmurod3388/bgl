@@ -24,6 +24,36 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+                <li class="nav-item menu">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fa fa-cog"></i>
+                        <p>
+                            Sozlamalar
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('worker.index')}}" class="nav-link @if(request()->routeIs('worker.index')) active @endif">
+                                <i class="fa fa-users nav-icon"></i>
+                                <p>Ishchilar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('work.index')}}" class="nav-link @if(request()->routeIs('work.index')) active @endif">
+                                <i class="fa fa-tasks nav-icon"></i>
+                                <p>Ish turi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('type.index')}}" class="nav-link">
+                                <i class="fa fa-box nav-icon"></i>
+                                <p>Tur</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
                 <li class="nav-item menu-open">
 
                     <ul class="nav nav-treeview">
@@ -33,30 +63,9 @@
                                 <p>Firmalar</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('worker.index')}}" class="nav-link @if(request()->routeIs('worker.index')) active @endif">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ishchilar</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('work.index')}}" class="nav-link @if(request()->routeIs('work.index')) active @endif">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ish turi</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('type.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tur</p>
-                            </a>
-                        </li>
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{route('jobs.index')}}" class="nav-link">--}}
-{{--                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                <p>Ish</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+
+
+
                         <li class="nav-item">
                             <a href="{{route('products.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

@@ -30,32 +30,31 @@
                         </thead>
                         <tbody>
                         @foreach($jobs as $job)
-                        <tr>
-                            <td>{{$job->id}}</td>
-                            <td>{{$job->worker->name}}</td>
-                            <td>{{$job->work->name}}</td>
-                            <td>{{$job->date}}</td>
-                            <td>{{$job->type}}</td>
-                            <td>{{$job->all_sum}}</td>
-                            <td class="col-2">
-                                <form action="{{route('jobs.destroy',$job->id)}}" method="POST">
-                                    <button onclick="edit({{$job->id}})" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-edit">
-
-                                        <i class="fa fa-pen"></i>
-
-                                    </button>
-
-                                    <a href="{{route('jobs.destroy',$job->id)}}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button title="O'chirish" type="submit"
-                                                class="btn btn-danger active btn-md pl-3 pr-3 show_confirm"><span class="btn-label">
+                            <tr>
+                                <td>{{$job->id}}</td>
+                                <td>{{$job->worker->name}}</td>
+                                <td>{{$job->work->name}}</td>
+                                <td>{{$job->date}}</td>
+                                <td>{{$job->type}}</td>
+                                <td>{{number_format($job->all_sum, 0,',',' ')}}</td>
+                                <td class="col-2">
+                                    <form action="{{route('jobs.destroy',$job->id)}}" method="POST">
+                                        <button onclick="edit({{$job->id}})" type="button" class="btn btn-warning"
+                                                data-toggle="modal" data-target="#modal-edit">
+                                            <i class="fa fa-pen"></i>
+                                        </button>
+                                        <a href="{{route('jobs.destroy',$job->id)}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button title="O'chirish" type="submit"
+                                                    class="btn btn-danger active btn-md pl-3 pr-3 show_confirm"><span
+                                                    class="btn-label">
                                         <i class="fa fa-trash"></i>
                                     </span></button>
-                                    </a>
-                                </form>
-                            </td>
-                        </tr>
+                                        </a>
+                                    </form>
+                                </td>
+                            </tr>
                         @endforeach
                         </tbody>
 
@@ -154,6 +153,15 @@
 
                                 <input type="hidden"  id="worker_id_edit" value="{{$id}}" name="worker_id">
 
+                            <div class="form-group">
+                                <label for="worker_id">Ishchi</label>
+                                <select class="custom-select" id="worker_id_edit" name="worker_id">
+                                    @foreach($workers as $worker)
+
+                                        <option value="{{$worker->id}}">{{$worker->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="type_work_id_edit">Ish turi</label>
                                 <select class="custom-select" id="type_work_id_edit" name="type_work_id">
