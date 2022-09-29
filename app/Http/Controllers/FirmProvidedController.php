@@ -20,7 +20,7 @@ class FirmProvidedController extends Controller
         $sum_price = 0;
         foreach ($firm_provided as $date)
             $sum_price += $date['price'];
-        return view("admin.firm_provided.index", compact("id", "firm_provided", "sum_price"));
+        return view("firm.firm_provided.index", compact("id", "firm_provided", "sum_price"));
     }
 
     /**

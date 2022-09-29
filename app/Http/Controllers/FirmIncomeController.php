@@ -23,6 +23,7 @@ class FirmIncomeController extends Controller
         $sum_netto = 0;
         $sum_tara = 0;
         $sum_soil = 0;
+        $sum_weight = 0;
         $sum_price = 0;
         foreach ($firm_incomes as $date){
             $sum_total_price += $date['total_price'];
@@ -30,9 +31,10 @@ class FirmIncomeController extends Controller
             $sum_netto += $date['netto'];
             $sum_tara += $date['tara'];
             $sum_soil += $date['soil'];
+            $sum_weight += $date['weight'];
             $sum_price += $date['price'];
         }
-        return view("admin.firm_incomes.index", [
+        return view("firm.firm_incomes.index", [
             'firm_incomes' => $firm_incomes,
             'firms' => $firms,
             'id' => $id,
@@ -42,6 +44,7 @@ class FirmIncomeController extends Controller
             'sum_tara' => $sum_tara,
             'sum_soil' => $sum_soil,
             'sum_price' => $sum_price,
+            'sum_weight' => $sum_weight,
         ]);
     }
 
@@ -79,6 +82,7 @@ class FirmIncomeController extends Controller
         $firm_income['netto'] = $netto;
         $firm_income['tara'] = $request['tara'];
         $firm_income['soil'] = 0;
+        $firm_income['weight'] = $netto;
         $firm_income['price'] = $request['price'];
         $firm_income['total_price'] = intval($request['price'] * $netto);
         $firm_income->save();
@@ -125,8 +129,13 @@ class FirmIncomeController extends Controller
         $old_price = $firm_income['total_price'];
         $old_soil = $firm_income['soil'];
         $new_soil = $request['soil'];
-        $netto = $firm_income['netto'] - ($new_soil - $old_soil);
+        $brutto = $request['brutto'];
+        $tara = $request['tara'];
+        $netto = ($brutto - $tara);
+        $firm_income['brutto'] = $brutto;
+        $firm_income['tara'] = $tara;
         $firm_income['soil'] = $request['soil'];
+        $firm_income['weight'] = $netto - $firm_income['soil'];
         $firm_income['netto'] = $netto;
         $firm_income['total_price'] = $netto * $firm_income['price'];
         $firm_income->save();
@@ -151,6 +160,7 @@ class FirmIncomeController extends Controller
         $total_price = $firmIncome['total_price'];
         $firm = Firm::find($id);
         $firm['all_sum'] -= $total_price;
+        $firm['indebtedness'] -= $total_price;
         $firm->save();
         $firmIncome->delete();
         return redirect()->back()->with("success", "Firma kirim muvaffaqqiyatli o'chirildi");;

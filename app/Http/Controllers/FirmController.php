@@ -19,7 +19,7 @@ class FirmController extends Controller
         foreach ($firms as $firm){
             $firmes[$firm->id]=$firm;
         }
-        return view('firms',[
+        return view('firm.firms',[
             'firms'=>$firms,
             'firmes'=>$firmes
         ]);

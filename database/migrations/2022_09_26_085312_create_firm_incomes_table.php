@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->bigInteger("netto");
             $table->bigInteger("tara");
             $table->bigInteger("soil");
+            $table->bigInteger("weight");
             $table->bigInteger("price");
             $table->bigInteger("total_price");
             $table->timestamps();

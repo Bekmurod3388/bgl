@@ -6,7 +6,7 @@
         <!-- /.col-md-6 -->
         <div class="col">
             <div class="card">
-                @include("admin.firm_provided.create")
+                @include("firm.firm_provided.create")
                 <div class="card-body">
                     <table class="table table-hover">
                         <thead>
