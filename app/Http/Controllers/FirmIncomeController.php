@@ -137,7 +137,7 @@ class FirmIncomeController extends Controller
         $firm_income['soil'] = $request['soil'];
         $firm_income['weight'] = $netto - $firm_income['soil'];
         $firm_income['netto'] = $netto;
-        $firm_income['total_price'] = $netto * $firm_income['price'];
+        $firm_income['total_price'] = $firm_income['weight'] * $firm_income['price'];
         $firm_income->save();
         $new_price = $firm_income['total_price'];
         $id = $firm_income['firm_id'];

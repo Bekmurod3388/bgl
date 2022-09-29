@@ -100,6 +100,11 @@
                         <tfoot>
                         <tr>
                             <th>Jami</th>
+                            <th>{{ $cnt }} ta firma</th>
+                            <th>{{number_format($sum_price,2,',',' ')}}</th>
+                            <th>{{number_format($sum_indebtedness,2,',',' ')}}</th>
+                            <th>{{number_format($sum_given,2,',',' ')}}</th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>
