@@ -15,6 +15,14 @@
                     <input type="hidden" name="id" id="edit_id">
                     <div class="card-body">
                         <div class="form-group">
+                            <label for="edit_brutto">Brutto:</label>
+                            <input type="number" name="brutto" class="form-control" id="edit_brutto">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_tara">Tara:</label>
+                            <input type="number" name="tara" class="form-control" id="edit_tara">
+                        </div>
+                        <div class="form-group">
                             <label for="edit_soil">Tuproqni kiriting(kg):</label>
                             <input type="number" name="soil" class="form-control" id="edit_soil">
                         </div>

@@ -1,8 +1,10 @@
 <div class="card-header">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-create">
-        Qo'shish
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-create">
+        <i class="fa fa-plus"></i> Qo'shish
     </button>
-
+    <a href="{{ route('firms.index') }}" class="btn btn-info">
+        <i class="fa fa-backward"></i> Orqaga
+    </a>
     <div class="modal fade" id="modal-create">
         <div class="modal-dialog">
             <div class="modal-content">

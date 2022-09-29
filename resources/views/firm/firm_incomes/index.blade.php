@@ -6,7 +6,7 @@
         <!-- /.col-md-6 -->
         <div class="col">
             <div class="card">
-                @include("admin.firm_incomes.create")
+                @include("firm.firm_incomes.create")
                 <div class="card-body">
                     <table class="table table-hover">
                         <thead>
@@ -15,9 +15,10 @@
                             <th>Firma nomi</th>
                             <th>Mashina raqami</th>
                             <th>Brutto</th>
-                            <th>Netto</th>
                             <th>Tara</th>
+                            <th>Netto</th>
                             <th>Tuproq</th>
+                            <th>Ildiz</th>
                             <th>1kg narxi</th>
                             <th>Jami narxi</th>
                             <th>Amallar</th>
@@ -30,14 +31,16 @@
                                 <td>{{$firm->firm->name}}</td>
                                 <td>{{$firm->car_number}}</td>
                                 <td>{{ number_format($firm->brutto, 2, ',', ' ') }}</td>
-                                <td>{{ number_format($firm->netto, 2, ',',' ')}}</td>
                                 <td>{{ number_format($firm->tara, 2, ',',' ')}}</td>
+                                <td>{{ number_format($firm->netto, 2, ',',' ')}}</td>
                                 <td>{{ number_format($firm->soil, 2, ',',' ')}}</td>
+                                <td>{{ number_format($firm->weight, 2, ',',' ')}}</td>
                                 <td>{{ number_format($firm->price, 2, ',',' ')}}</td>
                                 <td>{{ number_format($firm->total_price, 2, ',',' ')}}</td>
                                 <td class="d-flex">
 
-                                    <button type="button" onclick="edit({{$firm->id}})" class="btn btn-warning" data-toggle="modal" data-target="#modal-edit">
+                                    <button type="button" onclick="edit({{$firm->id}})" class="btn btn-warning"
+                                            data-toggle="modal" data-target="#modal-edit">
                                         <i class="fa fa-pen"></i>
                                     </button>
 
@@ -45,7 +48,8 @@
                                     <form action="{{route('firm_incomes.destroy', $firm->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-danger show_confirm"><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger show_confirm"><i
+                                                    class="fa fa-trash"></i></button>
                                     </form>
 
                                 </td>
@@ -58,9 +62,10 @@
                             <th></th>
                             <th></th>
                             <th>{{ number_format($sum_brutto,2,',',' ') }}</th>
-                            <th>{{ number_format($sum_netto,2,',',' ') }}</th>
                             <th>{{ number_format($sum_tara,2,',',' ') }}</th>
+                            <th>{{ number_format($sum_netto,2,',',' ') }}</th>
                             <th>{{ number_format($sum_soil,2,',',' ') }}</th>
+                            <th>{{ number_format($sum_weight,2,',',' ') }}</th>
                             <th></th>
                             <th>{{ number_format($sum_total_price,2,',',' ') }}</th>
                             <th></th>
@@ -68,7 +73,7 @@
                         </tfoot>
                     </table>
                 </div>
-                @include("admin.firm_incomes.edit")
+                @include("firm.firm_incomes.edit")
             </div>
 
         </div>
@@ -82,14 +87,17 @@
         toastr.success("{{$message}}");
         @endif
 
-        let firmes=@json($firm_incomes);
-        function edit(id){
+        let firmes =@json($firm_incomes);
+
+        function edit(id) {
             for (let i = 0; i < firmes.length; i++) {
-                if (id == firmes[i]["id"]){
-                    var firms=firmes[i];
+                if (id == firmes[i]["id"]) {
+                    var firms = firmes[i];
                     console.log(firms);
-                    document.getElementById('edit_soil').value=firms['soil'];
-                    document.getElementById('edit_id').value=id;
+                    document.getElementById('edit_soil').value = firms['soil'];
+                    document.getElementById('edit_brutto').value = firms['brutto'];
+                    document.getElementById('edit_tara').value = firms['tara'];
+                    document.getElementById('edit_id').value = id;
                     break;
                 }
             }
