@@ -69,9 +69,9 @@
                             <tr>
                                 <td>{{$loop->index+1}}</td>
                                 <td>{{$worker->name}}</td>
-                                <td>{{$worker->all_sum}}</td>
-                                <td>{{$worker->indebtedness}}</td>
-                                <td>{{$worker->given_sum}}</td>
+                                <td>{{number_format($worker->all_sum,2,',',' ')}}</td>
+                                <td>{{number_format($worker->indebtedness,2,',',' ')}}</td>
+                                <td>{{number_format($worker->given_sum,2,',',' ')}}</td>
                                 @php  $ind+=1;$allsum+=$worker->all_sum;$indeb+=$worker->indebtedness;$given+=$worker->given_sum; @endphp
                                 <td class="d-flex">
                                     <a href="{{ route("jobs.index",['id' => $worker->id]) }}" class="btn btn-success m-1">
@@ -116,11 +116,11 @@
                             <th>Jami:</th>
                             <th>                                @php echo  $ind." ta ishchi"; @endphp
                             </th>
-                            <th>                                @php echo $allsum@endphp
+                            <th>                                @php echo number_format($allsum, 2, ',',' ') @endphp
                             </th>
-                            <th>                                @php echo $indeb @endphp
+                            <th>                                @php echo number_format($indeb, 2, ',',' ')  @endphp
                             </th>
-                            <th>                                @php echo $given @endphp
+                            <th>                                @php echo number_format($given, 2, ',',' ')  @endphp
                             </th>
                             <th></th>
 

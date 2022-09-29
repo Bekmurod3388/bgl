@@ -8,9 +8,11 @@
             <div class="card">
                 <div class="card-header">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-                        <i class="fa fa-plus"></i>Qoshish
+                        <i class="fa fa-plus"></i> Qo'shish
                     </button>
-
+                    <a href="{{ route('worker.index') }}" class="btn btn-info">
+                        <i class="fa fa-backward"></i> Orqaga
+                    </a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">
