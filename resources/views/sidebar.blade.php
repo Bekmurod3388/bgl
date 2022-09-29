@@ -60,7 +60,7 @@
                         <li class="nav-item">
                             <a href="{{route('products.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Products</p>
+                                <p>Mahsulot</p>
                             </a>
                         </li>
                     </ul>

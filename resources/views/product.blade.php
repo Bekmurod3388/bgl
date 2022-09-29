@@ -81,20 +81,13 @@
                                 <td>{{number_format($product->minimum_price,2,',',' ')}}</td>
                                 <td>{{number_format($product->maximum_price,2,',',' ')}}</td>
                                 <td class="d-flex">
-                                    <a href="{{ route("products.index",['id' => $product->id]) }}"
-                                       class="btn btn-success m-1">
-                                        <i class="fa fa-car"></i>
-                                    </a>
-                                    <a href="{{ route("products.index",['id' => $product->id]) }}"
-                                       class="btn btn-info m-1">
-                                        <i class="fa fa-clipboard-list"></i>
-                                    </a>
+
                                     <button type="button" onclick="edit({{$product->id}})" class="btn btn-warning m-1"
                                             data-toggle="modal" data-target="#modal-edit">
                                         <i class="fa fa-pen"></i>
                                     </button>
 
-                                    <form action="{{route('product.destroy', $product->id)}}" method="post">
+                                    <form action="{{route('products.destroy', $product->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger m-1 show_confirm"><i
@@ -131,17 +124,17 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label for="edit_name">Mahsulot nomini kiriting:</label>
-                                            <input type="text" name="name" class="form-control" id="edit_name">
+                                            <input type="text" name="name" class="form-control" id="name">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Mahsulot minimum narxini kiriting:</label>
                                             <input type="number" name="minimum_price" class="form-control"
-                                                   id="exampleInputEmail1">
+                                                   id="minimum_price">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Mahsulot maksimum narxini kiriting:</label>
                                             <input type="number" name="maximum_price" class="form-control"
-                                                   id="exampleInputEmail1">
+                                                   id="maximum_price">
                                         </div>
                                     </div>
                                     <!-- /.card-body -->
@@ -189,7 +182,9 @@
 
             var firms = firmes[id];
 
-            document.getElementById('edit_name').value = firms['name'];
+            document.getElementById('name').value = firms['name'];
+            document.getElementById('minimum_price').value = firms['minimum_price'];
+            document.getElementById('maximum_price').value = firms['maximum_price'];
             document.getElementById('edit_id').value = id;
 
         }

@@ -18,7 +18,7 @@ class ProductController extends Controller
         $product=Product::all();
 
         $products=[];
-        foreach ($products as $product){
+        foreach ($product as $product){
             $products[$product->id]=$product;
         }
         return view('product',[
@@ -41,16 +41,18 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-
+//dd($request);
         $request->validate([
             'name'=>'required'
         ]);
-        $proruct=new Firm();
+        $proruct=new Product();
         $proruct->name=$request['name'];
+        $proruct->minimum_price=$request['minimum_price'];
+        $proruct->maximum_price=$request['maximum_price'];
 
         $proruct->save();
         return redirect()->route('products.index')->with('success', 'Mahsulot muvaffaqqiyatli yaratildi');
@@ -88,7 +90,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id=$request['id'];
+        $request->validate([
+            'name'=>'required'
+        ]);
+        $produt= Product::find($id);
+        $produt->name=$request['name'];
+        $produt->minimum_price=$request['minimum_price'];
+        $produt->maximum_price=$request['maximum_price'];
+        $produt->save();
+        return redirect()->route('products.index')->with('success', 'Mahsulot muvaffaqqiyatli tahrirlandi');
+
     }
 
     /**
@@ -99,6 +111,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product=Product::find($id);
+        $product->delete();
+        return redirect()->route('products.index')->with('success'   ,'Mahsulot muvaffaqqiyatli o`chirildi');
+
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('minimum_price')->default(0);
             $table->string('maximum_price')->default(0) ;
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
