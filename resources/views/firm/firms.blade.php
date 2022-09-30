@@ -1,4 +1,4 @@
-@extends('master')
+@extends('adminpanel.master')
 @section('title','Firmalar')
 @section('content')
     <div class="row">
@@ -90,7 +90,7 @@
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger m-1 show_confirm"><i
-                                                class="fa fa-trash"></i></button>
+                                                    class="fa fa-trash"></i></button>
                                     </form>
 
                                 </td>

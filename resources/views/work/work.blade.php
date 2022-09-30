@@ -1,4 +1,4 @@
-@extends('master')
+@extends('adminpanel.master')
 @section('title','Ishlar')
 @section('content')
     <div class="row">
@@ -26,30 +26,32 @@
                         </thead>
                         <tbody>
                         @foreach($works as $work)
-                        <tr>
-                            <td>{{$work->id}}</td>
-                            <td>{{$work->name}}</td>
-                            <td>{{$work->types->name}}</td>
-                            <td>{{$work->price}}</td>
-                            <td class="col-2">
-                                <form action="{{route('work.destroy',$work->id)}}" method="POST">
-                                    <button onclick="edit({{$work->id}})" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default2">
+                            <tr>
+                                <td>{{$work->id}}</td>
+                                <td>{{$work->name}}</td>
+                                <td>{{$work->types->name}}</td>
+                                <td>{{$work->price}}</td>
+                                <td class="col-2">
+                                    <form action="{{route('work.destroy',$work->id)}}" method="POST">
+                                        <button onclick="edit({{$work->id}})" type="button" class="btn btn-warning"
+                                                data-toggle="modal" data-target="#modal-default2">
 
-                                        <i class="fa fa-pen"></i>
+                                            <i class="fa fa-pen"></i>
 
-                                    </button>
+                                        </button>
 
-                                    <a href="{{route('work.destroy',$work->id)}}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button title="O'chirish" type="submit"
-                                                class="btn btn-danger active btn-md pl-3 pr-3 show_confirm"><span class="btn-label">
+                                        <a href="{{route('work.destroy',$work->id)}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button title="O'chirish" type="submit"
+                                                    class="btn btn-danger active btn-md pl-3 pr-3 show_confirm"><span
+                                                        class="btn-label">
                                         <i class="fa fa-trash"></i>
                                     </span></button>
-                                    </a>
-                                </form>
-                            </td>
-                        </tr>
+                                        </a>
+                                    </form>
+                                </td>
+                            </tr>
                         @endforeach
                         </tbody>
 
@@ -96,7 +98,7 @@
                             <div class="form-group">
                                 <label for="type">Tur</label>
                                 <select class="custom-select" id="type" name="type">
-                                  @foreach($create as $tur)
+                                    @foreach($create as $tur)
 
                                         <option value="{{$tur->id}}">{{$tur->name}}</option>
                                     @endforeach
@@ -107,10 +109,10 @@
                                 <input type="number" class="form-control" id="price" placeholder="Narxi" name="price">
                             </div>
 
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Bekor qilish</button>
-                    <button type="submit" class="btn btn-primary">Saqlash</button>
-                </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Bekor qilish</button>
+                                <button type="submit" class="btn btn-primary">Saqlash</button>
+                            </div>
                         </div>
                         <!-- /.card-body -->
 
@@ -139,7 +141,7 @@
 
                         @method('put')
                         @csrf
-                        <input type="hidden"   name="id" id="edit_id">
+                        <input type="hidden" name="id" id="edit_id">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for='name'>Nomi</label>
@@ -156,7 +158,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="narxi">Narxi</label>
-                                <input type="number" class="form-control" id="price_edit" placeholder="Narxi" name="price">
+                                <input type="number" class="form-control" id="price_edit" placeholder="Narxi"
+                                       name="price">
                             </div>
 
                             <div class="modal-footer justify-content-between">
@@ -175,26 +178,27 @@
     </div>
 @endsection
 @section('custom-scripts')
-<script>
-    @if(isset($status))
-    @if($status=='success')
-    toastr.success("{{$message}}");
-    @endif
-    @if($status=="error" )
-    toastr.error("{{$message}}");
-    @endif
+    <script>
+        @if(isset($status))
+        @if($status=='success')
+        toastr.success("{{$message}}");
+        @endif
+        @if($status=="error" )
+        toastr.error("{{$message}}");
+        @endif
 
-    @endif
+        @endif
 
-   let ishs=@json($ishs);
-   console.log(ishs)
-   function edit(id){
-       console.log(id);
-       var ish =ishs[id];
-       document.getElementById('name_edit').value=ish['name'];
-       document.getElementById('edit_id').value=id;
-       document.getElementById('type_edit').value=ish['type'];
-       document.getElementById('price_edit').value=ish['price'];
-   }
-</script>
+        let ishs =@json($ishs);
+        console.log(ishs)
+
+        function edit(id) {
+            console.log(id);
+            var ish = ishs[id];
+            document.getElementById('name_edit').value = ish['name'];
+            document.getElementById('edit_id').value = id;
+            document.getElementById('type_edit').value = ish['type'];
+            document.getElementById('price_edit').value = ish['price'];
+        }
+    </script>
 @endsection

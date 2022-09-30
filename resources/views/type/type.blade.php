@@ -1,4 +1,4 @@
-@extends('master')
+@extends('adminpanel.master')
 @section('title','Turlar')
 @section('content')
     <div class="row">
@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-                        <i class="fa fa-plus"></i>  Qo'shish
+                        <i class="fa fa-plus"></i> Qo'shish
                     </button>
 
                 </div>
@@ -28,7 +28,8 @@
                                 <td>{{$t->name}}</td>
 
                                 <td class=" d-flex">
-                                    <button onclick="edit({{$t->id}})" type="button" class="btn btn-warning m-1" data-toggle="modal" data-target="#modal-default2">
+                                    <button onclick="edit({{$t->id}})" type="button" class="btn btn-warning m-1"
+                                            data-toggle="modal" data-target="#modal-default2">
 
                                         <i class="fa fa-pen"></i>
 
@@ -36,14 +37,12 @@
                                     <form action="{{route('type.destroy',$t->id)}}" class="m-1" method="POST">
 
 
-
-
-                                            @csrf
-                                            @method('DELETE')
-                                            <button title="O'chirish" type="submit"
-                                                    class="btn btn-danger show_confirm">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button title="O'chirish" type="submit"
+                                                class="btn btn-danger show_confirm">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
 
                                     </form>
                                 </td>
@@ -52,17 +51,17 @@
                         </tbody>
 
                     </table>
-{{--                    <div class="container">--}}
-{{--                        <div class="row justify-content-center">--}}
+                    {{--                    <div class="container">--}}
+                    {{--                        <div class="row justify-content-center">--}}
 
-{{--                            @if ($type->links())--}}
-{{--                                <div class="mt-4 p-4 box has-text-centered">--}}
-{{--                                    {{ $type->links() }}--}}
-{{--                                </div>--}}
-{{--                            @endif--}}
+                    {{--                            @if ($type->links())--}}
+                    {{--                                <div class="mt-4 p-4 box has-text-centered">--}}
+                    {{--                                    {{ $type->links() }}--}}
+                    {{--                                </div>--}}
+                    {{--                            @endif--}}
 
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </div>
             </div>
 
@@ -147,29 +146,30 @@
     </div>
 @endsection
 @section('custom-scripts')
-<script>
-    @if(session('success'))
-        toastr.options =
-        {
-            "closeButton": true,
-            "progressBar": true
+    <script>
+        @if(session('success'))
+            toastr.options =
+            {
+                "closeButton": true,
+                "progressBar": true
+            }
+        toastr.success("{{ session()->get('success') }}");
+        @endif
+
+        @if(session('error'))
+        session.error("{{$message}}");
+        @endif
+        let ishs =@json($ishs);
+        console.log(ishs)
+
+        function edit(id) {
+            var ish = ishs[id];
+            console.log(ish);
+            document.getElementById('name_edit').value = ish['name'];
+            document.getElementById('edit_id').value = id;
+            // document.getElementById('type_edit').value=ish['type'];
+            // document.getElementById('price_edit').value=ish['price'];
+
         }
-    toastr.success("{{ session()->get('success') }}");
-    @endif
-
-    @if(session('error'))
-    session.error("{{$message}}");
-    @endif
-    let ishs=@json($ishs);
-    console.log(ishs)
-    function edit(id){
-        var ish =ishs[id];
-        console.log(ish);
-        document.getElementById('name_edit').value=ish['name'];
-        document.getElementById('edit_id').value=id;
-        // document.getElementById('type_edit').value=ish['type'];
-        // document.getElementById('price_edit').value=ish['price'];
-
-    }
-</script>
+    </script>
 @endsection

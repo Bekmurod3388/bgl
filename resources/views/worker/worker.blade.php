@@ -1,4 +1,4 @@
-@extends('master')
+@extends('adminpanel.master')
 @section('title','Ishchilar')
 @section('content')
     <div class="row">
@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-create">
-                        <i class="fa fa-plus"></i>   Qo'shish
+                        <i class="fa fa-plus"></i> Qo'shish
                     </button>
 
                     <div class="modal fade" id="modal-create">
@@ -74,39 +74,43 @@
                                 <td>{{number_format($worker->given_sum,2,',',' ')}}</td>
                                 @php  $ind+=1;$allsum+=$worker->all_sum;$indeb+=$worker->indebtedness;$given+=$worker->given_sum; @endphp
                                 <td class="d-flex">
-                                    <a href="{{ route("jobs.index",['id' => $worker->id]) }}" class="btn btn-success m-1">
+                                    <a href="{{ route("jobs.index",['id' => $worker->id]) }}"
+                                       class="btn btn-success m-1">
                                         <i class="fa fa-car"></i>
                                     </a>
-                                    <a href="{{ route("worker_gaves.index",['id' => $worker->id]) }}" class="btn btn-info m-1">
+                                    <a href="{{ route("worker_gaves.index",['id' => $worker->id]) }}"
+                                       class="btn btn-info m-1">
                                         <i class="fa fa-clipboard-list"></i>
                                     </a>
-                                    <button type="button" onclick="edit({{$worker->id}})" class="btn btn-warning m-1" data-toggle="modal" data-target="#modal-edit">
+                                    <button type="button" onclick="edit({{$worker->id}})" class="btn btn-warning m-1"
+                                            data-toggle="modal" data-target="#modal-edit">
                                         <i class="fa fa-pen"></i>
                                     </button>
 
                                     <form action="{{route('worker.destroy', $worker->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-danger m-1"><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger m-1"><i class="fa fa-trash"></i>
+                                        </button>
                                     </form>
 
                                 </td>
-{{--                                <td class="d-flex justify-content-end">--}}
+                                {{--                                <td class="d-flex justify-content-end">--}}
 
-{{--                                    <button type="button" onclick="edit({{$worker->id}})" class="btn btn-warning"--}}
-{{--                                            data-toggle="modal" data-target="#modal-edit">--}}
-{{--                                        <i class="fa fa-pen"></i>--}}
-{{--                                    </button>--}}
+                                {{--                                    <button type="button" onclick="edit({{$worker->id}})" class="btn btn-warning"--}}
+                                {{--                                            data-toggle="modal" data-target="#modal-edit">--}}
+                                {{--                                        <i class="fa fa-pen"></i>--}}
+                                {{--                                    </button>--}}
 
 
-{{--                                    <form action="{{route('worker.destroy', $worker->id)}}" method="post">--}}
-{{--                                        @method('DELETE')--}}
-{{--                                        @csrf--}}
-{{--                                        <button type="submit" class="btn btn-danger show_confirm"><i class="fa fa-trash"></i>--}}
-{{--                                        </button>--}}
-{{--                                    </form>--}}
+                                {{--                                    <form action="{{route('worker.destroy', $worker->id)}}" method="post">--}}
+                                {{--                                        @method('DELETE')--}}
+                                {{--                                        @csrf--}}
+                                {{--                                        <button type="submit" class="btn btn-danger show_confirm"><i class="fa fa-trash"></i>--}}
+                                {{--                                        </button>--}}
+                                {{--                                    </form>--}}
 
-{{--                                </td>--}}
+                                {{--                                </td>--}}
                             </tr>
                         @endforeach
                         </tbody>
@@ -141,29 +145,30 @@
                             </div>
                             <div class="modal-body">
                                 @if(\App\Models\Worker::all()->count()>0)
-                                <form method="post" action="{{route('worker.update',\App\Models\Worker::first()) }}">
-                                    @method('PUT')
+                                    <form method="post"
+                                          action="{{route('worker.update',\App\Models\Worker::first()) }}">
+                                        @method('PUT')
 
-                                    @csrf
-                                    <input type="hidden" name="id" id="edit_id">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="edit_name">Ishchi nomi:</label>
-                                            <input type="text" name="name" class="form-control" id="edit_name">
+                                        @csrf
+                                        <input type="hidden" name="id" id="edit_id">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="edit_name">Ishchi nomi:</label>
+                                                <input type="text" name="name" class="form-control" id="edit_name">
+                                            </div>
+
                                         </div>
+                                        <!-- /.card-body -->
 
-                                    </div>
-                                    <!-- /.card-body -->
+                                        <div class="card-footer">
 
-                                    <div class="card-footer">
-
-                                    </div>
-                                    <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                                        </button>
-                                        <button type="submit" class="btn btn-primary">Saqlash</button>
-                                    </div>
-                                </form>
+                                        </div>
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Saqlash</button>
+                                        </div>
+                                    </form>
                                 @endif
                             </div>
 
@@ -188,21 +193,21 @@
         //     toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
         //     toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
 
-       {{--            @if(session()->has('ok'))--}}
-        {{--        toastr.success("{{session()->get('ok')}}");--}}
-        {{--        @endif--}}
-        @if(session('success'))
-           toastr.options =
-           {
-               "closeButton" : true,
-               "progressBar" : true
-           }
+        {{--            @if(session()->has('ok'))--}}
+                {{--        toastr.success("{{session()->get('ok')}}");--}}
+                {{--        @endif--}}
+                @if(session('success'))
+            toastr.options =
+            {
+                "closeButton": true,
+                "progressBar": true
+            }
         toastr.success("{{ session()->get('success') }}");
         @endif
 
         @if(session('error'))
         session.error("{{$message}}");
-           @endif
+        @endif
 
         let workers =@json($workers_obj);
 

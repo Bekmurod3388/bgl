@@ -21,7 +21,7 @@ class WorkerController extends Controller
         }
         $workers_obj=(object)$workers_obj;
 
-        return view('worker', ['workers' => $workers,'workers_obj'=>$workers_obj]);
+        return view('worker.worker', ['workers' => $workers,'workers_obj'=>$workers_obj]);
     }
 
     /**

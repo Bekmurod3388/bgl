@@ -21,7 +21,7 @@ class TypeController extends Controller
             $ishs[$ish->id]=$ish;
         }
 
-        return view('type',compact('type','ishs'));
+        return view('type.type',compact('type','ishs'));
     }
 
     /**
