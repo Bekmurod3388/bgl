@@ -13,11 +13,14 @@ class WorkerGaveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $workers = Worker::all();
-        $worker_gaves = WorkerGave::all();
-        return view("admin.worker_gaves.index", compact("worker_gaves", "workers"));
+        $id = $request['id'];
+        $worker_gaves = WorkerGave::orderby('date' , 'DESC')-> where('worker_id', $id)->get();
+        $sum_price = 0;
+        foreach ($worker_gaves as $date)
+            $sum_price += $date['price'];
+        return view("admin.worker_gaves.index", compact("id", "worker_gaves", "sum_price"));
     }
 
     /**
@@ -43,12 +46,18 @@ class WorkerGaveController extends Controller
             'price' => "required",
             'date' => "required",
         ]);
+        $price = $request['price'];
+        $id = $request['worker_id'];
         $worker = new WorkerGave();
         $worker['worker_id'] = $request['worker_id'];
         $worker['price'] = $request['price'];
         $worker['date'] = $request['date'];
         $worker->save();
-        return redirect()->route("worker_gaves.index");
+        $firm = Worker::find($id);
+        $firm['given_sum'] += $price;
+        $firm['indebtedness'] = $firm['all_sum'] - $firm['given_sum'];
+        $firm->save();
+        return redirect()->back()->with("success", "Ishchi oldi berdi muvaffaqqiyatli yaratildi");
     }
 
     /**
@@ -97,7 +106,14 @@ class WorkerGaveController extends Controller
      */
     public function destroy($id)
     {
-        $workerGave = WorkerGave::find($id)->delete();
-        return redirect()->route("worker_gaves.index");
+        $worker_gaves = WorkerGave::find($id);
+        $firm_id = $worker_gaves['worker_id'];
+        $price = $worker_gaves['price'];
+        $firm = Worker::find($firm_id);
+        $firm['indebtedness'] += $price;
+        $firm['given_sum'] -= $price;
+        $firm->save();
+        $worker_gaves->delete();
+        return redirect()->back()->with("success", "Ishchi oldi berdi muvaffaqqiyatli yaratildi");
     }
 }

@@ -2,7 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
         <span class="brand-text font-weight-light">BGL</span>
     </a>
 
@@ -25,7 +26,11 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item menu">
-                    <a href="#" class="nav-link active">
+                    <a href="#"
+                       class="nav-link  @if(request()->routeIs('worker.index')
+                                            or request()->routeIs('work.index')
+                                            or request()->routeIs('type.index'))
+                                        active @endif">
                         <i class="nav-icon fa fa-cog"></i>
                         <p>
                             Sozlamalar
@@ -34,19 +39,21 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('worker.index')}}" class="nav-link @if(request()->routeIs('worker.index')) active @endif">
+                            <a href="{{route('worker.index')}}"
+                               class="nav-link @if(request()->routeIs('worker.index')) active @endif">
                                 <i class="fa fa-users nav-icon"></i>
                                 <p>Ishchilar</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('work.index')}}" class="nav-link @if(request()->routeIs('work.index')) active @endif">
+                            <a href="{{route('work.index')}}"
+                               class="nav-link @if(request()->routeIs('work.index')) active @endif">
                                 <i class="fa fa-tasks nav-icon"></i>
                                 <p>Ish turi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('type.index')}}" class="nav-link">
+                            <a href="{{route('type.index')}}" class="nav-link @if(request()->routeIs('type.index')) active @endif">
                                 <i class="fa fa-box nav-icon"></i>
                                 <p>Tur</p>
                             </a>
@@ -58,18 +65,14 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('firms.index')}}" class="nav-link @if(request()->routeIs('firms.index')) active @endif">
+                            <a href="{{route('firms.index')}}"
+                               class="nav-link @if(request()->routeIs('firms.index')) active @endif">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Firmalar</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="{{route('jobs.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ish</p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="{{route('products.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

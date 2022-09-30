@@ -10,7 +10,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>Baraka Golden Licorice</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- SweetAlert2 -->
@@ -22,13 +23,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-@include('nav')
+    @include('adminpanel.nav')
 
-    @include('sidebar')
+    @include('adminpanel.sidebar')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
-        @include('header')
+        @include('adminpanel.header')
 
         <!-- Main content -->
         <div class="content">
@@ -50,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
     </aside>
     <!-- /.control-sidebar -->
-    @include('footer')
+    @include('adminpanel.footer')
 
 </div>
 <!-- ./wrapper -->

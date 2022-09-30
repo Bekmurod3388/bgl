@@ -1,4 +1,4 @@
-@extends('master')
+@extends('adminpanel.master')
 @section('title','Ishlar nomi')
 @section('content')
     <div class="row">
@@ -8,9 +8,11 @@
             <div class="card">
                 <div class="card-header">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-                        <i class="fa fa-plus"></i>Qoshish
+                        <i class="fa fa-plus"></i> Qo'shish
                     </button>
-
+                    <a href="{{ route('worker.index') }}" class="btn btn-info">
+                        <i class="fa fa-backward"></i> Orqaga
+                    </a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">
@@ -20,8 +22,11 @@
                             <th>Ishchi</th>
                             <th>Ish tur</th>
                             <th>Sana</th>
+
                             <th>vaqt yoki kg yoki dona</th>
                             <th>Jami Summa</th>
+
+
                             <th>Amallar</th>
                         </tr>
                         </thead>
@@ -45,7 +50,7 @@
                                             @method('DELETE')
                                             <button title="O'chirish" type="submit"
                                                     class="btn btn-danger active btn-md pl-3 pr-3 show_confirm"><span
-                                                    class="btn-label">
+                                                        class="btn-label">
                                         <i class="fa fa-trash"></i>
                                     </span></button>
                                         </a>
@@ -91,16 +96,9 @@
                     <form action="{{route('jobs.store')}}" method="post">
                         @csrf
                         <div class="card-body">
+                            <input type="hidden" name="id" id="edit_id">
+                            <input type="hidden" value="{{ $id }}" name="worker_idd">
 
-                            <div class="form-group">
-                                <label for="worker">Ishchi</label>
-                                <select class="custom-select" id="worker" name="worker_id">
-                                    @foreach($workers as $worker)
-
-                                        <option value="{{$worker->id}}">{{$worker->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                             <div class="form-group">
                                 <label for="type_work_id">Ish turi</label>
                                 <select class="custom-select" id="type_work_id" name="type_work_id">
@@ -112,18 +110,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="date">Sana</label>
-                                <input type="date" class="form-control" id="date" placeholder="date" name="date">
+                                <input type="date" class="form-control" id="date" placeholder="date"
+                                       value="<?php echo date("Y-m-d");?>" name="date">
                             </div>
                             <div class="form-group">
                                 <label for="type">Vaqt yoki kg yoki dona</label>
                                 <input type="text" class="form-control" id="type" placeholder="vaqt yoki dona yoki kg"
                                        name="type">
                             </div>
-                            <div class="form-group">
-                                <label for="price">Jami Summma</label>
-                                <input type="number" class="form-control" id="price" placeholder="Jami summa"
-                                       name="all_sum">
-                            </div>
+
 
                             <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Bekor qilish</button>
@@ -158,12 +153,15 @@
                         @csrf
                         @method('PUT')
                         <div class="card-body">
-                            <input type="hidden" name="id" id="edit_id">
+                            <input type="hidden" name="id" id="edit_idd">
+
+                            <input type="hidden" id="worker_id_edit" value="{{$id}}" name="worker_id">
 
                             <div class="form-group">
                                 <label for="worker_id">Ishchi</label>
                                 <select class="custom-select" id="worker_id_edit" name="worker_id">
                                     @foreach($workers as $worker)
+
                                         <option value="{{$worker->id}}">{{$worker->name}}</option>
                                     @endforeach
                                 </select>
@@ -179,18 +177,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="date">Sana</label>
-                                <input type="date" class="form-control" id="date" placeholder="date" name="date">
+                                <input type="date" class="form-control" id="date" placeholder="date"
+                                       value="<?php echo date("Y-m-d");?>" name="date">
                             </div>
                             <div class="form-group">
                                 <label for="type_edit">vaqt yoki kg yoki dona</label>
                                 <input type="text" class="form-control" id="type_edit"
                                        placeholder="vaqt yoki kg yoki dona" name="type">
                             </div>
-                            <div class="form-group">
-                                <label for="all_sum">Jami Summma</label>
-                                <input type="number" class="form-control" id="all_sum_edit" placeholder="Jami summa"
-                                       name="all_sum">
-                            </div>
+
 
                             <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Bekor qilish</button>
@@ -213,19 +208,21 @@
         toastr.success("{{$message}}");
         @endif
 
-        let ishs =@json($ishs);
-        console.log(ishs)
 
+        let ishs =@json($ishs);
+
+        // console.log(ishs)
         function edit(id) {
             console.log(id);
             var ish = ishs[id];
             console.log(ish);
             document.getElementById('worker_id_edit').value = ish['worker_id'];
-            document.getElementById('edit_id').value = id;
+            document.getElementById('edit_idd').value = id;
+            // console.log(document.getElementById('edit_id'));
             document.getElementById('type_work_id_edit').value = ish['type_work_id'];
             document.getElementById('type_edit').value = ish['type'];
 
-            document.getElementById('all_sum_edit').value = ish['all_sum'];
+            // document.getElementById('all_sum_edit').value=ish['all_sum'];
         }
     </script>
 @endsection

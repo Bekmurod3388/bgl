@@ -21,7 +21,7 @@ class ProductController extends Controller
         foreach ($product as $product){
             $products[$product->id]=$product;
         }
-        return view('product',[
+        return view('product.product',[
             'products'=>$products,
             'productes'=>$products,
         ]);

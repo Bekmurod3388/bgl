@@ -1,4 +1,4 @@
-@extends('master')
+@extends('adminpanel.master')
 @section('title','Firma oldi berdi')
 @section('content')
     <div class="row">
@@ -27,15 +27,17 @@
                                 <td>{{$firm->date}}</td>
                                 <td class="d-flex">
 
-{{--                                    <button type="button" onclick="edit({{$firm->id}})" class="btn btn-warning m-1" data-toggle="modal" data-target="#modal-edit">--}}
-{{--                                        <i class="fa fa-pen"></i>--}}
-{{--                                    </button>--}}
+                                    {{--                                    <button type="button" onclick="edit({{$firm->id}})" class="btn btn-warning m-1" data-toggle="modal" data-target="#modal-edit">--}}
+                                    {{--                                        <i class="fa fa-pen"></i>--}}
+                                    {{--                                    </button>--}}
 
 
-                                    <form action="{{route('firm_provided.destroy', $firm->id)}}" method="post" class="m-1">
+                                    <form action="{{route('firm_provided.destroy', $firm->id)}}" method="post"
+                                          class="m-1">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-danger show_confirm"><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger show_confirm"><i
+                                                    class="fa fa-trash"></i></button>
                                     </form>
 
                                 </td>
@@ -52,7 +54,7 @@
                         </tfoot>
                     </table>
                 </div>
-{{--                @include("admin.firm_provided.edit")--}}
+                {{--                @include("admin.firm_provided.edit")--}}
             </div>
 
         </div>

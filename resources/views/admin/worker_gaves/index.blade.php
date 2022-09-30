@@ -1,4 +1,4 @@
-@extends('master')
+@extends('adminpanel.master')
 @section('content')
     <div class="row">
 
@@ -22,19 +22,20 @@
                             <tr>
                                 <td>{{$loop->index +1}}</td>
                                 <td>{{$firm->worker->name}}</td>
-                                <td>{{$firm->price}}</td>
+                                <td>{{ number_format($firm->price, 2, ',' ,' ')}}</td>
                                 <td>{{$firm->date}}</td>
-                                <td>
+                                <td class="d-flex">
 
-                                    <button type="button" onclick="edit({{$firm->id}})" class="btn btn-primary" data-toggle="modal" data-target="#modal-edit">
-                                        <i class="fa fa-pen"></i>
-                                    </button>
+                                    {{--                                    <button type="button" onclick="edit({{$firm->id}})" class="btn btn-warning" data-toggle="modal" data-target="#modal-edit">--}}
+                                    {{--                                        <i class="fa fa-pen"></i>--}}
+                                    {{--                                    </button>--}}
 
 
                                     <form action="{{route('worker_gaves.destroy', $firm->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger show_confirm"><i
+                                                    class="fa fa-trash"></i></button>
                                     </form>
 
                                 </td>
@@ -44,6 +45,9 @@
                         <tfoot>
                         <tr>
                             <th>Jami</th>
+                            <th></th>
+                            <th>{{ number_format($sum_price, 2, ',' ,' ')}}</th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>
@@ -54,19 +58,13 @@
         </div>
         <!-- /.col-md-6 -->
     </div>
+@endsection
+@section('custom-scripts')
     <script>
-        let firmes=@json($worker_gaves);
-        function edit(id){
-            for (let i = 0; i < firmes.length; i++) {
-                if (id == firmes[i]["id"]){
-                    var firms=firmes[i];
-                    console.log(firms);
-                    document.getElementById('edit_price').value=firms['price'];
-                    document.getElementById('worker_name').innerHTML=firms['worker']['name'];
-                    document.getElementById('edit_id').value=id;
-                    break;
-                }
-            }
-        }
+
+        @if ($message = Session::get('success'))
+        toastr.success("{{$message}}");
+        @endif
+
     </script>
 @endsection

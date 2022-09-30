@@ -2,26 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tur;
-use App\Models\Work;
 use Illuminate\Http\Request;
 
-class TypeController extends Controller
+class OutlayController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-
-        $type=Tur::all();
-        $ishs=[];
-        foreach ($type as $ish){
-            $ishs[$ish->id]=$ish;
-        }
-
-        return view('type.type',compact('type','ishs'));
+    public function index()
+    {
+        //
     }
 
     /**
@@ -38,20 +30,11 @@ class TypeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $result=$request->validate(
-            [
-                'name'=>'required',
-            ]
-        );
-        $type=new Tur();
-        $type->name=$request->name;
-        $type->save();
-        return redirect()->route('type.index')->with('success'   ,'Muvaffaqqiyatli yaratildi');
+        //
     }
 
     /**
@@ -73,8 +56,7 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-//        $types=Tur::find($id);
-//        return view('type',compact('types'));
+        //
     }
 
     /**
@@ -86,16 +68,7 @@ class TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $result=$request->validate(
-            [
-                'name'=>'required',
-            ]
-        );
-//        dd($request);
-        $type=Tur::find($request->id);
-        $type->name=$request->name;
-        $type->save();
-        return redirect()->route('type.index')->with('success'   ,'Muvaffaqqiyatli yangilandi');
+        //
     }
 
     /**
@@ -106,8 +79,6 @@ class TypeController extends Controller
      */
     public function destroy($id)
     {
-        $type=Tur::find($id);
-        $type->delete();
-        return redirect()->route('type.index')->with('success'   ,'Muvaffaqqiyatli o`chirildi');
+        //
     }
 }
