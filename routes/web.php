@@ -26,8 +26,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('worker_gaves',\App\Http\Controllers\WorkerGaveController::class);
     Route::resource('jobs',\App\Http\Controllers\JobsController::class);
     Route::resource('products',\App\Http\Controllers\ProductController::class);
+<<<<<<< HEAD
     Route::resource('outlay',\App\Http\Controllers\OutlayController::class);
 
+=======
+    Route::resource('sells',\App\Http\Controllers\SellController::class);
+>>>>>>> 396c36278ef794ee39f160448ff80773036f970b
 
 });
 
