@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Outlay extends Model
 {
-    use HasFactory;
+    
+
 }
