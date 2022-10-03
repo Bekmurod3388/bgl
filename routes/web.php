@@ -38,12 +38,3 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-<<<<<<< HEAD
-    Route::resource('outlay',\App\Http\Controllers\OutlayController::class);
-    Route::resource('sells',\App\Http\Controllers\SellController::class);
-
-
-});
-
-
-require __DIR__.'/auth.php';
