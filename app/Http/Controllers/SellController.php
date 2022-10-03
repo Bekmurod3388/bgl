@@ -49,12 +49,22 @@ class SellController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 //        dd($request);
+        $request->validate([
+            'kimga' => 'required',
+            'necha_somdan' => 'required',
+            'kg' => 'required',
+            'bergan_summ' => 'required',
+            'qarzdorlik' => 'required',
+            'sanasi' => 'required',
+            'avto_raqam' => 'required',
+        ]);
+
         $sell = new Sell();
         $sell->maxsulot_id = $request->maxsulot_id;
         $sell->kimga = $request->kimga;
@@ -67,14 +77,14 @@ class SellController extends Controller
         $sell->avto_raqam = $request->avto_raqam;
 
         $sell->save();
-        return  redirect()->route('sells.index')->with('success','Sotish Muffaqatli yaratildi');
+        return redirect()->route('sells.index')->with('success', 'Sotish Muffaqatli yaratildi');
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Sell  $sell
+     * @param \App\Models\Sell $sell
      * @return \Illuminate\Http\Response
      */
     public function show(Sell $sell)
@@ -85,7 +95,7 @@ class SellController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Sell  $sell
+     * @param \App\Models\Sell $sell
      * @return \Illuminate\Http\Response
      */
     public function edit(Sell $sell)
@@ -96,39 +106,47 @@ class SellController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sell  $sell
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Sell $sell
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
 //        dd($request->id);
-
-        $sell =  Sell::find($request->id);
+        $request->validate([
+            'kimga' => 'required',
+            'necha_somdan' => 'required',
+            'kg' => 'required',
+            'bergan_summ' => 'required',
+            'qarzdorlik' => 'required',
+            'sanasi' => 'required',
+            'avto_raqam' => 'required',
+        ]);
+        $sell = Sell::find($request->id);
         $sell->maxsulot_id = $request->maxsulot_id;
         $sell->kimga = $request->kimga;
         $sell->necha_somdan = $request->necha_somdan;
         $sell->kg = $request->kg;
-        $sell->jami_summ = $request->necha_somdan* $request->kg;
+        $sell->jami_summ = $request->necha_somdan * $request->kg;
         $sell->bergan_summ = $request->bergan_summ;
         $sell->qarzdorlik = $request->qarzdorlik;
         $sell->sanasi = $request->sanasi;
         $sell->avto_raqam = $request->avto_raqam;
 
         $sell->save();
-        return  redirect()->route('sells.index')->with('success','Sotish Muffaqatli tahrirlandi');
+        return redirect()->route('sells.index')->with('success', 'Sotish Muffaqatli tahrirlandi');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Sell  $sell
+     * @param \App\Models\Sell $sell
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         $sells = Sell::find($id);
         $sells->delete();
-        return  redirect()->route('sells.index')->with('success','Sotish Muvoffaqtli ochirildi');
+        return redirect()->route('sells.index')->with('success', 'Sotish Muvoffaqtli ochirildi');
     }
 }

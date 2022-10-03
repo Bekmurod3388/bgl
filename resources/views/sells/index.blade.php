@@ -83,7 +83,7 @@
         <!-- /.col-md-6 -->
     </div>
 
-{{--Create--}}
+    {{--Create--}}
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -192,12 +192,14 @@
 
                             <div class="form-group">
                                 <label for="type">Kimga</label>
-                                <input type="text" class="form-control" id="kimga_edit" placeholder="Kimga" name="kimga">
+                                <input type="text" class="form-control" id="kimga_edit" placeholder="Kimga"
+                                       name="kimga">
                             </div>
 
                             <div class="form-group">
                                 <label for="type">Necha Somdan</label>
-                                <input type="number" class="form-control" id="necha_somdan_edit" placeholder="necha_somdan"
+                                <input type="number" class="form-control" id="necha_somdan_edit"
+                                       placeholder="necha_somdan"
                                        name="necha_somdan">
                             </div>
 
@@ -209,7 +211,8 @@
 
                             <div class="form-group">
                                 <label for="price">Bergan Summma</label>
-                                <input type="number" class="form-control" id="bergan_summ_edit" placeholder="Bergan summa"
+                                <input type="number" class="form-control" id="bergan_summ_edit"
+                                       placeholder="Bergan summa"
                                        name="bergan_summ">
                             </div>
 
@@ -269,13 +272,13 @@
             console.log(id);
 
             var sel = sels[id];
-console.log(sel);
+            console.log(sel);
             document.getElementById('edit_id').value = id;
             document.getElementById('maxsulot_id_edit').value = sel['maxsulot_id'];
             document.getElementById('kimga_edit').value = sel['kimga'];
             document.getElementById('necha_somdan_edit').value = sel['necha_somdan'];
             document.getElementById('kg_edit').value = sel['kg'];
-            document.getElementById('jami_summ_edit').value = sel['jami_summ'];
+            // document.getElementById('jami_summ_edit').value = sel['jami_summ'];
             document.getElementById('bergan_summ_edit').value = sel['bergan_summ'];
             document.getElementById('qarzdorlik_edit').value = sel['qarzdorlik'];
             document.getElementById('sanasi_edit').value = sel['sanasi'];
