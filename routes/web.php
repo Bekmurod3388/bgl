@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/',function (){ return view('master'); });
+    Route::get('/',function (){ return view('adminpanel.master'); });
     Route::resource('firms', \App\Http\Controllers\FirmController::class);
     Route::resource('worker', \App\Http\Controllers\WorkerController::class);
     Route::resource('work',\App\Http\Controllers\WorkController::class);
@@ -26,6 +26,19 @@ Route::middleware('auth')->group(function () {
     Route::resource('worker_gaves',\App\Http\Controllers\WorkerGaveController::class);
     Route::resource('jobs',\App\Http\Controllers\JobsController::class);
     Route::resource('products',\App\Http\Controllers\ProductController::class);
+
+    Route::resource('outlay',\App\Http\Controllers\OutlayController::class);
+
+
+    Route::resource('sells',\App\Http\Controllers\SellController::class);
+
+
+});
+
+
+require __DIR__.'/auth.php';
+
+<<<<<<< HEAD
     Route::resource('outlay',\App\Http\Controllers\OutlayController::class);
     Route::resource('sells',\App\Http\Controllers\SellController::class);
 

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('necha_somdan');
             $table->integer('kg');
             $table->unsignedBigInteger('jami_summ');
-            $table->unsignedBigInteger('bergan_summ');
+            $table->unsignedBigInteger('bergan_summ')->default(0);
             $table->unsignedBigInteger('qarzdorlik');
             $table->date('sanasi');
             $table->string('avto_raqam');
