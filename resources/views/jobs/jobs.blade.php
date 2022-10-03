@@ -214,6 +214,7 @@
         // console.log(ishs)
         function edit(id) {
             console.log(id);
+
             var ish = ishs[id];
             console.log(ish);
             document.getElementById('worker_id_edit').value = ish['worker_id'];

@@ -31,7 +31,7 @@ class SellController extends Controller
         return view('sells.index', [
                 'sells' => $sells,
                 'products' => $products,
-                'sel' => $sel,
+                'sels' => $sel,
             ]
         );
     }
@@ -102,9 +102,9 @@ class SellController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request);
+//        dd($request->id);
 
-        $sell =  Sell::find($id);
+        $sell =  Sell::find($request->id);
         $sell->maxsulot_id = $request->maxsulot_id;
         $sell->kimga = $request->kimga;
         $sell->necha_somdan = $request->necha_somdan;

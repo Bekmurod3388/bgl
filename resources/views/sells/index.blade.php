@@ -44,12 +44,12 @@
                                 <td>{{$s->avto_raqam}}</td>
 
                                 <td class="col-2">
-                                    <form action="{{route('sells.destroy',$s->id)}}" method="POST">
+                                    <form action="{{ route('sells.destroy',$s->id )}}" method="POST">
                                         <button onclick="editing({{$s->id}})" type="button" class="btn btn-warning"
                                                 data-toggle="modal" data-target="#modal-edit">
                                             <i class="fa fa-pen"></i>
                                         </button>
-                                        <a href="{{route('sells.destroy',$s->id)}}">
+                                        <a href="{{ route('sells.destroy',$s->id )}}">
                                             @csrf
                                             @method('DELETE')
                                             <button title="O'chirish" type="submit"
@@ -65,17 +65,17 @@
                         </tbody>
 
                     </table>
+
                     <div class="container">
                         <div class="row justify-content-center">
-
                             @if ($sells->links())
                                 <div class="mt-4 p-4 box has-text-centered">
                                     {{ $sells->links()}}
                                 </div>
                             @endif
-
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -83,7 +83,7 @@
         <!-- /.col-md-6 -->
     </div>
 
-
+{{--Create--}}
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -180,7 +180,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="{{route('sells.update',$s->id)}}" method="post">
+                    <form action="{{route('sells.update',1)}}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
@@ -213,7 +213,7 @@
 
                             <div class="form-group">
                                 <label for="price">Jami Summma</label>
-                                <input type="number" class="form-control" id="price" placeholder="Jami summa"
+                                <input type="number" class="form-control" id="jami_summ_edit" placeholder="Jami summa"
                                        name="jami_summ">
                             </div>
                             <div class="form-group">
@@ -268,21 +268,28 @@
         @endif
 
         {{--let ishs =@json($ishs);--}}
-        console.log(ishs)
+
+        // console.log(sels)
+
+        let sels =@json($sels);
+
 
         function editing(id) {
-            // console.log(id);
-            var ish = sel[id];
+            console.log(id);
+
+            var sel = sels[id];
+console.log(sel);
             document.getElementById('edit_id').value = id;
-            document.getElementById('maxsulot_id_edit').value = ish['maxsulot_id'];
-            document.getElementById('kimga_edit').value = ish['kimga'];
-            document.getElementById('necha_somdan_edit').value = ish['necha_somdan'];
-            document.getElementById('kg_edit').value = ish['kg'];
-            document.getElementById('jami_summ_edit').value = ish['jami_summ'];
-            document.getElementById('bergan_summ_edit').value = ish['bergan_summ'];
-            document.getElementById('qarzdorlik_edit').value = ish['qarzdorlik'];
-            document.getElementById('sanasi_edit').value = ish['sanasi'];
-            document.getElementById('avto_raqam_edit').value = ish['avto_raqam'];
+            document.getElementById('maxsulot_id_edit').value = sel['maxsulot_id'];
+            document.getElementById('kimga_edit').value = sel['kimga'];
+            document.getElementById('necha_somdan_edit').value = sel['necha_somdan'];
+            document.getElementById('kg_edit').value = sel['kg'];
+            document.getElementById('jami_summ_edit').value = sel['jami_summ'];
+            document.getElementById('bergan_summ_edit').value = sel['bergan_summ'];
+            document.getElementById('qarzdorlik_edit').value = sel['qarzdorlik'];
+            document.getElementById('sanasi_edit').value = sel['sanasi'];
+            document.getElementById('avto_raqam_edit').value = sel['avto_raqam'];
+
         }
 
     </script>
