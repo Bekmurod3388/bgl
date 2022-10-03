@@ -67,7 +67,7 @@
                         <li class="nav-item">
                             <a href="{{route('firms.index')}}"
                                class="nav-link @if(request()->routeIs('firms.index')) active @endif">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-building nav-icon"></i>
                                 <p>Firmalar</p>
                             </a>
                         </li>
@@ -75,14 +75,21 @@
 
                         <li class="nav-item">
                             <a href="{{route('products.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-spa nav-icon"></i>
                                 <p>Mahsulot</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('sells.index')}}" class="nav-link @if(request()->routeIs('sells.index')) active @endif ">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-weight-hanging nav-icon"></i>
                                 <p>Sotish</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('outlay.index')}}"
+                               class="nav-link @if(request()->routeIs('outlay.index')) active @endif">
+                                <i class="fa fa-list-alt nav-icon"></i>
+                                <p>Chiqimlar</p>
                             </a>
                         </li>
                     </ul>
