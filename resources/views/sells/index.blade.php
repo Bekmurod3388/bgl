@@ -19,13 +19,13 @@
                             <th>id</th>
                             <th>Maxsulot</th>
                             <th>Kimga</th>
+                            <th>Avto Raqam</th>
                             <th>Necha Somdan</th>
                             <th>kg</th>
                             <th>Jami Summa</th>
                             <th>Berilgan Summa</th>
                             <th>Qarzdorlik</th>
                             <th>Sanasi</th>
-                            <th>Avto Raqam</th>
                             <th>Amallar</th>
                         </tr>
                         </thead>
@@ -35,13 +35,13 @@
                                 <td>{{$s->id}}</td>
                                 <td>{{$s->productt->name}}</td>
                                 <td>{{$s->kimga}}</td>
+                                <td>{{$s->avto_raqam}}</td>
                                 <td>{{$s->necha_somdan}}</td>
                                 <td>{{$s->kg}}</td>
                                 <td>{{number_format($s->jami_summ, 0,',',' ')}}</td>
                                 <td>{{number_format($s->bergan_summ, 0,',',' ')}}</td>
                                 <td>{{number_format($s->qarzdorlik, 0,',',' ')}}</td>
                                 <td>{{$s->sanasi}}</td>
-                                <td>{{$s->avto_raqam}}</td>
 
                                 <td class="col-2">
                                     <form action="{{ route('sells.destroy',$s->id )}}" method="POST">
@@ -113,9 +113,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="type">Necha Somdan</label>
-                                <input type="number" class="form-control" id="type" placeholder="necha_somdan"
-                                       name="necha_somdan">
+                                <label for="price">Avto Raqam</label>
+                                <input type="text" class="form-control" id="price" placeholder="Raqami"
+                                       name="avto_raqam">
                             </div>
 
                             <div class="form-group">
@@ -124,10 +124,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="price">Jami Summma</label>
-                                <input type="number" class="form-control" id="price" placeholder="Jami summa"
-                                       name="jami_summ">
+                                <label for="type">Necha Somdan</label>
+                                <input type="number" class="form-control" id="type" placeholder="necha_somdan"
+                                       name="necha_somdan">
                             </div>
+
                             <div class="form-group">
                                 <label for="price">Bergan Summma</label>
                                 <input type="number" class="form-control" id="price" placeholder="Bergan summa"
@@ -143,12 +144,6 @@
                             <div class="form-group">
                                 <label for="date">Sana</label>
                                 <input type="date" class="form-control" id="sanasi" placeholder="date" name="sanasi">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="price">Avto Raqam</label>
-                                <input type="text" class="form-control" id="price" placeholder="Raqami"
-                                       name="avto_raqam">
                             </div>
 
                             <div class="modal-footer justify-content-between">
@@ -211,11 +206,7 @@
                                 <input type="number" class="form-control" id="kg_edit" placeholder="kg" name="kg">
                             </div>
 
-                            <div class="form-group">
-                                <label for="price">Jami Summma</label>
-                                <input type="number" class="form-control" id="jami_summ_edit" placeholder="Jami summa"
-                                       name="jami_summ">
-                            </div>
+
                             <div class="form-group">
                                 <label for="price">Bergan Summma</label>
                                 <input type="number" class="form-control" id="bergan_summ_edit" placeholder="Bergan summa"

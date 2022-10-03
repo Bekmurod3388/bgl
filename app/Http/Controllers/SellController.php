@@ -60,7 +60,7 @@ class SellController extends Controller
         $sell->kimga = $request->kimga;
         $sell->necha_somdan = $request->necha_somdan;
         $sell->kg = $request->kg;
-        $sell->jami_summ = $request->jami_summ;
+        $sell->jami_summ = $request->necha_somdan * $request->kg;
         $sell->bergan_summ = $request->bergan_summ;
         $sell->qarzdorlik = $request->qarzdorlik;
         $sell->sanasi = $request->sanasi;
@@ -109,7 +109,7 @@ class SellController extends Controller
         $sell->kimga = $request->kimga;
         $sell->necha_somdan = $request->necha_somdan;
         $sell->kg = $request->kg;
-        $sell->jami_summ = $request->jami_summ;
+        $sell->jami_summ = $request->necha_somdan* $request->kg;
         $sell->bergan_summ = $request->bergan_summ;
         $sell->qarzdorlik = $request->qarzdorlik;
         $sell->sanasi = $request->sanasi;
