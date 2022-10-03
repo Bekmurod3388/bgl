@@ -85,6 +85,13 @@
                                 <p>Sotish</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('outlay.index')}}"
+                               class="nav-link @if(request()->routeIs('outlay.index')) active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Chiqimlar</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
