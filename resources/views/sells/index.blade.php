@@ -1,4 +1,4 @@
-@extends('master')
+@extends('adminpanel.master')
 @section('title','Sotishlar jadvali')
 @section('content')
     <div class="row">
