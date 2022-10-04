@@ -6,6 +6,12 @@
         <a href="{{ route('firms.index') }}" class="btn btn-info">
             <i class="fa fa-backward"></i> Orqaga
         </a>
+        <a href="{{ route('firm_provided.download',['id' => $id, 'from_date' => $from_date, 'to_date' => $to_date, 'page' => 'download']) }}" class="btn btn-info">
+            <i class="fa fa-download"></i> Yuklash
+        </a>
+        <a href="{{ route('firm_provided.download',['id' => $id, 'from_date' => $from_date, 'to_date' => $to_date, 'page' => 'view']) }}" class="btn btn-info">
+            <i class="fa fa-eye"></i> Ko'rish
+        </a>
     </div>
     <form action="{{ route('firm_provided.index') }}" method="get" class="d-flex justify-content-around align-items-center">
         @csrf

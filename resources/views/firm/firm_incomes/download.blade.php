@@ -4,13 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Baraka Golden Licorice</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th{
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+    </style>
 </head>
 <body>
 
 <h1>Baraka Golden Licorice</h1>
 <h3>Firma kirim @if($from_date && $to_date) ({{ $from_date }} dan {{ $to_date }} gacha )@endif</h3>
 <br>
-<table border="1" class="table table-hover" cellspacing="0" cellpadding="6" width="100%">
+<table border="1" class="table table-hover">
     <thead>
     <tr>
         <th>id</th>

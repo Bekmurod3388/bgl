@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Firm;
 use App\Models\FirmProvided;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class FirmProvidedController extends Controller
@@ -121,5 +122,36 @@ class FirmProvidedController extends Controller
         $firm->save();
         $firm_provided->delete();
         return redirect()->back()->with("success", "Firma oldi berdi muvaffaqqiyatli yaratildi");
+    }
+
+    public function download(Request $request)
+    {
+        $id = $request['id'];
+        $from_date = $request['from_date'];
+        $to_date = $request['to_date'];
+        $page = $request['page'];
+        if ($from_date == NULL && $to_date == NULL) {
+            $firm_provided = FirmProvided::orderby('date', 'DESC')->where('firm_id', $id)->get();
+        } else {
+            $firm_provided = FirmProvided::orderby('date', 'DESC')
+                ->where('firm_id', $id)
+                ->whereBetween('date', [$from_date, $to_date])
+                ->get();
+        }
+        $sum_price = 0;
+        foreach ($firm_provided as $date)
+            $sum_price += $date['price'];
+        $pdf = PDF::loadView('firm.firm_provided.download', [
+            'firm_provided' => $firm_provided,
+            'id' => $id,
+            'sum_price' => $sum_price,
+            'from_date' => $from_date,
+            'to_date' => $to_date,
+        ]);
+        $pdf->setPaper('A4', 'landscape');
+        if ($page == 'download')
+            return $pdf->download('firm_provided.pdf');
+        if ($page == 'view')
+            return $pdf->stream('firm_provided.pdf');
     }
 }

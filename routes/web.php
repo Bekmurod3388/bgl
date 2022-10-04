@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('work',\App\Http\Controllers\WorkController::class);
     Route::get('firm_incomes/download',[\App\Http\Controllers\FirmIncomeController::class, 'download'])->name('firm_incomes.download');
     Route::resource('firm_incomes',\App\Http\Controllers\FirmIncomeController::class);
+    Route::get('firm_provided/download',[\App\Http\Controllers\FirmProvidedController::class, 'download'])->name('firm_provided.download');
     Route::resource('firm_provided',\App\Http\Controllers\FirmProvidedController::class);
     Route::resource('type',\App\Http\Controllers\TypeController::class);
     Route::resource('worker_gaves',\App\Http\Controllers\WorkerGaveController::class);
