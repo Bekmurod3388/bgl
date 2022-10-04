@@ -100,8 +100,7 @@
                     document.getElementById('edit_soil').value = firms['soil'];
                     document.getElementById('edit_brutto').value = firms['brutto'];
                     document.getElementById('edit_tara').value = firms['tara'];
-                    document.getElementById('edit_date').value = firms['date'];
-                    document.getElementById('edit_id').value = id;
+                    document.getElementById('edit_id').value = firms['id'];
                     break;
                 }
             }
