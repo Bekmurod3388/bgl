@@ -36,7 +36,7 @@ class FirmIncomeController extends Controller
         $sum_soil = 0;
         $sum_weight = 0;
         $sum_price = 0;
-        foreach ($firm_incomes as $date){
+        foreach ($firm_incomes as $date) {
             $sum_total_price += $date['total_price'];
             $sum_brutto += $date['brutto'];
             $sum_netto += $date['netto'];
@@ -74,18 +74,18 @@ class FirmIncomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $id = $request['firm_id'];
         $data = $request->validate([
-           'firm_id' => "required",
-           'car_number' => "required",
-           'brutto' => "required",
-           'tara' => "required",
-           'price' => "required",
+            'firm_id' => "required",
+            'car_number' => "required",
+            'brutto' => "required",
+            'tara' => "required",
+            'price' => "required",
         ]);
         $netto = $request['brutto'] - $request['tara'];
         $firm_income = new FirmIncome();
@@ -110,7 +110,7 @@ class FirmIncomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FirmIncome  $firmIncome
+     * @param \App\Models\FirmIncome $firmIncome
      * @return \Illuminate\Http\Response
      */
     public function show(FirmIncome $firmIncome)
@@ -121,7 +121,7 @@ class FirmIncomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FirmIncome  $firmIncome
+     * @param \App\Models\FirmIncome $firmIncome
      * @return \Illuminate\Http\Response
      */
     public function edit(FirmIncome $firmIncome)
@@ -132,8 +132,8 @@ class FirmIncomeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FirmIncome  $firmIncome
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\FirmIncome $firmIncome
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -165,7 +165,7 @@ class FirmIncomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FirmIncome  $firmIncome
+     * @param \App\Models\FirmIncome $firmIncome
      * @return \Illuminate\Http\Response
      */
     public function destroy(FirmIncome $firmIncome)
@@ -180,10 +180,12 @@ class FirmIncomeController extends Controller
         return redirect()->back()->with("success", "Firma kirim muvaffaqqiyatli o'chirildi");;
     }
 
-    public function download(Request $request){
+    public function download(Request $request)
+    {
         $id = $request['id'];
         $from_date = $request['from_date'];
         $to_date = $request['to_date'];
+        $page = $request['page'];
         $firms = Firm::all();
         if ($from_date == null && $to_date == null) {
             $firm_incomes = FirmIncome::orderby('date', 'DESC')->where('firm_id', $id)->get();
@@ -200,7 +202,7 @@ class FirmIncomeController extends Controller
         $sum_soil = 0;
         $sum_weight = 0;
         $sum_price = 0;
-        foreach ($firm_incomes as $date){
+        foreach ($firm_incomes as $date) {
             $sum_total_price += $date['total_price'];
             $sum_brutto += $date['brutto'];
             $sum_netto += $date['netto'];
@@ -224,54 +226,10 @@ class FirmIncomeController extends Controller
             'to_date' => $to_date,
         ]);
         $pdf->setPaper('A4', 'landscape');
-        return $pdf->download('firm_income.pdf');
-    }
-
-    public function view(Request $request){
-        $id = $request['id'];
-        $from_date = $request['from_date'];
-        $to_date = $request['to_date'];
-        $firms = Firm::all();
-        if ($from_date == null && $to_date == null) {
-            $firm_incomes = FirmIncome::orderby('date', 'DESC')->where('firm_id', $id)->get();
-        } else {
-            $firm_incomes = FirmIncome::orderby('date', 'DESC')
-                ->where('firm_id', $id)
-                ->whereBetween('date', [$from_date, $to_date])
-                ->get();
-        }
-        $sum_total_price = 0;
-        $sum_brutto = 0;
-        $sum_netto = 0;
-        $sum_tara = 0;
-        $sum_soil = 0;
-        $sum_weight = 0;
-        $sum_price = 0;
-        foreach ($firm_incomes as $date){
-            $sum_total_price += $date['total_price'];
-            $sum_brutto += $date['brutto'];
-            $sum_netto += $date['netto'];
-            $sum_tara += $date['tara'];
-            $sum_soil += $date['soil'];
-            $sum_weight += $date['weight'];
-            $sum_price += $date['price'];
-        }
-        $pdf = PDF::loadView('firm.firm_incomes.download', [
-            'firm_incomes' => $firm_incomes,
-            'firms' => $firms,
-            'id' => $id,
-            'sum_total_price' => $sum_total_price,
-            'sum_brutto' => $sum_brutto,
-            'sum_netto' => $sum_netto,
-            'sum_tara' => $sum_tara,
-            'sum_soil' => $sum_soil,
-            'sum_price' => $sum_price,
-            'sum_weight' => $sum_weight,
-            'from_date' => $from_date,
-            'to_date' => $to_date,
-        ]);
-        $pdf->setPaper('A4', 'landscape');
-        return $pdf->stream();
+        if ($page == 'download')
+            return $pdf->download('firm_income.pdf');
+        if ($page == 'view')
+            return $pdf->stream('firm_income.pdf');
     }
 
 }

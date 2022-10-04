@@ -6,10 +6,10 @@
         <a href="{{ route('firms.index') }}" class="btn btn-info">
             <i class="fa fa-backward"></i> Orqaga
         </a>
-        <a href="{{ route('firm_incomes.download',['id' => $id, 'from_date' => $from_date, 'to_date' => $to_date]) }}" class="btn btn-info">
+        <a href="{{ route('firm_incomes.download',['id' => $id, 'from_date' => $from_date, 'to_date' => $to_date, 'page' => 'download']) }}" class="btn btn-info">
             <i class="fa fa-download"></i> Yuklash
         </a>
-        <a href="{{ route('firm_incomes.view',['id' => $id, 'from_date' => $from_date, 'to_date' => $to_date]) }}" class="btn btn-info">
+        <a href="{{ route('firm_incomes.download',['id' => $id, 'from_date' => $from_date, 'to_date' => $to_date, 'page' => 'view']) }}" class="btn btn-info">
             <i class="fa fa-eye"></i> Ko'rish
         </a>
     </div>
