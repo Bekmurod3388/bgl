@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            TurSeeder::class,
+            AllSeeder::class
 
         ]);
         // \App\Models\User::factory()->create([
@@ -23,6 +25,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(TurSeeder::class);
+
+
     }
 }
