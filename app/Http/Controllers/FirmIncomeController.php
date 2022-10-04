@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Firm;
 use App\Models\FirmIncome;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class FirmIncomeController extends Controller
@@ -178,4 +179,99 @@ class FirmIncomeController extends Controller
         $firmIncome->delete();
         return redirect()->back()->with("success", "Firma kirim muvaffaqqiyatli o'chirildi");;
     }
+
+    public function download(Request $request){
+        $id = $request['id'];
+        $from_date = $request['from_date'];
+        $to_date = $request['to_date'];
+        $firms = Firm::all();
+        if ($from_date == null && $to_date == null) {
+            $firm_incomes = FirmIncome::orderby('date', 'DESC')->where('firm_id', $id)->get();
+        } else {
+            $firm_incomes = FirmIncome::orderby('date', 'DESC')
+                ->where('firm_id', $id)
+                ->whereBetween('date', [$from_date, $to_date])
+                ->get();
+        }
+        $sum_total_price = 0;
+        $sum_brutto = 0;
+        $sum_netto = 0;
+        $sum_tara = 0;
+        $sum_soil = 0;
+        $sum_weight = 0;
+        $sum_price = 0;
+        foreach ($firm_incomes as $date){
+            $sum_total_price += $date['total_price'];
+            $sum_brutto += $date['brutto'];
+            $sum_netto += $date['netto'];
+            $sum_tara += $date['tara'];
+            $sum_soil += $date['soil'];
+            $sum_weight += $date['weight'];
+            $sum_price += $date['price'];
+        }
+        $pdf = PDF::loadView('firm.firm_incomes.download', [
+            'firm_incomes' => $firm_incomes,
+            'firms' => $firms,
+            'id' => $id,
+            'sum_total_price' => $sum_total_price,
+            'sum_brutto' => $sum_brutto,
+            'sum_netto' => $sum_netto,
+            'sum_tara' => $sum_tara,
+            'sum_soil' => $sum_soil,
+            'sum_price' => $sum_price,
+            'sum_weight' => $sum_weight,
+            'from_date' => $from_date,
+            'to_date' => $to_date,
+        ]);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->download('firm_income.pdf');
+    }
+
+    public function view(Request $request){
+        $id = $request['id'];
+        $from_date = $request['from_date'];
+        $to_date = $request['to_date'];
+        $firms = Firm::all();
+        if ($from_date == null && $to_date == null) {
+            $firm_incomes = FirmIncome::orderby('date', 'DESC')->where('firm_id', $id)->get();
+        } else {
+            $firm_incomes = FirmIncome::orderby('date', 'DESC')
+                ->where('firm_id', $id)
+                ->whereBetween('date', [$from_date, $to_date])
+                ->get();
+        }
+        $sum_total_price = 0;
+        $sum_brutto = 0;
+        $sum_netto = 0;
+        $sum_tara = 0;
+        $sum_soil = 0;
+        $sum_weight = 0;
+        $sum_price = 0;
+        foreach ($firm_incomes as $date){
+            $sum_total_price += $date['total_price'];
+            $sum_brutto += $date['brutto'];
+            $sum_netto += $date['netto'];
+            $sum_tara += $date['tara'];
+            $sum_soil += $date['soil'];
+            $sum_weight += $date['weight'];
+            $sum_price += $date['price'];
+        }
+        $pdf = PDF::loadView('firm.firm_incomes.download', [
+            'firm_incomes' => $firm_incomes,
+            'firms' => $firms,
+            'id' => $id,
+            'sum_total_price' => $sum_total_price,
+            'sum_brutto' => $sum_brutto,
+            'sum_netto' => $sum_netto,
+            'sum_tara' => $sum_tara,
+            'sum_soil' => $sum_soil,
+            'sum_price' => $sum_price,
+            'sum_weight' => $sum_weight,
+            'from_date' => $from_date,
+            'to_date' => $to_date,
+        ]);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream();
+    }
+
 }
