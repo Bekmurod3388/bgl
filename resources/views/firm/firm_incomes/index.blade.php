@@ -21,6 +21,7 @@
                             <th>Ildiz</th>
                             <th>1kg narxi</th>
                             <th>Jami narxi</th>
+                            <th>Sana</th>
                             <th>Amallar</th>
                         </tr>
                         </thead>
@@ -37,6 +38,7 @@
                                 <td>{{ number_format($firm->weight, 2, ',',' ')}}</td>
                                 <td>{{ number_format($firm->price, 2, ',',' ')}}</td>
                                 <td>{{ number_format($firm->total_price, 2, ',',' ')}}</td>
+                                <td>{{$firm->date}}</td>
                                 <td class="d-flex">
 
                                     <button type="button" onclick="edit({{$firm->id}})" class="btn btn-warning"
@@ -69,6 +71,7 @@
                             <th></th>
                             <th>{{ number_format($sum_total_price,2,',',' ') }}</th>
                             <th></th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>
@@ -97,6 +100,7 @@
                     document.getElementById('edit_soil').value = firms['soil'];
                     document.getElementById('edit_brutto').value = firms['brutto'];
                     document.getElementById('edit_tara').value = firms['tara'];
+                    document.getElementById('edit_date').value = firms['date'];
                     document.getElementById('edit_id').value = id;
                     break;
                 }

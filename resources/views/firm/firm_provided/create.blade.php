@@ -1,10 +1,21 @@
-<div class="card-header">
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-create">
-        <i class="fa fa-plus"></i> Qo'shish
-    </button>
-    <a href="{{ route('firms.index') }}" class="btn btn-info">
-        <i class="fa fa-backward"></i> Orqaga
-    </a>
+<div class="card-header d-flex justify-content-between">
+    <div>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-create">
+            <i class="fa fa-plus"></i> Qo'shish
+        </button>
+        <a href="{{ route('firms.index') }}" class="btn btn-info">
+            <i class="fa fa-backward"></i> Orqaga
+        </a>
+    </div>
+    <form action="{{ route('firm_provided.index') }}" method="get" class="d-flex justify-content-around align-items-center">
+        @csrf
+        <input type="hidden" name="id" value="{{ $id }}">
+        <input type="date" name="from_date" class="form-control" id="from_date" style="margin-left: 1rem" value="{{ $from_date }}">
+        <label for="from_date" style="margin-left: 0.5rem">dan</label>
+        <input type="date" name="to_date" class="form-control" id="to_date" style="margin-left: 1rem" value="{{ $to_date }}">
+        <label for="to_date" style="margin-left: 0.5rem">gacha</label>
+        <button type="submit" class="btn btn-primary" style="margin-left: 1rem">Saqlash</button>
+    </form>
     <div class="modal fade" id="modal-create">
         <div class="modal-dialog">
             <div class="modal-content">

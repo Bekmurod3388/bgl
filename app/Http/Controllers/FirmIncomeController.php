@@ -16,8 +16,18 @@ class FirmIncomeController extends Controller
     public function index(Request $request)
     {
         $id = $request['id'];
+        $from_date = $request['from_date'];
+        $to_date = $request['to_date'];
         $firms = Firm::all();
-        $firm_incomes = FirmIncome::orderby('created_at', 'DESC')->where('firm_id', $id)->get();
+        if ($from_date == null && $to_date == null) {
+            $firm_incomes = FirmIncome::orderby('date', 'DESC')->where('firm_id', $id)->get();
+        } else {
+            $firm_incomes = FirmIncome::orderby('date', 'DESC')
+                ->where('firm_id', $id)
+                ->whereBetween('date', [$from_date, $to_date])
+                ->get();
+        }
+
         $sum_total_price = 0;
         $sum_brutto = 0;
         $sum_netto = 0;
@@ -45,6 +55,8 @@ class FirmIncomeController extends Controller
             'sum_soil' => $sum_soil,
             'sum_price' => $sum_price,
             'sum_weight' => $sum_weight,
+            'from_date' => $from_date,
+            'to_date' => $to_date,
         ]);
     }
 
@@ -78,6 +90,7 @@ class FirmIncomeController extends Controller
         $firm_income = new FirmIncome();
         $firm_income['firm_id'] = $request['firm_id'];
         $firm_income['car_number'] = $request['car_number'];
+        $firm_income['date'] = $request['date'];
         $firm_income['brutto'] = $request['brutto'];
         $firm_income['netto'] = $netto;
         $firm_income['tara'] = $request['tara'];

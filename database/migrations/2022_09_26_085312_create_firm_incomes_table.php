@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger("firm_id");
             $table->string("car_number");
+            $table->date("date");
             $table->bigInteger("brutto");
             $table->bigInteger("netto");
             $table->bigInteger("tara");
@@ -23,7 +24,6 @@ return new class extends Migration {
             $table->bigInteger("weight");
             $table->bigInteger("price");
             $table->bigInteger("total_price");
-            $table->timestamps();
             $table->softDeletes();
         });
     }

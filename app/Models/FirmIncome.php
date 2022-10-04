@@ -10,6 +10,8 @@ class FirmIncome extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public $timestamps = false;
+
     function firm(){
         return $this->belongsTo(Firm::class);
     }
