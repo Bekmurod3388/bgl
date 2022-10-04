@@ -20,6 +20,7 @@ class FirmController extends Controller
         $sum_indebtedness = 0;
         $sum_given = 0;
         $cnt = 0;
+
         foreach ($firms as $firm){
             $firmes[$firm->id]=$firm;
             $sum_price += $firm['all_sum'];
@@ -27,6 +28,7 @@ class FirmController extends Controller
             $sum_given += $firm['given_sum'];
             $cnt++;
         }
+
         return view('firm.firms',[
             'firms'=>$firms,
             'firmes'=>$firmes,

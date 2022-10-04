@@ -19,19 +19,33 @@ class SellController extends Controller
     public function index()
     {
         $sells = Sell::orderBy('created_at', 'desc')->paginate(4);
+        $sels=[];
+        $sum_price = 0;
+        $sum_indebtedness = 0;
+        $sum_given = 0;
+        $cnt = 0;
 
-        $sel = [];
-        foreach ($sells as $s) {
-            $sel[$s->id] = $s;
+        foreach ($sells as $sel){
+            $sels[$sel->id]=$sel;
+            $sum_given += $sel['given_sum'];
+            $sum_indebtedness += $sel['indebtedness'];
+            $sum_price += $sel['all_sum'];
+            $cnt++;
         }
 
         $products = Product::all();
         $works = Work::all();
 
-        return view('sells.index', [
+        return view('sells.sell', [
+
                 'sells' => $sells,
                 'products' => $products,
-                'sels' => $sel,
+                'sels' => $sels,
+                'sum_given'=>$sum_given,
+                'sum_indebtedness'=>$sum_indebtedness,
+                'sum_price'=>$sum_price,
+                'cnt'=>$cnt,
+
             ]
         );
     }
@@ -56,26 +70,14 @@ class SellController extends Controller
     {
 //        dd($request);
         $request->validate([
-            'kimga' => 'required',
-            'necha_somdan' => 'required',
-            'kg' => 'required',
-            'bergan_summ' => 'required',
-            'qarzdorlik' => 'required',
-            'sanasi' => 'required',
-            'avto_raqam' => 'required',
+            'whom' => 'required',
         ]);
 
         $sell = new Sell();
-        $sell->maxsulot_id = $request->maxsulot_id;
-        $sell->kimga = $request->kimga;
-        $sell->necha_somdan = $request->necha_somdan;
-        $sell->kg = $request->kg;
-        $sell->jami_summ = $request->necha_somdan * $request->kg;
-        $sell->bergan_summ = $request->bergan_summ;
-        $sell->qarzdorlik = $request->qarzdorlik;
-        $sell->sanasi = $request->sanasi;
-        $sell->avto_raqam = $request->avto_raqam;
-
+        $sell->whom = $request->whom;
+        $sell->given_sum = $request->given_sum;
+        $sell->all_sum = 0;
+        $sell->indebtedness = 0;
         $sell->save();
         return redirect()->route('sells.index')->with('success', 'Sotish Muffaqatli yaratildi');
 

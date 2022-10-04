@@ -73,10 +73,12 @@
                                 <td>{{number_format($firm->indebtedness,2,',',' ')}}</td>
                                 <td>{{number_format($firm->given_sum,2,',',' ')}}</td>
                                 <td class="d-flex">
+
                                     <a href="{{ route("firm_incomes.index",['id' => $firm->id]) }}"
                                        class="btn btn-success m-1">
                                         <i class="fa fa-car"></i>
                                     </a>
+
                                     <a href="{{ route("firm_provided.index",['id' => $firm->id]) }}"
                                        class="btn btn-info m-1">
                                         <i class="fa fa-clipboard-list"></i>
