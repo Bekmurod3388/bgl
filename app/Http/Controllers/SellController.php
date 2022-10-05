@@ -34,13 +34,11 @@ class SellController extends Controller
         }
 
         $products = Product::all();
-        $works = Work::all();
 
         return view('sells.sell', [
-
                 'sells' => $sells,
-                'products' => $products,
                 'sels' => $sels,
+                'products' => $products,
                 'sum_given'=>$sum_given,
                 'sum_indebtedness'=>$sum_indebtedness,
                 'sum_price'=>$sum_price,
@@ -114,28 +112,18 @@ class SellController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request->id);
         $request->validate([
-            'kimga' => 'required',
-            'necha_somdan' => 'required',
-            'kg' => 'required',
-            'bergan_summ' => 'required',
-            'qarzdorlik' => 'required',
-            'sanasi' => 'required',
-            'avto_raqam' => 'required',
+            'sell_id' => 'required',
+            'whom' => 'required',
+            'given_sum' => 'required',
         ]);
-        $sell = Sell::find($request->id);
-        $sell->maxsulot_id = $request->maxsulot_id;
-        $sell->kimga = $request->kimga;
-        $sell->necha_somdan = $request->necha_somdan;
-        $sell->kg = $request->kg;
-        $sell->jami_summ = $request->necha_somdan * $request->kg;
-        $sell->bergan_summ = $request->bergan_summ;
-        $sell->qarzdorlik = $request->qarzdorlik;
-        $sell->sanasi = $request->sanasi;
-        $sell->avto_raqam = $request->avto_raqam;
 
+        $sell = Sell::find($request->sell_id);
+        $sell->whom = $request->whom;
+        $sell->given_sum += $request->given_sum;
+        $sell->indebtedness -= $request->given_sum;
         $sell->save();
+
         return redirect()->route('sells.index')->with('success', 'Sotish Muffaqatli tahrirlandi');
     }
 

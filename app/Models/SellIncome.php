@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SellIncome extends Model
-{
+{    use HasFactory, SoftDeletes;
+
 
     protected $fillable = [
         'sell_id','car_number','product_id','kg','how_sum','total_sum',
@@ -20,5 +22,4 @@ class SellIncome extends Model
     {
         return $this->belongsTo(Sell::class, 'sell_id', 'id');
     }
-    use HasFactory;
 }

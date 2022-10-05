@@ -33,7 +33,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Bergan summa:</label>
-                                                    <input type="text" name="given_sum" class="form-control"
+                                                <input type="text" name="given_sum" class="form-control"
                                                        id="exampleInputEmail1">
                                             </div>
 
@@ -44,7 +44,9 @@
 
                                         </div>
                                         <div class="modal-footer justify-content-between">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Bekor qilish </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Bekor
+                                                qilish
+                                            </button>
                                             <button type="submit" class="btn btn-primary">Saqlash</button>
                                         </div>
                                     </form>
@@ -70,9 +72,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($sells as $sel)
+                        @foreach($sells as $k=>$sel)
                             <tr>
-                                <td>{{$sel->index +1}}</td>
+                                <td>{{$k+1}}</td>
                                 <td>{{$sel->whom}}</td>
                                 <td>{{number_format($sel->given_sum,2,',',' ')}}</td>
                                 <td>{{number_format($sel->indebtedness,2,',',' ')}}</td>
@@ -89,7 +91,8 @@
                                        class="btn btn-info m-1">
                                         <i class="fa fa-clipboard-list"></i>
                                     </a>
-                                    <button type="button" onclick="edit({{$sel->id}})" class="btn btn-warning m-1"
+
+                                    <button type="button" onclick="editt({{$sel->id}})" class="btn btn-warning m-1"
                                             data-toggle="modal" data-target="#modal-edit">
                                         <i class="fa fa-pen"></i>
                                     </button>
@@ -120,46 +123,54 @@
                 </div>
 
 
-{{--                <div class="modal fade" id="modal-edit">--}}
-{{--                    <div class="modal-dialog">--}}
-{{--                        <div class="modal-content">--}}
-{{--                            <div class="modal-header">--}}
-{{--                                <h4 class="modal-title">Firma yaratish</h4>--}}
-{{--                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                                    <span aria-hidden="true">&times;</span>--}}
-{{--                                </button>--}}
-{{--                            </div>--}}
-{{--                            <div class="modal-body">--}}
-{{--                                <form method="post" action="{{route('firms.update',1)}}">--}}
-{{--                                    @csrf--}}
-{{--                                    @method('PUT')--}}
-{{--                                    <input type="hidden" name="id" id="edit_id">--}}
-{{--                                    <div class="card-body">--}}
-{{--                                        <div class="form-group">--}}
-{{--                                            <label for="edit_name">Firma nomini kiriting:</label>--}}
-{{--                                            <input type="text" name="name" class="form-control" id="edit_name">--}}
-{{--                                        </div>--}}
+                <div class="modal fade" id="modal-edit">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Sotish</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="{{route('sells.update',1)}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="sell_id" id="edit_idd">
+                                    <div class="card-body">
 
-{{--                                    </div>--}}
-{{--                                    <!-- /.card-body -->--}}
+                                        <div class="form-group">
+                                            <label for="edit_name"> Haridor nomini kiriting: </label>
+                                            <input type="text" name="whom" class="form-control" id="edit_whom">
+                                        </div>
 
-{{--                                    <div class="card-footer">--}}
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Bergan summa:</label>
+                                            <input type="text" name="given_sum" class="form-control"
+                                                   id="edit_sum">
+                                        </div>
 
-{{--                                    </div>--}}
-{{--                                    <div class="modal-footer justify-content-between">--}}
-{{--                                        <button type="button" class="btn btn-default" data-dismiss="modal">Bekor--}}
-{{--                                            qilish--}}
-{{--                                        </button>--}}
-{{--                                        <button type="submit" class="btn btn-primary">Saqlash</button>--}}
-{{--                                    </div>--}}
-{{--                                </form>--}}
-{{--                            </div>--}}
 
-{{--                        </div>--}}
-{{--                        <!-- /.modal-content -->--}}
-{{--                    </div>--}}
-{{--                    <!-- /.modal-dialog -->--}}
-{{--                </div>--}}
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Bekor
+                                            qilish
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
             </div>
 
         </div>
@@ -182,15 +193,14 @@
         session.error("{{$message}}");
         @endif
 
-        {{--let firmes =@json($firmes);--}}
+        let sells =@json($sels);
 
-        function edit(id) {
 
-            var firms = firmes[id];
-
-            document.getElementById('edit_name').value = firms['name'];
-            document.getElementById('edit_id').value = id;
-
+        function editt(id) {
+            var sell = sells[id];
+            document.getElementById('edit_idd').value = id;
+            document.getElementById('edit_whom').value = sell['whom'];
+            document.getElementById('edit_sum').value = sell['given_sum'];
         }
     </script>
 

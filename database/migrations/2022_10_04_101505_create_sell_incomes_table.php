@@ -23,6 +23,8 @@ return new class extends Migration
             $table->unsignedBigInteger('total_sum');
 
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

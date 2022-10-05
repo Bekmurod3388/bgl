@@ -6,7 +6,7 @@
         <!-- /.col-md-6 -->
         <div class="col">
             <div class="card">
-                @include("firm.firm_incomes.create")
+                @include("sells\sell_icomes\create")
                 <div class="card-body">
                     <table class="table table-hover">
                         <thead>
@@ -57,15 +57,15 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th>{{ number_format($kg,2,',',' ') }}</th>
                             <th></th>
-                            <th>{{ number_format($how_sum,2,',',' ') }}</th>
                             <th>{{ number_format($total_sum,2,',',' ') }}</th>
 
                         </tr>
                         </tfoot>
                     </table>
                 </div>
-                @include("firm.firm_incomes.edit")
+                @include("sells.sell_icomes.edit")
             </div>
 
         </div>
@@ -79,17 +79,18 @@
         toastr.success("{{$message}}");
         @endif
 
-        let firmes =@json($sell_incomes);
-
+        let sells =@json($sell_incomes); // firmes jsondan olib kelgan
         function edit(id) {
-            for (let i = 0; i < firmes.length; i++) {
-                if (id == firmes[i]["id"]) {
-                    var firms = firmes[i];
-                    console.log(firms);
-                    document.getElementById('edit_soil').value = firms['soil'];
-                    document.getElementById('edit_brutto').value = firms['brutto'];
-                    document.getElementById('edit_tara').value = firms['tara'];
-                    document.getElementById('edit_id').value = id;
+
+            for (let i = 0; i < sells.length; i++) {
+                if (id == sells[i]["id"]) {
+                    var sell = sells[i];
+                    console.log(sell);
+                    document.getElementById('edit_idi').value = id;
+                    document.getElementById('edit_car').value = sell['car_number'];
+                    document.getElementById('edit_product').value = sell['product_id'];
+                    document.getElementById('edit_kg').value = sell['kg'];
+                    document.getElementById('edit_priace').value = sell['how_sum'];
                     break;
                 }
             }

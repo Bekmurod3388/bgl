@@ -140,6 +140,7 @@ class FirmIncomeController extends Controller
     {
         $id = $request['id'];
         $firm_income = FirmIncome::find($id);
+
         $old_price = $firm_income['total_price'];
         $old_soil = $firm_income['soil'];
         $new_soil = $request['soil'];
@@ -155,6 +156,7 @@ class FirmIncomeController extends Controller
         $firm_income->save();
         $new_price = $firm_income['total_price'];
         $id = $firm_income['firm_id'];
+
         $firm = Firm::find($id);
         $firm['all_sum'] += ($new_price - $old_price);
         $firm['indebtedness'] = $firm['all_sum'] - $firm['given_sum'];
@@ -172,12 +174,14 @@ class FirmIncomeController extends Controller
     {
         $id = $firmIncome['firm_id'];
         $total_price = $firmIncome['total_price'];
+
         $firm = Firm::find($id);
         $firm['all_sum'] -= $total_price;
         $firm['indebtedness'] -= $total_price;
         $firm->save();
+
         $firmIncome->delete();
-        return redirect()->back()->with("success", "Firma kirim muvaffaqqiyatli o'chirildi");;
+        return redirect()->back()->with("success", "Firma kirim muvaffaqqiyatli o'chirildi");
     }
 
     public function download(Request $request)

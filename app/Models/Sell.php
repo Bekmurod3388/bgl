@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sell extends Model
-{
+{    use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'whom', 'given_sum', 'all_sum', 'indebtedness',
     ];
@@ -14,5 +16,4 @@ class Sell extends Model
 
 
 
-    use HasFactory;
 }

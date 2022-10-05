@@ -20,6 +20,8 @@ return new class extends Migration
             $table->bigInteger('all_sum');
             $table->bigInteger('indebtedness');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

@@ -178,7 +178,6 @@
         function edit(id) {
 
             var firms = firmes[id];
-
             document.getElementById('edit_name').value = firms['name'];
             document.getElementById('edit_id').value = id;
 

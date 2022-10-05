@@ -17,8 +17,10 @@ class FirmProvidedController extends Controller
     public function index(Request $request)
     {
         $id = $request['id'];
+
         $from_date = $request['from_date'];
         $to_date = $request['to_date'];
+
         if ($from_date == NULL && $to_date == NULL) {
             $firm_provided = FirmProvided::orderby('date', 'DESC')->where('firm_id', $id)->get();
         } else {
@@ -27,6 +29,7 @@ class FirmProvidedController extends Controller
                 ->whereBetween('date', [$from_date, $to_date])
                 ->get();
         }
+
         $sum_price = 0;
         foreach ($firm_provided as $date)
             $sum_price += $date['price'];
