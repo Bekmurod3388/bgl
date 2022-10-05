@@ -37,7 +37,10 @@
                         <div class="card-body">
                             <input type="hidden" name="firm_id" value="{{ $id }}">
                             <div class="form-group">
-                                <label for="price">Berilgan summa:</label>
+                                <div class="d-flex justify-content-between">
+                                    <label for="price">Berilgan summa:</label>
+                                    <p class="text-danger">Jami qarzdorlik: {{ number_format($indebtedness,2,',',' ') }}</p>
+                                </div>
                                 <input type="number" name="price" class="form-control" id="price">
                             </div>
                             <div class="form-group">

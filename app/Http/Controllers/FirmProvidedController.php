@@ -18,6 +18,7 @@ class FirmProvidedController extends Controller
     {
         $id = $request['id'];
 
+        $indebtedness = Firm::find($id)->indebtedness;
         $from_date = $request['from_date'];
         $to_date = $request['to_date'];
 
@@ -33,7 +34,7 @@ class FirmProvidedController extends Controller
         $sum_price = 0;
         foreach ($firm_provided as $date)
             $sum_price += $date['price'];
-        return view("firm.firm_provided.index", compact("id", "firm_provided", "sum_price","from_date","to_date"));
+        return view("firm.firm_provided.index", compact("id", "firm_provided", "sum_price","from_date","to_date","indebtedness"));
     }
 
     /**
