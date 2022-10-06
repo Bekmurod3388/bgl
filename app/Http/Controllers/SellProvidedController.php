@@ -20,14 +20,18 @@ class SellProvidedController extends Controller
         $sell_provided = SellProvided::where('sell_id', $sell_id)->get();
 
         $all_sum = 0;
+        $cnt=0;
+
         foreach ($sell_provided as $date){
-            $all_sum += $date['price'];
+            $all_sum += $date['given_sum'];
+            $cnt++;
         }
 
         return view("sells.sell_provided.index", [
             "sell_provided" => $sell_provided,
             "sell_id" => $sell_id,
             "all_sum" => $all_sum,
+            "cnt"=>$cnt,
         ]);
 
     }

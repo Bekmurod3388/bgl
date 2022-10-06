@@ -65,9 +65,9 @@
                         <tr>
                             <th>id</th>
                             <th>Haridor Nomi</th>
-                            <th>Olgan Summa</th>
-                            <th>Qarzdorlik</th>
                             <th>Jami Summa</th>
+                            <th>Qarzdorlik</th>
+                            <th>Olgan Summa</th>
                             <th>Amallar</th>
                         </tr>
                         </thead>
@@ -76,9 +76,9 @@
                             <tr>
                                 <td>{{$k+1}}</td>
                                 <td>{{$sel->whom}}</td>
-                                <td>{{number_format($sel->given_sum,2,',',' ')}}</td>
-                                <td>{{number_format($sel->indebtedness,2,',',' ')}}</td>
                                 <td>{{number_format($sel->all_sum,2,',',' ')}}</td>
+                                <td>{{number_format($sel->indebtedness,2,',',' ')}}</td>
+                                <td>{{number_format($sel->given_sum,2,',',' ')}}</td>
 
                                 <td class="d-flex">
 

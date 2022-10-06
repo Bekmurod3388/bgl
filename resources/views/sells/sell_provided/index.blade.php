@@ -42,7 +42,7 @@
                         <tfoot>
                         <tr>
                             <th>Jami</th>
-                            <th></th>
+                            <th>{{ $cnt }} ta firma</th>
                             <th>{{ number_format($all_sum, 2, ',' ,' ')}}</th>
                             <th></th>
                         </tr>
