@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->date('date');
+
             $table->integer('weight');
             $table->timestamps();
         });

@@ -93,10 +93,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href=""
-                               class="nav-link @if(request()->routeIs('finished_products.index')) active @endif">
+                            <a href="{{route('warehouses.index')}}"
+                               class="nav-link ">
                                 <i class="fa fa-list-alt nav-icon"></i>
                                 <p>Sklad</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('finished_products.index')}}"
+                               class="nav-link ">
+                                <i class="fa fa-list-alt nav-icon"></i>
+                                <p>Tayyor mahdulot</p>
                             </a>
                         </li>
 

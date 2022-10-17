@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Finished_Product;
+use App\Models\Product;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,16 @@ class WarehouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+        $warehouses = Warehouse::orderBy('created_at', 'desc')->paginate(4);
+        $ishs = [];
+        foreach ($warehouses as $ish) {
+            $ishs[$ish->id] = $ish;
+        }
+        $products = Product::all();
+        return  view('warehouse.warehouse',compact('ishs','warehouses','products'));
     }
 
     /**
@@ -35,7 +44,7 @@ class WarehouseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
