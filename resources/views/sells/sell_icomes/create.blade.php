@@ -50,7 +50,7 @@
 
                             <div class="form-group">
                                 <label for="product_id">Mahsulot</label>
-                                <select name="product_id" id="edit_product" class="form-control">
+                                <select name="product_id" id="edit_product" onchange="tanladi(event)" class="form-control">
                                     @foreach($products as $product)
                                         <option value="{{ $product->id }}">{{ $product->name }}</option>
                                     @endforeach
@@ -58,9 +58,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="price">x kg mavjud </label>
-                                <label for="price">Hajm (kg):</label>
-                                <input type="number" name="kg" class="form-control" id="price">
+                                <label for="price" id="kgg" style="color: red;" > </label>
+                                <label for="price" >Hajm (kg):</label>
+                                <input type="number"  name="kg" class="form-control" id="price">
                             </div>
 
                             <div class="form-group">

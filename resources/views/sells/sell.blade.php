@@ -28,13 +28,13 @@
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Haridor nomini kiriting:</label>
                                                 <input type="text" name="whom" class="form-control"
-                                                       id="exampleInputEmail1">
+                                                       id="exampleInputEmail1" required>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Bergan summa:</label>
-                                                <input type="text" name="given_sum" class="form-control"
-                                                       id="exampleInputEmail1">
+                                                <input type="number" name="given_sum" class="form-control"
+                                                       id="exampleInputEmail1" required>
                                             </div>
 
                                         </div>
@@ -113,9 +113,9 @@
                         <tr>
                             <th>Jami</th>
                             <th>{{ $cnt }} ta firma</th>
-                            <th>{{number_format($sum_given,2,',',' ')}}</th>
-                            <th>{{number_format($sum_indebtedness,2,',',' ')}}</th>
                             <th>{{number_format($sum_price,2,',',' ')}}</th>
+                            <th>{{number_format($sum_indebtedness,2,',',' ')}}</th>
+                            <th>{{number_format($sum_given,2,',',' ')}}</th>
                             <th></th>
                         </tr>
                         </tfoot>
@@ -146,7 +146,7 @@
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Bergan summa:</label>
-                                            <input type="text" name="given_sum" class="form-control"
+                                            <input type="number" name="given_sum" class="form-control"
                                                    id="edit_sum">
                                         </div>
 

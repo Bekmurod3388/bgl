@@ -42,7 +42,7 @@
                             <a href="{{route('worker.index')}}"
                                class="nav-link @if(request()->routeIs('worker.index')) active @endif">
                                 <i class="fa fa-users nav-icon"></i>
-                                <p>Ishchilar</p>
+                                <p>Ishchilar</p> q
                             </a>
                         </li>
                         <li class="nav-item">

@@ -7,6 +7,7 @@ use App\Models\FirmIncome;
 use App\Models\Product;
 use App\Models\Sell;
 use App\Models\SellIncome;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 
 class SellIncomeController extends Controller
@@ -18,10 +19,10 @@ class SellIncomeController extends Controller
      */
     public function index(Request $request)
     {
-
         $id = $request['id'];
         $sells = Sell::all();
         $products = Product::all();
+        $warehouses = Warehouse::all();
         $sell_incomes = SellIncome::orderby('created_at', 'DESC')->where('sell_id', $id)->get();
         $kg = 0;
         $total_sum = 0;
@@ -35,10 +36,10 @@ class SellIncomeController extends Controller
             'products' => $products,
             'sells' => $sells,
             'sell_incomes' => $sell_incomes,
+            'warehouses' => $warehouses,
             'kg' => $kg,
             'total_sum' => $total_sum,
             'id' => $id,
-
         ]);
 
 

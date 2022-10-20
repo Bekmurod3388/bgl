@@ -80,8 +80,19 @@
         @endif
 
         let sells =@json($sell_incomes); // firmes jsondan olib kelgan
-        function edit(id) {
+        let warehous = @json($warehouses);
 
+        function tanladi(){
+
+            let tanlangan = document.getElementById('edit_product').value;
+            let tanlangan_object = warehous.find(warehouse => warehouse.product_id == tanlangan);
+            let tanlangan_weight = tanlangan_object.weight;
+            document.getElementById('kgg').innerHTML = tanlangan_weight+" kg gacha";
+            console.log(tanlangan_weight);
+
+        }
+
+        function edit(id) {
             for (let i = 0; i < sells.length; i++) {
                 if (id == sells[i]["id"]) {
                     var sell = sells[i];

@@ -14,16 +14,12 @@ class WarehouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
 
         $warehouses = Warehouse::orderBy('created_at', 'desc')->paginate(4);
-        $ishs = [];
-        foreach ($warehouses as $ish) {
-            $ishs[$ish->id] = $ish;
-        }
         $products = Product::all();
-        return  view('warehouse.warehouse',compact('ishs','warehouses','products'));
+        return  view('warehouse.warehouse',compact('warehouses','products'));
     }
 
     /**

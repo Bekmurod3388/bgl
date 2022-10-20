@@ -168,7 +168,7 @@
         @endif
 
 
-        let ishs =@json($ishs);
+        {{--let ishs =@json($ishs);--}}
 
         // console.log(ishs)
         function edit(id) {

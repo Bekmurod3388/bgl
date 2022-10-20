@@ -16,9 +16,7 @@ class SellProvidedController extends Controller
     public function index(Request $request)
     {
         $sell_id = $request->id;
-
         $sell_provided = SellProvided::where('sell_id', $sell_id)->get();
-
         $all_sum = 0;
         $cnt=0;
 
