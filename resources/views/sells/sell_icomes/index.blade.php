@@ -79,6 +79,10 @@
         toastr.success("{{$message}}");
         @endif
 
+        @if ($message = Session::get('wrong'))
+        toastr.warning("{{$message}}");
+        @endif
+
         let sells =@json($sell_incomes); // firmes jsondan olib kelgan
         let warehous = @json($warehouses);
 
