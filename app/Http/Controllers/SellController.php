@@ -120,8 +120,8 @@ class SellController extends Controller
 
         $sell = Sell::find($request->sell_id);
         $sell->whom = $request->whom;
-        $sell->given_sum += $request->given_sum;
-        $sell->indebtedness -= $request->given_sum;
+//        $sell->given_sum += $request->given_sum;
+//        $sell->indebtedness -= $request->given_sum;
         $sell->save();
 
         return redirect()->route('sells.index')->with('success', 'Sotish Muffaqatli tahrirlandi');
