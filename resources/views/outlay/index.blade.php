@@ -33,9 +33,14 @@
                                                        id="outlay_name">
                                             </div>
                                             <div class="form-group">
-                                                <label for="date">Sanani kiriting:</label>
-                                                <input type="date" name="date" class="form-control"
-                                                       id="date">
+                                                <label for="from_date">Sanani kiriting:</label>
+                                                <input type="date" name="from_date" class="form-control"
+                                                       id="from_date">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="to_date">Sanani kiriting:</label>
+                                                <input type="date" name="to_date" class="form-control"
+                                                       id="to_date">
                                             </div>
                                             <div class="form-group">
                                                 <label for="summ">Summasini kiriting:</label>
@@ -80,9 +85,9 @@
                     <tr>
                         <th>id</th>
                         <th>Sana</th>
+                        <th>Sana</th>
                         <th>Chiqim nomi</th>
                         <th>Summasi</th>
-
                         <th>Donasi</th>
                         <th>Jami Summa</th>
                         <th>Amallar</th>
@@ -92,7 +97,8 @@
                     @foreach($outlay as $out)
                         <tr>
                             <td>{{$out->id}}</td>
-                            <td>{{$out->date}}</td>
+                            <td>{{$out->from_date}}</td>
+                            <td>{{$out->to_date}}</td>
                             <td>{{$out->outlay_name}}</td>
                             <td>{{$out->summ}}</td>
                             <td>{{$out->one_summ}}</td>
@@ -141,9 +147,14 @@
                                                    id="edit_outlay_name">
                                         </div>
                                         <div class="form-group">
-                                            <label for="edit_date">Sanani kiriting:</label>
-                                            <input type="date" name="date" class="form-control"
-                                                   id="edit_date">
+                                            <label for="edit_from_date">Sanani kiriting:</label>
+                                            <input type="date" name="from_date" class="form-control"
+                                                   id="edit_from_date">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edit_to_date">Sanani kiriting:</label>
+                                            <input type="date" name="to_date" class="form-control"
+                                                   id="edit_to_date">
                                         </div>
                                         <div class="form-group">
                                             <label for="edit_summ">Summasini kiriting:</label>
@@ -208,7 +219,8 @@
                     var firms = firmes[id];
                     console.log(firms);
                     document.getElementById('edit_outlay_name').value = firms['outlay_name'];
-                    document.getElementById('edit_date').value = firms['date'];
+                    document.getElementById('edit_from_date').value = firms['from_date'];
+                    document.getElementById('edit_to_date').value = firms['to_date'];
                     document.getElementById('edit_summ').value = firms['summ'];
                     document.getElementById('edit_one_summ').value = firms['one_summ'];
                     document.getElementById('edit_id').value = id;
