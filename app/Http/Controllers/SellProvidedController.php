@@ -72,7 +72,7 @@ class SellProvidedController extends Controller
 
         $sells = Sell::find($id);
         $sells->given_sum += $sum;
-        $sells->indebtedness = $sells->all_sum - $sum;
+        $sells->indebtedness -= $sum;
         $sells->save();
 
         return redirect()->back()->with("success", "Sotish oldi berdi muvaffaqqiyatli yaratildi");

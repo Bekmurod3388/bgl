@@ -73,24 +73,40 @@ class SellIncomeController extends Controller
             'kg' => "required",
         ]);
 
-        $total_sum = $request->kg* $request->how_sum;
+        $product_weight = Warehouse::where('product_id',$request->product_id)->get();
+        $total_sum = $request->kg * $request->how_sum;
 
-        $sell_income = new SellIncome();
-        $sell_income->sell_id = $request->sell_id;
-        $sell_income->car_number = $request->car_number;
-        $sell_income->product_id = $request->product_id;
-        $sell_income->kg = $request->kg;
-        $sell_income->how_sum = $request->how_sum;
-        $sell_income->total_sum = $total_sum;
-        $sell_income->save();
+        if ( $request->kg <= $product_weight[0]['weight'] ){
+
+            $sell_income = new SellIncome();
+            $sell_income->sell_id = $request->sell_id;
+            $sell_income->car_number = $request->car_number;
+            $sell_income->product_id = $request->product_id;
+            $sell_income->kg = $request->kg;
+            $sell_income->how_sum = $request->how_sum;
+            $sell_income->total_sum = $total_sum;
+            $sell_income->save();
+
+            $product = $product_weight[0];
+            $product->weight = $product_weight[0]['weight'] - $request->kg;
+            $product->save();
+
+            $sell = Sell::find($id);
+            $sell['all_sum'] += $total_sum;
+            $sell['indebtedness'] = $sell['all_sum'] - $sell['given_sum'];
+            $sell->save();
+
+            return redirect()->back()->with("success", "Sotish muvaffaqqiyatli yaratildi");
+
+        }
+        else{
+            return redirect()->back()->with("wrong", "Bu hajmdagi mahsulot tayyor emas");
+        }
 
 
-        $sell = Sell::find($id);
-        $sell['all_sum'] += $total_sum;
-        $sell['indebtedness'] = $sell['all_sum'] - $sell['given_sum'];
-        $sell->save();
 
-        return redirect()->back()->with("success", "Sotish muvaffaqqiyatli yaratildi");
+
+
     }
 
     /**

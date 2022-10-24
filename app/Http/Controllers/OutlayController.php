@@ -49,14 +49,15 @@ class OutlayController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date'=>'required',
+            'from_date'=>'required',
+            'to_date'=>'required',
             'outlay_name' => 'required',
             'summ' => 'required',
             'one_summ' => 'required',
-
         ]);
         $outlay=new Outlay();
-        $outlay->date=$request['date'];
+        $outlay->from_date=$request['from_date'];
+        $outlay->to_date=$request['to_date'];
         $outlay->outlay_name=$request['outlay_name'];
         $outlay->summ=$request['summ'];
         $outlay->one_summ=$request['one_summ'];
@@ -100,13 +101,15 @@ class OutlayController extends Controller
     {
         $id=$request['id'];
         $request->validate([
-            'date'=>'required',
+            'from_date'=>'required',
+            'to_date'=>'required',
             'outlay_name' => 'required',
             'summ' => 'required',
             'one_summ' => 'required'
         ]);
         $outlay= Outlay::find($id);
-        $outlay->date=$request['date'];
+        $outlay->from_date=$request['from_date'];
+        $outlay->to_date=$request['to_date'];
         $outlay->outlay_name=$request['outlay_name'];
         $outlay->summ=$request['summ'];
         $outlay->one_summ=$request['one_summ'];

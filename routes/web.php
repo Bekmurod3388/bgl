@@ -36,7 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('sells',\App\Http\Controllers\SellController::class);
     Route::resource('sell_incomes',\App\Http\Controllers\SellIncomeController::class);
     Route::resource('sell_provided',\App\Http\Controllers\SellProvidedController::class);
-//    Route::resource('warehouses',\App\Http\Controllers\WarehouseController::class);
     Route::resource('finished_products',\App\Http\Controllers\FinishedProductController::class);
     Route::resource('warehouses',\App\Http\Controllers\WarehouseController::class);
 

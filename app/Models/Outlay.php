@@ -11,6 +11,7 @@ class Outlay extends Model
     use HasFactory, SoftDeletes;
     protected $table='outlay';
 
+    public $timestamps = false;
     protected $fillable = [
         'date', 'outlay_name', 'summ', 'one_summ', 'all_summ'
     ];

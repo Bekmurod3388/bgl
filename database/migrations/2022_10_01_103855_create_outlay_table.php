@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('outlay', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
             $table->string('outlay_name');
             $table->integer('summ')->default(0);
             $table->integer('one_summ')->default(0);
             $table->integer('all_summ')->default(0);
-            $table->timestamps();
+            $table->date('from_date');
+            $table->date('to_date');
+//            $table->timestamps();
             $table->softDeletes();
 
         });
