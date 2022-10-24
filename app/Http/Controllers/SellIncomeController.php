@@ -74,7 +74,7 @@ class SellIncomeController extends Controller
         ]);
 
         $product_weight = Warehouse::where('product_id',$request->product_id)->get();
-        $total_sum = $request->kg* $request->how_sum;
+        $total_sum = $request->kg * $request->how_sum;
 
         if ( $request->kg <= $product_weight[0]['weight'] ){
 
@@ -86,6 +86,10 @@ class SellIncomeController extends Controller
             $sell_income->how_sum = $request->how_sum;
             $sell_income->total_sum = $total_sum;
             $sell_income->save();
+
+            $product = $product_weight[0];
+            $product->weight = $product_weight[0]['weight'] - $request->kg;
+            $product->save();
 
             $sell = Sell::find($id);
             $sell['all_sum'] += $total_sum;

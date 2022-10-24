@@ -31,11 +31,11 @@
                                                        id="exampleInputEmail1" required>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Bergan summa:</label>
-                                                <input type="number" name="given_sum" class="form-control"
-                                                       id="exampleInputEmail1" required>
-                                            </div>
+{{--                                            <div class="form-group">--}}
+{{--                                                <label for="exampleInputEmail1">Bergan summa:</label>--}}
+{{--                                                <input type="number" name="given_sum" class="form-control"--}}
+{{--                                                       id="exampleInputEmail1" required>--}}
+{{--                                            </div>--}}
 
                                         </div>
                                         <!-- /.card-body -->

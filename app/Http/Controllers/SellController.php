@@ -73,7 +73,8 @@ class SellController extends Controller
 
         $sell = new Sell();
         $sell->whom = $request->whom;
-        $sell->given_sum = $request->given_sum;
+//        $sell->given_sum = $request->given_sum;
+        $sell->given_sum = 0;
         $sell->all_sum = 0;
         $sell->indebtedness = 0;
         $sell->save();
@@ -115,7 +116,7 @@ class SellController extends Controller
         $request->validate([
             'sell_id' => 'required',
             'whom' => 'required',
-            'given_sum' => 'required',
+//            'given_sum' => 'required',
         ]);
 
         $sell = Sell::find($request->sell_id);
