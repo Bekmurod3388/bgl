@@ -94,18 +94,33 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('warehouses.index')}}"
-                               class="nav-link ">
+                               class="nav-link @if(request()->routeIs('warehouses.index')) active @endif">
                                 <i class="fa fa-list-alt nav-icon"></i>
                                 <p>Sklad</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('finished_products.index')}}"
-                               class="nav-link ">
+                               class="nav-link @if(request()->routeIs('finished_products.index')) active @endif">
                                 <i class="fa fa-list-alt nav-icon"></i>
                                 <p>Tayyor mahdulot</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('gaz.index')}}"
+                               class="nav-link @if(request()->routeIs('gaz.index')) active @endif">
+                                <i class="fa fa-list-alt nav-icon"></i>
+                                <p>Gaz</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('electric_current.index')}}"
+                               class="nav-link @if(request()->routeIs('electric_current.index')) active @endif">
+                                <i class="fa fa-list-alt nav-icon"></i>
+                                <p>Tok</p>
+                            </a>
+                        </li>
+
 
                     </ul>
                 </li>
