@@ -96,7 +96,7 @@
                             <input type="number" class="form-control" id="pakazaniya" placeholder="Pakazaniya" name="pakazaniya">
                         </div>
                         <div class="form-group">
-                            <label for="money_paid">Pakazaniya</label>
+                            <label for="money_paid">To'langan summa</label>
                             <input type="number" class="form-control" id="money_paid" placeholder="Tolangan pul" name="money_paid">
                         </div>
 
@@ -145,7 +145,7 @@
                             <input type="number" class="form-control" id="pakazaniya_edit" placeholder="Pakazaniya" name="pakazaniya">
                         </div>
                         <div class="form-group">
-                            <label for="money_paid">Pakazaniya</label>
+                            <label for="money_paid">To'langan summa</label>
                             <input type="number" class="form-control" id="money_paid_edit" placeholder="Tolangan pul" name="money_paid">
                         </div>
 
