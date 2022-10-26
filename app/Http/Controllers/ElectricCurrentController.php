@@ -100,7 +100,7 @@ class ElectricCurrentController extends Controller
             'pakazaniya'=>'required',
             'money_paid'=>'required'
         ]);
-
+//r
         $gaz=Electric_Current::find($id);
         $av=$gaz['all_sum'];
         $gaz->pakazaniya=$request['pakazaniya'];
