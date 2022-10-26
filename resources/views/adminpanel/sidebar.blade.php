@@ -22,7 +22,15 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
+
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href=""
+                       class="nav-link @if(request()->routeIs('worker.index')) active @endif">
+                        <i class="fa fa-users nav-icon"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item menu">

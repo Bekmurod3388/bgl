@@ -31,6 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         @include('adminpanel.header')
 
+
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
@@ -39,6 +40,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
+
+
     </div>
     <!-- /.content-wrapper -->
 
@@ -70,8 +73,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
 <script src="{{asset('custom/sweetalert.min.js')}}"></script>
 
+<!-- ChartJS -->
+{{--<script src="../../plugins/chart.js/Chart.min.js"></script>--}}
+<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+
+
 @yield('custom-scripts')
 <script>
+
+
+
+
+
+
+
+
     let errors = @json($errors->all());
     @if($errors->any())
     let msg = '';
