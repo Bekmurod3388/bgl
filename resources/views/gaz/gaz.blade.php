@@ -54,7 +54,19 @@
                             </tr>
                         @endforeach
                         </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Jami</th>
+                            <th> </th>
 
+                            <th>{{number_format($all_sum,2,',',' ')}}</th>
+<th></th>
+{{--                            <th>{{number_format($sum_price,2,',',' ')}}</th>--}}
+{{--                            <th>{{number_format($sum_indebtedness,2,',',' ')}}</th>--}}
+{{--                            <th>{{number_format($sum_given,2,',',' ')}}</th>--}}
+{{--                            <th></th>--}}
+                        </tr>
+                        </tfoot>
                     </table>
                     <div class="container">
                         <div class="row justify-content-center">
@@ -145,7 +157,7 @@
                                 <input type="number" class="form-control" id="pakazaniya_edit" placeholder="Pakazaniya" name="pakazaniya">
                             </div>
                             <div class="form-group">
-                                <label for="money_paid">To'langan summa/label>
+                                <label for="money_paid">To'langan summa</label>
                                 <input type="number" class="form-control" id="money_paid_edit" placeholder="Tolangan pul" name="money_paid">
                             </div>
 
@@ -175,14 +187,17 @@
         @endif
 
         let ishs =@json($ishs);
-        console.log(ishs)
+        // console.log(ishs)
 
         function edit(id) {
-            console.log(id);
+            // console.log(id);
             var ish = ishs[id];
+
             document.getElementById('pakazaniya_edit').value = ish['pakazaniya'];
             document.getElementById('money_paid_edit').value =ish['money_paid'];
+            document.getElementById('edit_id').value =ish['id'];
 
+// console.log(document.getElementById('edit_id'));
         }
     </script>
 @endsection
