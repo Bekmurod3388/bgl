@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/',[\App\Http\Controllers\StatisticController::class,'index']);
+    Route::get('/',[\App\Http\Controllers\StatisticController::class,'index'])->name('statistic.index');
 //    Route::get('/',function (){ return view('adminpanel.master'); });
     Route::resource('firms', \App\Http\Controllers\FirmController::class);
     Route::resource('worker', \App\Http\Controllers\WorkerController::class);

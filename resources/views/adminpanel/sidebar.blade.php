@@ -25,8 +25,8 @@
 
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href=""
-                       class="nav-link @if(request()->routeIs('worker.index')) active @endif">
+                    <a href="{{url('/')}}"
+                       class="nav-link @if(request()->routeIs('statistic.index')) active @endif ">
                         <i class="fa fa-users nav-icon"></i>
                         <p>Dashboard</p>
                     </a>

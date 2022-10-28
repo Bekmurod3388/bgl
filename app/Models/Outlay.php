@@ -12,6 +12,7 @@ class Outlay extends Model
     protected $table='outlay';
 
     public $timestamps = false;
+
     protected $fillable = [
         'date', 'outlay_name', 'summ', 'one_summ', 'all_summ'
     ];
