@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             WorkSeeder::class,
 //            AllSeeder::class
 
+
         ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
