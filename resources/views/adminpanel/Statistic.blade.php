@@ -29,6 +29,7 @@
                         <div class="inner">
                             <h3>53</h3>
 {{--                            <sup style="font-size: 20px">%</sup>--}}
+
                             <p>Sotilgan maxsulotlar</p>
                         </div>
                         <div class="icon">
