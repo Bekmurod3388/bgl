@@ -1,5 +1,5 @@
 @extends('adminpanel.master')
-@section('title','Firma kirim')
+@section('title', $name.' firmasiga kirim')
 @section('content')
     <div class="row">
 
@@ -12,7 +12,7 @@
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>Firma nomi</th>
+{{--                            <th>Firma nomi</th>--}}
                             <th>Mashina raqami</th>
                             <th>Brutto</th>
                             <th>Tara</th>
@@ -29,7 +29,7 @@
                         @foreach($firm_incomes as $firm)
                             <tr>
                                 <td>{{$loop->index +1}}</td>
-                                <td>{{$firm->firm->name}}</td>
+{{--                                <td>{{$name}}</td>--}}
                                 <td>{{$firm->car_number}}</td>
                                 <td>{{ number_format($firm->brutto, 2, ',', ' ') }}</td>
                                 <td>{{ number_format($firm->tara, 2, ',',' ')}}</td>
@@ -51,7 +51,7 @@
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger show_confirm"><i
-                                                    class="fa fa-trash"></i></button>
+                                                class="fa fa-trash"></i></button>
                                     </form>
 
                                 </td>
@@ -61,15 +61,15 @@
                         <tfoot>
                         <tr>
                             <th>Jami</th>
+{{--                            <th></th>--}}
                             <th></th>
+                            <th>{{ number_format($sum['brutto'],2,',',' ') }}</th>
+                            <th>{{ number_format($sum['tara'],2,',',' ') }}</th>
+                            <th>{{ number_format($sum['netto'],2,',',' ') }}</th>
+                            <th>{{ number_format($sum['soil'],2,',',' ') }}</th>
+                            <th>{{ number_format($sum['weight'],2,',',' ') }}</th>
                             <th></th>
-                            <th>{{ number_format($sum_brutto,2,',',' ') }}</th>
-                            <th>{{ number_format($sum_tara,2,',',' ') }}</th>
-                            <th>{{ number_format($sum_netto,2,',',' ') }}</th>
-                            <th>{{ number_format($sum_soil,2,',',' ') }}</th>
-                            <th>{{ number_format($sum_weight,2,',',' ') }}</th>
-                            <th></th>
-                            <th>{{ number_format($sum_total_price,2,',',' ') }}</th>
+                            <th>{{ number_format($sum['total_price'],2,',',' ') }}</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -85,6 +85,84 @@
 @endsection
 @section('custom-scripts')
     <script>
+
+        function validate(page) {
+            var count = 0;
+            if (page == 'create') {
+                var car_number = document.getElementById('car_number');
+                var price = document.getElementById('price');
+                var date = document.getElementById('date');
+                var form = document.getElementById('form');
+                var tara = document.getElementById('tara');
+                var brutto = document.getElementById('brutto');
+
+                if (car_number.value == "") {
+                    car_number.style.border = "1px solid red";
+                    car_number.placeholder = "Mashina raqami kiritilmadi";
+                    count++;
+                } else {
+                    car_number.style.border = "1px solid green";
+                }
+                if (price.value == "") {
+                    price.style.border = "1px solid red";
+                    price.placeholder = "Narx kiritilmadi";
+                    count++;
+                } else {
+                    price.style.border = "1px solid green";
+                }
+                if (date.value == "") {
+                    date.style.border = "1px solid red";
+                    date.placeholder = "Sana kiritilmadi";
+                    count++;
+                } else {
+                    date.style.border = "1px solid green";
+                }
+            }
+            if (page == 'edit') {
+                var brutto = document.getElementById('edit_brutto');
+                var tara = document.getElementById('edit_tara');
+                var soil = document.getElementById('edit_soil');
+                var form = document.getElementById('edit_form');
+                if (soil.value == "") {
+                    soil.style.border = "1px solid red";
+                    soil.placeholder = "Tuproq kiritilmadi";
+                    count++;
+                } else {
+                    soil.style.border = "1px solid green";
+                }
+            }
+
+            if (brutto.value == "") {
+                brutto.style.border = "1px solid red";
+                brutto.placeholder = "Brutto kiritilmadi";
+                count++;
+            } else {
+                brutto.style.border = "1px solid green";
+            }
+            if (tara.value == "" || tara.value > brutto.value) {
+                tara.style.border = "1px solid red";
+                count++;
+                if(tara.value == "") {
+                    tara.placeholder = "Tara kiritilmadi";
+                }
+                if (tara.value > brutto.value) {
+                    var text = "Tara Bruttodan katta bo'lishi mumkin emas";
+                    toastr.error(text);
+                    // swal({
+                    //     title: `Xatolik`,
+                    //     text: text,
+                    //     icon: "warning",
+                    // })
+                }
+            } else {
+                tara.style.border = "1px solid green";
+            }
+
+            if (count == 0) {
+                form.submit();
+            }
+        }
+
 
         @if ($message = Session::get('success'))
         toastr.success("{{$message}}");

@@ -92,7 +92,7 @@
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger m-1 show_confirm"><i
-                                                    class="fa fa-trash"></i></button>
+                                                class="fa fa-trash"></i></button>
                                     </form>
 
                                 </td>
@@ -102,10 +102,10 @@
                         <tfoot>
                         <tr>
                             <th>Jami</th>
-                            <th>{{ $cnt }} ta firma</th>
-                            <th>{{number_format($sum_price,2,',',' ')}}</th>
-                            <th>{{number_format($sum_indebtedness,2,',',' ')}}</th>
-                            <th>{{number_format($sum_given,2,',',' ')}}</th>
+                            <th>{{ $sum['cnt'] }} ta firma</th>
+                            <th>{{number_format($sum['all_sum'],2,',',' ')}}</th>
+                            <th>{{number_format($sum['indebtedness'],2,',',' ')}}</th>
+                            <th>{{number_format($sum['given_sum'],2,',',' ')}}</th>
                             <th></th>
                         </tr>
                         </tfoot>
@@ -173,13 +173,21 @@
         @if(session('error'))
         session.error("{{$message}}");
         @endif
-        let firmes =@json($firmes);
+        let firmes =@json($firms);
 
         function edit(id) {
-
-            var firms = firmes[id];
-            document.getElementById('edit_name').value = firms['name'];
-            document.getElementById('edit_id').value = id;
+            for (let i = 0; i < firmes.length; i++) {
+                if (id == firmes[i]["id"]) {
+                    var firms = firmes[i];
+                    console.log(firms);
+                    document.getElementById('edit_name').value = firms['name'];
+                    document.getElementById('edit_id').value = id;
+                    break;
+                }
+            }
+            // var firms = firmes[id];
+            // document.getElementById('edit_name').value = firms['name'];
+            // document.getElementById('edit_id').value = id;
 
         }
     </script>

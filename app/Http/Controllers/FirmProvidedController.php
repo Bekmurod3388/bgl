@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FirmProvidedRequest;
 use App\Models\Firm;
 use App\Models\FirmProvided;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -9,6 +10,11 @@ use Illuminate\Http\Request;
 
 class FirmProvidedController extends Controller
 {
+    public $firm;
+    public function __construct()
+    {
+        $this->firm = new \App\Http\Service\Firm('firm_provideds');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,24 +23,13 @@ class FirmProvidedController extends Controller
     public function index(Request $request)
     {
         $id = $request['id'];
-
         $indebtedness = Firm::find($id)->indebtedness;
         $from_date = $request['from_date'];
         $to_date = $request['to_date'];
-
-        if ($from_date == NULL && $to_date == NULL) {
-            $firm_provided = FirmProvided::orderby('date', 'DESC')->where('firm_id', $id)->get();
-        } else {
-            $firm_provided = FirmProvided::orderby('date', 'DESC')
-                ->where('firm_id', $id)
-                ->whereBetween('date', [$from_date, $to_date])
-                ->get();
-        }
-
-        $sum_price = 0;
-        foreach ($firm_provided as $date)
-            $sum_price += $date['price'];
-        return view("firm.firm_provided.index", compact("id", "firm_provided", "sum_price","from_date","to_date","indebtedness"));
+        $name = $this->firm->get_firm_name($id);
+        $firm_provided = $this->firm->date($id, $from_date, $to_date);
+        $sum = $this->firm->firm_sum(['price'], $id, $from_date, $to_date);
+        return view("firm.firm_provided.index", compact("name","id", "firm_provided", "sum","from_date","to_date","indebtedness"));
     }
 
     /**
@@ -44,7 +39,7 @@ class FirmProvidedController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -53,25 +48,10 @@ class FirmProvidedController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FirmProvidedRequest $request)
     {
-        $data = $request->validate([
-            'firm_id' => "required",
-            'price' => "required",
-            'date' => "required",
-        ]);
-        $price = $request['price'];
-        $id = $request['firm_id'];
-        $firm_provided = new FirmProvided();
-        $firm_provided['firm_id'] = $id;
-        $firm_provided['price'] = $price;
-        $firm_provided['date'] = $request['date'];
-        $firm_provided->save();
-
-        $firm = Firm::find($id);
-        $firm['given_sum'] += $price;
-        $firm['indebtedness'] = $firm['all_sum'] - $firm['given_sum'];
-        $firm->save();
+        $data = $request->validated();
+        $this->firm->firm_provided($data);
         return redirect()->back()->with("success", "Firma oldi berdi muvaffaqqiyatli yaratildi");
     }
 
@@ -83,7 +63,7 @@ class FirmProvidedController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -94,7 +74,7 @@ class FirmProvidedController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -106,7 +86,7 @@ class FirmProvidedController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -117,14 +97,7 @@ class FirmProvidedController extends Controller
      */
     public function destroy($id)
     {
-        $firm_provided = FirmProvided::find($id);
-        $firm_id = $firm_provided['firm_id'];
-        $price = $firm_provided['price'];
-        $firm = Firm::find($firm_id);
-        $firm['indebtedness'] += $price;
-        $firm['given_sum'] -= $price;
-        $firm->save();
-        $firm_provided->delete();
+        $this->firm->firm_provided_delete($id);
         return redirect()->back()->with("success", "Firma oldi berdi muvaffaqqiyatli yaratildi");
     }
 
@@ -134,24 +107,10 @@ class FirmProvidedController extends Controller
         $from_date = $request['from_date'];
         $to_date = $request['to_date'];
         $page = $request['page'];
-        if ($from_date == NULL && $to_date == NULL) {
-            $firm_provided = FirmProvided::orderby('date', 'DESC')->where('firm_id', $id)->get();
-        } else {
-            $firm_provided = FirmProvided::orderby('date', 'DESC')
-                ->where('firm_id', $id)
-                ->whereBetween('date', [$from_date, $to_date])
-                ->get();
-        }
-        $sum_price = 0;
-        foreach ($firm_provided as $date)
-            $sum_price += $date['price'];
-        $pdf = PDF::loadView('firm.firm_provided.download', [
-            'firm_provided' => $firm_provided,
-            'id' => $id,
-            'sum_price' => $sum_price,
-            'from_date' => $from_date,
-            'to_date' => $to_date,
-        ]);
+        $name = $this->firm->get_firm_name($id);
+        $firm_provided = $this->firm->date($id, $from_date, $to_date);
+        $sum = $this->firm->firm_sum(['price'], $id, $from_date, $to_date);
+        $pdf = PDF::loadView('firm.firm_provided.download', compact("name","id", "firm_provided", "sum","from_date","to_date"));
         $pdf->setPaper('A4', 'landscape');
         if ($page == 'download')
             return $pdf->download('firm_provided.pdf');

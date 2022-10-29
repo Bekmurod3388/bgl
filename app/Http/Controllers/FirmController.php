@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FirmRequest;
 use App\Models\Firm;
 use Illuminate\Http\Request;
 
 class FirmController extends Controller
 {
+    public $firm;
+    public function __construct()
+    {
+        $this->firm = new \App\Http\Service\Firm('firms');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,28 +22,8 @@ class FirmController extends Controller
     public function index()
     {
         $firms = Firm::all();
-        $firmes=[];
-        $sum_price = 0;
-        $sum_indebtedness = 0;
-        $sum_given = 0;
-        $cnt = 0;
-
-        foreach ($firms as $firm){
-            $firmes[$firm->id]=$firm;
-            $sum_price += $firm['all_sum'];
-            $sum_indebtedness += $firm['indebtedness'];
-            $sum_given += $firm['given_sum'];
-            $cnt++;
-        }
-
-        return view('firm.firms',[
-            'firms'=>$firms,
-            'firmes'=>$firmes,
-            'sum_price' => $sum_price,
-            'sum_indebtedness' => $sum_indebtedness,
-            'sum_given' => $sum_given,
-            'cnt' => $cnt,
-        ]);
+        $sum = $this->firm->firm_sum(['all_sum', 'indebtedness', 'given_sum']);
+        return view('firm.firms', compact('firms', 'sum'));
     }
 
     /**
@@ -46,7 +33,7 @@ class FirmController extends Controller
      */
     public function create()
     {
-        return view('firm.index');
+        abort(404);
     }
 
     /**
@@ -55,17 +42,10 @@ class FirmController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(FirmRequest $request)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
-        $firm=new Firm();
-        $firm->name=$request['name'];
-        $firm->all_sum=0;
-        $firm->indebtedness=0;
-        $firm->given_sum=0;
-        $firm->save();
+        $data = $request->validated();
+        Firm::create($data);
         return redirect()->route('firms.index')->with('success', 'Firma muvaffaqqiyatli yaratildi');
     }
 
@@ -77,7 +57,7 @@ class FirmController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -88,7 +68,7 @@ class FirmController extends Controller
      */
     public function edit($id)
     {
-
+        abort(404);
     }
 
     /**
@@ -98,17 +78,12 @@ class FirmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(FirmRequest $request, $id)
     {
         $id=$request['id'];
-        $request->validate([
-            'name'=>'required'
-        ]);
-        $firm= Firm::find($id);
-        $firm->name=$request['name'];
-        $firm->save();
+        $data = $request->validated();
+        Firm::find($id)->update($data);
         return redirect()->route('firms.index')->with('success', 'Firma muvaffaqqiyatli tahrirlandi');
-
     }
 
     /**
@@ -119,8 +94,7 @@ class FirmController extends Controller
      */
     public function destroy(Request $request,$firm)
     {
-        $firm=Firm::find($firm);
-        $firm->delete();
+        Firm::find($firm)->delete();
         return redirect()->route('firms.index')->with('success'   ,'Firma muvaffaqqiyatli o`chirildi');
     }
 }
