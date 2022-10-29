@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/',function (){ return view('adminpanel.master'); });
+    Route::get('/',[\App\Http\Controllers\StatisticController::class,'index'])->name('statistic.index');
+//    Route::get('/',function (){ return view('adminpanel.master'); });
     Route::resource('firms', \App\Http\Controllers\FirmController::class);
     Route::resource('worker', \App\Http\Controllers\WorkerController::class);
     Route::resource('work',\App\Http\Controllers\WorkController::class);
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('worker_gaves',\App\Http\Controllers\WorkerGaveController::class);
     Route::resource('jobs',\App\Http\Controllers\JobsController::class);
     Route::resource('products',\App\Http\Controllers\ProductController::class);
+    Route::resource('gaz',\App\Http\Controllers\GazController::class);
+    Route::resource('electric_current',\App\Http\Controllers\ElectricCurrentController::class);
 
     Route::resource('outlay',\App\Http\Controllers\OutlayController::class);
 
@@ -36,7 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('sell_provided',\App\Http\Controllers\SellProvidedController::class);
     Route::resource('finished_products',\App\Http\Controllers\FinishedProductController::class);
     Route::resource('warehouses',\App\Http\Controllers\WarehouseController::class);
-
 
 
 });
