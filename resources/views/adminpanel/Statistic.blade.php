@@ -8,69 +8,224 @@
 
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>7000</h3>
 
-                            <p>Ildizlaz</p>
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-info">
+                        <div class="inner d-flex justify-content-between pl-5 pr-5"   >
+
+                           <div>
+                               <h3>100</h3>
+                               <p>Shu oy</p>
+                           </div>
+
+                            <div>
+                               <h3>100</h3>
+                               <p>Bugun</p>
+                           </div>
+
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer"> Bugungi </a>
+
+                            <h4 class="small-box-footer" >Sof Ildizlar ( kg )</h4>
                     </div>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>53</h3>
-{{--                            <sup style="font-size: 20px">%</sup>--}}
 
-                            <p>Sotilgan maxsulotlar</p>
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-success">
+                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Yirik Polochka</p>
+                            </div>
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Mayda Polochka</p>
+                            </div>
+
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="#" class="small-box-footer"> Bugungi </a>
+
+                        <h4 class="small-box-footer" > Bugungi ( kg ) </h4>
+
                     </div>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>44</h3>
 
-                            <p>Tayyorlangan maxsulot</p>
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-secondary">
+                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Bugun </p>
+                            </div>
+
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer"> Bugungi </a>
+                        <h4 class="small-box-footer" > Moyka ( dona ) </h4>
                     </div>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>65</h3>
 
-                            <p>Ombordagi maxsulotlar</p>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-gradient-blue  ">
+                        <div class="inner d-flex justify-content-between pl-5 pr-5"   >
+
+                           <div>
+                               <h3>100 </h3>
+                               <p>Shu oy</p>
+                           </div>
+
+                            <div>
+                               <h3>100</h3>
+                               <p>Bugun</p>
+                           </div>
+
                         </div>
                         <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
+                            <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer"> Bugungi </a>
+
+                            <h4 class="small-box-footer" >Kesilgan Slays ( kg )</h4>
                     </div>
                 </div>
-                <!-- ./col -->
+
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-gradient-indigo">
+                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Shu oy</p>
+                            </div>
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Bugun</p>
+                            </div>
+
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+
+                        <h4 class="small-box-footer" >Kesilgan Tabletka ( kg )</h4>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-gradient-teal">
+                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Shu oy</p>
+                            </div>
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Bugun</p>
+                            </div>
+
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <h4 class="small-box-footer" > Tayyor maxshulot ( kg ) </h4>
+                    </div>
+                </div>
+
             </div>
-            <!-- /.row -->
+
+            <div class="row">
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-gradient-orange">
+                        <div class="inner d-flex justify-content-between pl-5 pr-5"   >
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Shu oy</p>
+                            </div>
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Bugun</p>
+                            </div>
+
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+
+                            <h4 class="small-box-footer" > Ishchilar ish haqqi ( so`m ) </h4>
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-warning">
+                        <div class="inner d-flex justify-content-between pl-5 pr-5"   >
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Shu oy</p>
+                            </div>
+
+                            <div>
+                                <h3>100</h3>
+                                <p>Bugun</p>
+                            </div>
+
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+
+                            <h4 class="small-box-footer" > Kamunal ( so`m ) </h4>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner d-flex justify-content-between pl-5 pr-5"   >
+
+                            <div>
+                                <h3>100</h3>
+                                <p> Chiqimlar ( so`m ) </p>
+                            </div>
+
+
+
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+
+                            <h4 class="small-box-footer" > Bugun  </h4>
+                    </div>
+
+                </div>
+
 
 
             <!-- Main row -->
@@ -384,7 +539,6 @@
                     }
                 }
             });
-
             var barChart = new Chart(barCanvas02, {
                 type: 'bar',
                 data: {

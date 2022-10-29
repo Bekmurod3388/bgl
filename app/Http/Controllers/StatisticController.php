@@ -28,7 +28,6 @@ class StatisticController extends Controller
         $outs_allsum[] = $outs_yesterday->sum('all_summ');
         $outs_allsum[] = $outs_today->sum('all_summ');
 
-
         $outs_name[] = 'Kecha';
         $outs_name[] = 'Bugun';
 
@@ -45,6 +44,7 @@ class StatisticController extends Controller
 
         $sells_allsum[] = $sells_yesterday->sum('all_sum');
         $sells_allsum[] = $sells_today->sum('all_sum');
+
 
 //        workers
         $workers = Worker::all();
@@ -65,9 +65,8 @@ class StatisticController extends Controller
 
 
 
-
-
         return view('adminpanel.statistic', [
+
             'firms' => $outs,
             'names' => $names ?? 0,
             'all_sum' => $value ?? 0,
