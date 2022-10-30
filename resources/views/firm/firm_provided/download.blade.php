@@ -19,13 +19,13 @@
 <body>
 
 <h1>Baraka Golden Licorice</h1>
-<h3>Firma oldi berdi @if($from_date && $to_date) ({{ $from_date }} dan {{ $to_date }} gacha )@endif</h3>
+<h3>{{ $name }} firmasi hisob-kitobi @if($from_date && $to_date) ({{ $from_date }} dan {{ $to_date }} gacha )@endif</h3>
 <br>
 <table border="1" class="table table-hover">
     <thead>
     <tr>
         <th>id</th>
-        <th>Firma nomi</th>
+{{--        <th>Firma nomi</th>--}}
         <th>Berilgan summasi</th>
         <th>Sana</th>
     </tr>
@@ -34,7 +34,7 @@
     @foreach($firm_provided as $firm)
         <tr>
             <td>{{$loop->index +1}}</td>
-            <td>{{$firm->firm->name}}</td>
+{{--            <td>{{$name}}</td>--}}
             <td>{{ number_format($firm->price, 0, ',', ' ') }}</td>
             <td>{{$firm->date}}</td>
         </tr>
@@ -43,8 +43,8 @@
     <tfoot>
     <tr>
         <th>Jami</th>
-        <th></th>
-        <th>{{ number_format($sum_price,0,',',' ') }}</th>
+{{--        <th></th>--}}
+        <th>{{ number_format($sum['price'],0,',',' ') }}</th>
         <th></th>
     </tr>
     </tfoot>

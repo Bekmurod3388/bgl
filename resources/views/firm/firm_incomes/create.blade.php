@@ -32,7 +32,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{route('firm_incomes.store')}}">
+                    <form method="post" action="{{route('firm_incomes.store')}}" id="form">
                         @csrf
                         <div class="card-body">
                             <input type="hidden" name="firm_id" value="{{ $id }}">
@@ -59,13 +59,9 @@
                             </div>
                         </div>
                         <!-- /.card-body -->
-
-                        <div class="card-footer">
-
-                        </div>
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Bekor qilish</button>
-                            <button type="submit" class="btn btn-primary">Saqlash</button>
+                            <button type="button" class="btn btn-primary" onclick="validate('create')">Saqlash</button>
                         </div>
                     </form>
                 </div>

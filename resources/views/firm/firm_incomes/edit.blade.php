@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('firm_incomes.update',1)}}" method="post">
+                <form action="{{route('firm_incomes.update',1)}}" method="post" id="edit_form">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="id" id="edit_id">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Bekor qilish</button>
-                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                        <button type="button" class="btn btn-primary" onclick="validate('edit')">Saqlash</button>
                     </div>
                 </form>
             </div>

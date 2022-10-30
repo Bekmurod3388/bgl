@@ -1,5 +1,5 @@
 @extends('adminpanel.master')
-@section('title','Firma oldi berdi')
+@section('title',$name. ' firmasi hisob-kitobi')
 @section('content')
     <div class="row">
 
@@ -12,7 +12,7 @@
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>Firma nomi</th>
+{{--                            <th>Firma nomi</th>--}}
                             <th>Berilgan summasi</th>
                             <th>Sana</th>
                             <th>Amallar</th>
@@ -22,7 +22,7 @@
                         @foreach($firm_provided as $firm)
                             <tr>
                                 <td>{{$loop->index +1}}</td>
-                                <td>{{$firm->firm->name}}</td>
+{{--                                <td>{{$name}}</td>--}}
                                 <td>{{ number_format($firm->price, 2, ',' ,' ')}}</td>
                                 <td>{{$firm->date}}</td>
                                 <td class="d-flex">
@@ -47,8 +47,9 @@
                         <tfoot>
                         <tr>
                             <th>Jami</th>
+{{--                            <th></th>--}}
+                            <th>{{ number_format($sum['price'], 2, ',' ,' ')}}</th>
                             <th></th>
-                            <th>{{ number_format($sum_price, 2, ',' ,' ')}}</th>
                             <th></th>
                         </tr>
                         </tfoot>
