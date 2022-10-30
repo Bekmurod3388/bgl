@@ -133,12 +133,12 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5">
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{number_format($finished_moon_allsum,0,',',' ')}}</h3>
                                 <p>Shu oy</p>
                             </div>
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{number_format($finished_today_allsum,0,',',' ')}}</h3>
                                 <p>Bugun</p>
                             </div>
 
@@ -159,12 +159,12 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5"   >
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{number_format($workers_moon_allsum,0,',',' ')}}</h3>
                                 <p>Shu oy</p>
                             </div>
 
                             <div>
-                                <h3>100</h3>
+                                <h3> {{ number_format($workers_today_allsum, 0, ',', ' ') }} </h3>
                                 <p>Bugun</p>
                             </div>
 
@@ -186,12 +186,12 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5"   >
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{number_format($communal_moon_allsum,0,',',' ')}}</h3>
                                 <p>Shu oy</p>
                             </div>
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{number_format($communal_today_allsum,0,',',' ')}}</h3>
                                 <p>Bugun</p>
                             </div>
 

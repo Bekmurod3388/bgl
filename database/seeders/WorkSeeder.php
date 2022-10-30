@@ -43,19 +43,19 @@ class WorkSeeder extends Seeder
         ]);
         DB::table('works')->insert([
             'id'=>5,
-            'name' =>'Kesish',
+            'name' =>'Kesish kg',
             'type' =>'1',
             'price' => 300,
         ]);
         DB::table('works')->insert([
             'id'=>6,
-            'name' =>'Kesish',
-            'type' =>'3',
+            'name' =>'Kesish dona',
+            'type' =>'2',
             'price' => 7000,
         ]);
         DB::table('works')->insert([
             'id'=>7,
-            'name' =>'Kesish',
+            'name' =>'Kesish soat',
             'type' =>'3',
             'price' => 7000,
         ]);
