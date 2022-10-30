@@ -50,21 +50,20 @@ class OutlayController extends Controller
     {
         $request->validate([
             'from_date'=>'required',
-            'to_date'=>'required',
+
             'outlay_name' => 'required',
             'summ' => 'required',
             'one_summ' => 'required',
         ]);
         $outlay=new Outlay();
         $outlay->from_date=$request['from_date'];
-        $outlay->to_date=$request['to_date'];
+
         $outlay->outlay_name=$request['outlay_name'];
         $outlay->summ=$request['summ'];
         $outlay->one_summ=$request['one_summ'];
-
         $outlay->all_summ=$request['summ' ] * $request['one_summ'];
         $outlay->save();
-        return redirect()->route('outlay.index')->with('success', 'Mahsulot muvaffaqqiyatli yaratildi');
+        return redirect()->route('outlay.index')->with('success', 'Chiqim muvaffaqqiyatli yaratildi');
 
     }
 
@@ -102,19 +101,19 @@ class OutlayController extends Controller
         $id=$request['id'];
         $request->validate([
             'from_date'=>'required',
-            'to_date'=>'required',
+
             'outlay_name' => 'required',
             'summ' => 'required',
             'one_summ' => 'required'
         ]);
         $outlay= Outlay::find($id);
         $outlay->from_date=$request['from_date'];
-        $outlay->to_date=$request['to_date'];
+
         $outlay->outlay_name=$request['outlay_name'];
         $outlay->summ=$request['summ'];
         $outlay->one_summ=$request['one_summ'];
         $outlay->save();
-        return redirect()->route('outlay.index')->with('success', 'Mahsulot muvaffaqqiyatli tahrirlandi');
+        return redirect()->route('outlay.index')->with('success', 'Chiqim muvaffaqqiyatli tahrirlandi');
 
     }
 

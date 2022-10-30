@@ -118,7 +118,6 @@ $all_sum=0;
         $gaz->save( );
         $data=Gaz::find($id);
         $data['all_sum']=$av-$request['all_sum'];
-$data->save();
 
         return redirect()->route('gaz.index')->with('success','Gaz Tahrirlandi');
 

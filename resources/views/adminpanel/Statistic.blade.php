@@ -14,12 +14,12 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5"   >
 
                            <div>
-                               <h3>100</h3>
+                               <h3>{{$firms_allsum}}</h3>
                                <p>Shu oy</p>
                            </div>
 
                             <div>
-                               <h3>100</h3>
+                               <h3>{{$sum_firms[0]}}</h3>
                                <p>Bugun</p>
                            </div>
 
@@ -64,7 +64,7 @@
 
                             <div>
                                 <h3>100</h3>
-                                <p>Bugun </p>
+                                <p>Bugun</p>
                             </div>
 
                         </div>
@@ -133,12 +133,12 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5">
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{$tayyor_month_summ}}</h3>
                                 <p>Shu oy</p>
                             </div>
 
                             <div>
-                                <h3>100</h3>
+                                 <h3>{{$tayyor_today}}</h3>
                                 <p>Bugun</p>
                             </div>
 
@@ -164,7 +164,7 @@
                             </div>
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{$workers_summ}}</h3>
                                 <p>Bugun</p>
                             </div>
 
@@ -186,12 +186,12 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5"   >
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{$gazs1+$svets1}}</h3>
                                 <p>Shu oy</p>
                             </div>
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{$gazs+$svets}}</h3>
                                 <p>Bugun</p>
                             </div>
 
@@ -210,7 +210,7 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5"   >
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{$outs_allsum[1]}}</h3>
                                 <p> Chiqimlar ( so`m ) </p>
                             </div>
 
