@@ -9,12 +9,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Firm extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table='firms';
 
-    protected $fillable=[
-          'name',
-          'all_sum',
-          'indebtedness',
-          'given_sum',
+    protected $table = 'firms';
+
+    protected $attributes = [
+        'all_sum' => 0,
+        'indebtedness' => 0,
+        'given_sum' => 0,
+    ];
+    protected $fillable = [
+        'name',
+        'all_sum',
+        'indebtedness',
+        'given_sum',
     ];
 }
