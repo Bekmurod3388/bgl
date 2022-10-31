@@ -211,6 +211,7 @@
                                 <p>Shu paytgacha</p>
                             </div>
 
+
                             <div>
                                 <h3>{{number_format($outs_allsum_today,0,',',' ')}}</h3>
                                 <p>Bugun</p>
