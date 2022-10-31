@@ -15,7 +15,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Haridor yaratish</h4>
+                                    <h4 class="modal-title">Xaridor yaratish</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -26,7 +26,7 @@
                                         <div class="card-body">
 
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Haridor nomini kiriting:</label>
+                                                <label for="exampleInputEmail1">Xaridor nomini kiriting:</label>
                                                 <input type="text" name="whom" class="form-control"
                                                        id="exampleInputEmail1" required>
                                             </div>
@@ -64,7 +64,7 @@
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>Haridor Nomi</th>
+                            <th>Xaridor Nomi</th>
                             <th>Jami Summa</th>
                             <th>Qarzdorlik</th>
                             <th>Olgan Summa</th>

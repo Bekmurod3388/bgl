@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('one_summ')->default(0);
             $table->integer('all_summ')->default(0);
             $table->date('from_date');
-            $table->date('to_date');
 //            $table->timestamps();
             $table->softDeletes();
 

@@ -38,11 +38,6 @@
                                                        id="from_date">
                                             </div>
                                             <div class="form-group">
-                                                <label for="to_date">Sanani kiriting:</label>
-                                                <input type="date" name="to_date" class="form-control"
-                                                       id="to_date">
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="summ">Summasini kiriting:</label>
                                                 <input type="number" name="summ" class="form-control"
                                                        id="summ">
@@ -85,7 +80,7 @@
                     <tr>
                         <th>id</th>
                         <th>Sana</th>
-                        <th>Sana</th>
+
                         <th>Chiqim nomi</th>
                         <th>Summasi</th>
                         <th>Donasi</th>
@@ -98,7 +93,7 @@
                         <tr>
                             <td>{{$out->id}}</td>
                             <td>{{$out->from_date}}</td>
-                            <td>{{$out->to_date}}</td>
+
                             <td>{{$out->outlay_name}}</td>
                             <td>{{$out->summ}}</td>
                             <td>{{$out->one_summ}}</td>
