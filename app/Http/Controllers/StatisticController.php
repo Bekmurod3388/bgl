@@ -21,9 +21,28 @@ class StatisticController extends Controller
     public function index()
     {
 
-//        Jobs
+// Jobs
         $jobs_today = Jobs::whereDate('date', Carbon::today()->toDateString())->get();
         $jobs_moon = Jobs::whereMonth('date', date('m'))->get();
+
+        $moyka = Jobs::where('type_work_id',3)->whereDate('date', Carbon::today()->toDateString())->get();
+        $yirik = Jobs::where('type_work_id',1)->whereDate('date', Carbon::today()->toDateString())->get();
+        $mayda = Jobs::where('type_work_id',2)->whereDate('date', Carbon::today()->toDateString())->get();
+        $moykalar=0;
+        $yiriklar=0;
+        $maydalar=0;
+
+        foreach ($moyka as $m){
+            $moykalar+=$m['type'];
+        }
+        foreach ($yirik as $m){
+            $yiriklar+=$m['type'];
+        }
+        foreach ($mayda as $m){
+            $maydalar+=$m['type'];
+        }
+
+
 
         $workers_today_allsum = $jobs_today->sum('all_sum');
         $workers_moon_allsum = $jobs_moon->sum('all_sum');
@@ -31,18 +50,18 @@ class StatisticController extends Controller
         $workers_name[] = 'Kecha';
         $workers_name[] = 'Bugun';
 
-//        Kamunal
+// Kamunal
         $communal_today = Gaz::whereDate('date', Carbon::today()->toDateString())->get();
         $communal_moon = Gaz::whereMonth('date', date('m'))->get();
         $communal_today1 = Electric_Current::whereDate('date', Carbon::today()->toDateString())->get();
         $communal_moon1 = Electric_Current::whereMonth('date', date('m'))->get();
 
 
-        $communal_today_allsum = $communal_today->sum('all_sum')+ $communal_today1->sum('all_sum');
-        $communal_moon_allsum = $communal_moon->sum('all_sum')+ $communal_moon1->sum('all_sum');
+        $communal_today_allsum = $communal_today->sum('all_sum') + $communal_today1->sum('all_sum');
+        $communal_moon_allsum = $communal_moon->sum('all_sum') + $communal_moon1->sum('all_sum');
 
 
-//        Finished Products
+// Finished Products
 
         $finished_moon = Finished_Product::whereMonth('date', date('m'))->get();
         $finished_today = Finished_Product::whereDate('date', Carbon::today()->toDateString())->get();
@@ -51,8 +70,7 @@ class StatisticController extends Controller
         $finished_today_allsum = $finished_today->sum('weight');
 
 
-
-//        Chiqimlar
+// Chiqimlar
         $outs = Outlay::all();
         foreach ($outs as $fir) {
             $names[] = $fir['outlay_name'];
@@ -61,15 +79,19 @@ class StatisticController extends Controller
 
         $outs_yesterday = Outlay::whereDate('from_date', Carbon::yesterday()->toDateString())->get();
         $outs_today = Outlay::whereDate('from_date', Carbon::today()->toDateString())->get();
+        $outs = Outlay::all();
 
         $outs_allsum[] = $outs_yesterday->sum('all_summ');
         $outs_allsum[] = $outs_today->sum('all_summ');
-//dd($outs_allsum);
+
+        $outs_allsum_today = $outs_today->sum('all_summ');
+        $outs_all = $outs->sum('all_summ');
+
         $outs_name[] = 'Kecha';
         $outs_name[] = 'Bugun';
 
 
-//        Kirimlar
+// Kirimlar
         $sells = Sell::all();
         foreach ($sells as $fir) {
             $sell_names[] = $fir['whom'];
@@ -83,7 +105,7 @@ class StatisticController extends Controller
         $sells_allsum[] = $sells_today->sum('all_sum');
 
 
-//        workers
+// workers
         $workers = Worker::all();
         foreach ($workers as $fir) {
             $worker_names[] = $fir['name'];
@@ -96,68 +118,72 @@ class StatisticController extends Controller
         $workers_allsum[] = $workers_yesterday->sum('all_sum');
         $workers_allsum[] = $workers_today->sum('all_sum');
 
-//        $today_workers = $workers_today->count();
-
+///maxsulot
         $today_product = Warehouse::whereDate('created_at', Carbon::today()->toDateString())->get();
         $today_product = $today_product->sum('weight');
 
 /////kommunal
-        $gas = Gaz::whereDate('date', Carbon::yesterday()->toDateString())->get();
-//        dd($gas);
 
+        $gas = Gaz::whereDate('date', Carbon::yesterday()->toDateString())->get();
         $gazs = $gas->sum('money_paid');
         $svet = Electric_Current::whereDate('date', Carbon::yesterday()->toDateString())->get();
         $svets = $svet->sum('money_paid');
-        ////kommunol 1 oy
+
+////kommunol 1 oy
         $gas1 = Gaz::whereMonth('date', Carbon::now()->month)->get();
         $gazs1 = $gas1->sum('money_paid');
         $svet1 = Electric_Current::whereMonth('date', Carbon::now()->month)->get();
         $svets1 = $svet1->sum('money_paid');
-//        dd($svets);
+
+
+
 ///sof ildiz
         $firms = FirmIncome::whereDate('date', Carbon::today()->toDateString())->get();
         $sum_firms[] = $firms->sum('weight');
         $from_date = Carbon::today();
         $old_date = date('Y-m-d', strtotime('-1 month', strtotime(now())));
-//         dd($old_date);
 
         $firms1 = FirmIncome::whereBetween('date', [$old_date, $from_date])->get();
         $firms_allsum = $firms1->sum('weight');
-//         dd($firms_allsum);
 
-/////////////////////// tayyor mahsulot
+
+
+/////// tayyor mahsulot
         $tayyor = Finished_Product::whereDate('date', Carbon::today()->toDateString())->get();
         $tayyor_summ = $tayyor->sum('weight');
 
         $tayyor_month = Finished_Product::whereBetween('date', [$old_date, $from_date])->get();
         $tayyor_month_summ = $tayyor_month->sum('weight');
+
 ///ishchilar haqi
         $workers = Worker::whereDate('created_at', Carbon::today()->toDateString())->get();
         $workers_summ = $workers->sum('given_sum');
 
         return view('adminpanel.statistic', [
 
-            ////////chiqim
+ /////chiqim
             'sum_firms' => $sum_firms ?? 0,
             'firms_allsum' => $firms_allsum ?? 0,
-//////////////////// tayyor mahsulot
+
+ //// tayyor mahsulot
             'tayyor_today' => $tayyor_summ,
             'tayyor_month_summ' => $tayyor_month_summ,
 ///kommunal
-             'gazs'=>$gazs,
-              'svets'=>$svets,
-                'gazs1'=>$gazs1,
-                'svets1'=>$svets1,
+            'gazs' => $gazs,
+            'svets' => $svets,
+            'gazs1' => $gazs1,
+            'svets1' => $svets1,
 ///ish haqi
-                'workers_summ'=>$workers_summ,
+            'workers_summ' => $workers_summ,
 
-
-///
             'firms' => $outs,
             'names' => $names ?? 0,
             'all_sum' => $value ?? 0,
             'outs_allsum' => $outs_allsum ?? 0,
             'outs_name' => $outs_name ?? 0,
+            'outs_allsum_today'=>$outs_allsum_today ?? 0,
+            'outs_all' => $outs_all ?? 0,
+
 
 
             'sells' => $sells,
@@ -171,10 +197,21 @@ class StatisticController extends Controller
             'worker_allsum' => $workers_allsum ?? 0,
             'today_workers' => $today_workers ?? 0,
 
+            'workers_moon_allsum'=>$workers_moon_allsum ?? 0,
+            'workers_today_allsum'=>$workers_today_allsum ?? 0,
 
+            'finished_today_allsum'=>$finished_today_allsum ?? 0,
+            'finished_moon_allsum'=>$finished_moon_allsum ?? 0,
+
+            'communal_today_allsum'=>$gazs+$svets ?? 0,
+            'communal_moon_allsum'=>$gazs1+$svets1 ?? 0,
 
 
             'today_product' => $today_product ?? 0,
+            'moykalar'=>$moykalar ?? 0,
+            'yirik'=>$yiriklar ?? 0,
+            'mayda'=>$maydalar ?? 0,
+
 
         ]);
 
