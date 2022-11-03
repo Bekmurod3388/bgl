@@ -131,7 +131,6 @@
                     soil.style.border = "1px solid green";
                 }
             }
-
             if (brutto.value == "") {
                 brutto.style.border = "1px solid red";
                 brutto.placeholder = "Brutto kiritilmadi";
@@ -139,21 +138,17 @@
             } else {
                 brutto.style.border = "1px solid green";
             }
-            if (tara.value == "" || tara.value > brutto.value) {
+            if(tara.value == "") {
+                tara.style.border = "1px solid red";
+                tara.placeholder = "Tara kiritilmadi";
+                count++;
+            } else if (parseInt(tara.value) > parseInt(brutto.value)) {
                 tara.style.border = "1px solid red";
                 count++;
-                if(tara.value == "") {
-                    tara.placeholder = "Tara kiritilmadi";
-                }
-                if (tara.value > brutto.value) {
-                    var text = "Tara Bruttodan katta bo'lishi mumkin emas";
-                    toastr.error(text);
-                    // swal({
-                    //     title: `Xatolik`,
-                    //     text: text,
-                    //     icon: "warning",
-                    // })
-                }
+                var text = "Tara Bruttodan katta bo'lishi mumkin emas";
+                toastr.error(text);
+                // if (tara.value > brutto.value) {
+                // }
             } else {
                 tara.style.border = "1px solid green";
             }
