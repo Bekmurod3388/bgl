@@ -103,7 +103,6 @@
                                 <label for="type_work_id">Ish turi</label>
                                 <select class="custom-select" id="type_work_id" name="type_work_id">
                                     @foreach($works as $work)
-
                                         <option value="{{$work->id}}">{{$work->name}}</option>
                                     @endforeach
                                 </select>
@@ -114,8 +113,8 @@
                                        value="<?php echo date("Y-m-d");?>" name="date">
                             </div>
                             <div class="form-group">
-                                <label for="type">Vaqt yoki kg yoki dona</label>
-                                <input type="text" class="form-control" id="type" placeholder="vaqt yoki dona yoki kg"
+                                <label for="type"> Miqdorini kiriting </label>
+                                <input type="text" class="form-control" id="type" placeholder=""
                                        name="type">
                             </div>
 

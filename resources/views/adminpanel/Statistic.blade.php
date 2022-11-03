@@ -37,12 +37,12 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5">
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{ number_format($yirik,0,',',' ') }}</h3>
                                 <p>Yirik Polochka</p>
                             </div>
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{ number_format($mayda,0,',',' ') }}</h3>
                                 <p>Mayda Polochka</p>
                             </div>
 
@@ -62,7 +62,7 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5">
 
                             <div>
-                                <h3>100</h3>
+                                <h3>{{ number_format($moykalar,0,',',' ') }}</h3>
                                 <p>Bugun</p>
                             </div>
 
@@ -83,12 +83,12 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5">
 
                             <div>
-                                <h3>100 </h3>
+                                <h3> --- </h3>
                                 <p>Shu oy</p>
                             </div>
 
                             <div>
-                                <h3>100</h3>
+                                <h3> --- </h3>
                                 <p>Bugun</p>
                             </div>
 
@@ -107,12 +107,12 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5">
 
                             <div>
-                                <h3>100</h3>
+                                <h3> --- </h3>
                                 <p>Shu oy</p>
                             </div>
 
                             <div>
-                                <h3>100</h3>
+                                <h3> --- </h3>
                                 <p>Bugun</p>
                             </div>
 

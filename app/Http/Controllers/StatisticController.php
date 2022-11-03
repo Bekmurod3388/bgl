@@ -21,9 +21,28 @@ class StatisticController extends Controller
     public function index()
     {
 
-//        Jobs
+// Jobs
         $jobs_today = Jobs::whereDate('date', Carbon::today()->toDateString())->get();
         $jobs_moon = Jobs::whereMonth('date', date('m'))->get();
+
+        $moyka = Jobs::where('type_work_id',3)->whereDate('date', Carbon::today()->toDateString())->get();
+        $yirik = Jobs::where('type_work_id',1)->whereDate('date', Carbon::today()->toDateString())->get();
+        $mayda = Jobs::where('type_work_id',2)->whereDate('date', Carbon::today()->toDateString())->get();
+        $moykalar=0;
+        $yiriklar=0;
+        $maydalar=0;
+
+        foreach ($moyka as $m){
+            $moykalar+=$m['type'];
+        }
+        foreach ($yirik as $m){
+            $yiriklar+=$m['type'];
+        }
+        foreach ($mayda as $m){
+            $maydalar+=$m['type'];
+        }
+
+
 
         $workers_today_allsum = $jobs_today->sum('all_sum');
         $workers_moon_allsum = $jobs_moon->sum('all_sum');
@@ -31,7 +50,7 @@ class StatisticController extends Controller
         $workers_name[] = 'Kecha';
         $workers_name[] = 'Bugun';
 
-//        Kamunal
+// Kamunal
         $communal_today = Gaz::whereDate('date', Carbon::today()->toDateString())->get();
         $communal_moon = Gaz::whereMonth('date', date('m'))->get();
         $communal_today1 = Electric_Current::whereDate('date', Carbon::today()->toDateString())->get();
@@ -42,7 +61,7 @@ class StatisticController extends Controller
         $communal_moon_allsum = $communal_moon->sum('all_sum') + $communal_moon1->sum('all_sum');
 
 
-//        Finished Products
+// Finished Products
 
         $finished_moon = Finished_Product::whereMonth('date', date('m'))->get();
         $finished_today = Finished_Product::whereDate('date', Carbon::today()->toDateString())->get();
@@ -51,7 +70,7 @@ class StatisticController extends Controller
         $finished_today_allsum = $finished_today->sum('weight');
 
 
-//        Chiqimlar
+// Chiqimlar
         $outs = Outlay::all();
         foreach ($outs as $fir) {
             $names[] = $fir['outlay_name'];
@@ -72,7 +91,7 @@ class StatisticController extends Controller
         $outs_name[] = 'Bugun';
 
 
-//        Kirimlar
+// Kirimlar
         $sells = Sell::all();
         foreach ($sells as $fir) {
             $sell_names[] = $fir['whom'];
@@ -86,7 +105,7 @@ class StatisticController extends Controller
         $sells_allsum[] = $sells_today->sum('all_sum');
 
 
-//        workers
+// workers
         $workers = Worker::all();
         foreach ($workers as $fir) {
             $worker_names[] = $fir['name'];
@@ -157,7 +176,6 @@ class StatisticController extends Controller
 ///ish haqi
             'workers_summ' => $workers_summ,
 
-
             'firms' => $outs,
             'names' => $names ?? 0,
             'all_sum' => $value ?? 0,
@@ -190,6 +208,10 @@ class StatisticController extends Controller
 
 
             'today_product' => $today_product ?? 0,
+            'moykalar'=>$moykalar ?? 0,
+            'yirik'=>$yiriklar ?? 0,
+            'mayda'=>$maydalar ?? 0,
+
 
         ]);
 

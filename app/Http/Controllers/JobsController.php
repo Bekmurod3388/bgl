@@ -55,16 +55,18 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request);
+
         $id=$request['worker_idd'];
+
         $request->validate([
             'worker_idd'=>'required',
             'type_work_id'=>'required',
             'date'=>'required',
             'type'=>'required'
         ]);
+
         $price = Work::find($request['type_work_id']);
-//        dd($price['price']);
+
         $work = new Jobs();
         $work->worker_id = $request->worker_idd;
         $work->type_work_id = $request->type_work_id;
@@ -114,7 +116,6 @@ class JobsController extends Controller
     public function update(Request $request, $id)
     {
 
-//        dd($request);
         $id =$request['id'];
         $request->validate([
             'worker_id'=>'required',
