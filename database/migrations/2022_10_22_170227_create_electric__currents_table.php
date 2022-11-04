@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('pakazaniya');
             $table->integer('money_paid');
 
-            $table->integer('all_sum')->default(0);
             $table->date('date');
             $table->softDeletes('deleted_at');
             $table->timestamps();

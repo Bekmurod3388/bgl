@@ -108,16 +108,12 @@ $all_sum=0;
         ]);
         $gaz=Gaz::find($id);
 
-        $av=$gaz['all_sum'];
+
         $gaz->pakazaniya=$request['pakazaniya'];
         $gaz->money_paid=$request['money_paid'];
-//        $gaz['all_sum']=$av+$request['money_paid'];
 
-        $gaz->date=$request['date'];
-//        dd($gaz);
         $gaz->save( );
-        $data=Gaz::find($id);
-        $data['all_sum']=$av-$request['all_sum'];
+
 
         return redirect()->route('gaz.index')->with('success','Gaz Tahrirlandi');
 
@@ -132,10 +128,6 @@ $all_sum=0;
     public function destroy($id)
     {
         $gaz=Gaz::find($id);
-        $avval=$gaz['all_sum'];
-        $money=$gaz['money_paid'];
-        $gazs=new Gaz();
-        $gazs['all_sum']=$avval-$money;
         $gaz->delete();
         return redirect()->route('gaz.index')->with('success','Gaz ochirildi');
 
