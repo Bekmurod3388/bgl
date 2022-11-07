@@ -261,7 +261,7 @@
 
                     <div class="col-lg-6">
 
-                        <div class="card">
+                        <div class="card overflow-auto">
                             <div class="card-header border-0">
                                 <h3 class="card-title">Chiqimlar Umumiy</h3>
                             </div>
@@ -272,7 +272,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card overflow-auto">
                             <div class="card-header border-0">
                                 <h3 class="card-title"> Sotish Umumiy </h3>
                             </div>
@@ -284,7 +284,7 @@
 
                         </div>
 
-                        <div class="card">
+                        <div class="card overflow-auto">
                             <div class="card-header border-0">
                                 <h3 class="card-title"> Ishchilar Umumiy </h3>
                             </div>
@@ -299,7 +299,7 @@
 
                     <div class="col-lg-6">
 
-                        <div class="card">
+                        <div class="card overflow-auto">
 
                             <div class="card-header border-0">
                                 <h3 class="card-title">Chiqimlar Kundalik</h3>
@@ -312,7 +312,7 @@
 
                         </div>
 
-                        <div class="card">
+                        <div class="card overflow-auto">
                             <div class="card-header border-0">
                                 <h3 class="card-title">Sotish Kundalik </h3>
                             </div>
@@ -323,7 +323,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card overflow-auto">
                             <div class="card-header border-0">
                                 <h3 class="card-title">Ishichlar Kundalik </h3>
                             </div>
@@ -353,27 +353,27 @@
         $(function () {
 
             // Outs
-            var firms = <?php echo json_encode($firms); ?>;
-            var names = <?php echo json_encode($names); ?>;
-            var all_sum = <?php echo json_encode($all_sum); ?>;
+            var firms = @json($firms);
+            var names = @json($names);
+            var all_sum = @json($all_sum);
 
-            var outs_allsum =<?php echo json_encode($outs_allsum); ?>;
-            var outs_name =<?php echo json_encode($outs_name); ?>;
+            var outs_allsum =@json($outs_allsum);
+            var outs_name =@json($outs_name);
 
 
             //sells
-            var sells = <?php echo json_encode($sells); ?>;
-            var sell_names = <?php echo json_encode($sell_names); ?>;
-            var sell_sum = <?php echo json_encode($sell_value); ?>;
+            var sells = @json($sells);
+            var sell_names = @json($sell_names);
+            var sell_sum = @json($sell_value);
 
-            var sells_allsum = <?php echo json_encode($sells_allsum); ?>;
+            var sells_allsum = @json($sells_allsum);
 
             // workers
 
-            var workers = <?php echo json_encode($workers); ?>;
-            var worker_names = <?php echo json_encode($worker_names); ?>;
-            var worker_sum = <?php echo json_encode($worker_summ); ?>;
-            var worker_allsum = <?php echo json_encode($worker_allsum); ?>;
+            var workers = @json($workers);
+            var worker_names = @json($worker_names);
+            var worker_sum = @json($worker_summ);
+            var worker_allsum = @json($worker_allsum);
 
 
             var barCanvas = $("#barChart");

@@ -127,7 +127,7 @@
                             <a href="{{route('electric_current.index')}}"
                                class="nav-link @if(request()->routeIs('electric_current.index')) active @endif">
                                 <i class="fa fa-bolt  nav-icon"></i>
-                                <p>Tok</p>
+                                <p>Elektr energiyasi</p>
                             </a>
                         </li>
 
