@@ -43,36 +43,42 @@ class WorkSeeder extends Seeder
         ]);
         DB::table('works')->insert([
             'id'=>5,
-            'name' =>'Kesish kg',
+            'name' =>'Kesish tabletka kg',
             'type' =>'1',
             'price' => 300,
         ]);
         DB::table('works')->insert([
             'id'=>6,
-            'name' =>'Kesish dona',
-            'type' =>'2',
-            'price' => 7000,
-        ]);
-        DB::table('works')->insert([
-            'id'=>7,
-            'name' =>'Kesish soat',
+            'name' =>'Kesish tabletka soat',
             'type' =>'3',
             'price' => 7000,
         ]);
         DB::table('works')->insert([
+            'id'=>7,
+            'name' =>'Kesish slays kg',
+            'type' =>'1',
+            'price' => 300,
+        ]);
+        DB::table('works')->insert([
             'id'=>8,
-            'name' =>'Elash',
+            'name' =>'Kesish slays soat',
             'type' =>'3',
             'price' => 7000,
         ]);
         DB::table('works')->insert([
             'id'=>9,
+            'name' =>'Elash',
+            'type' =>'3',
+            'price' => 7000,
+        ]);
+        DB::table('works')->insert([
+            'id'=>10,
             'name' =>'Saralash',
             'type' =>'1',
             'price' => 1000,
         ]);
         DB::table('works')->insert([
-            'id'=>10,
+            'id'=>11,
             'name' =>'Qoplash',
             'type' =>'3',
             'price' => 7000,
