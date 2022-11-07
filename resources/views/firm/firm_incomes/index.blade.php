@@ -127,6 +127,11 @@
                     soil.style.border = "1px solid red";
                     soil.placeholder = "Tuproq kiritilmadi";
                     count++;
+                } else if(parseInt(soil.value) > parseInt(brutto.value) - parseInt(tara.value)){
+                    soil.style.border = "1px solid red";
+                    var text = "Tuproq Nettodan katta bo'lishi mumkin emas";
+                    toastr.error(text);
+                    count++;
                 } else {
                     soil.style.border = "1px solid green";
                 }
