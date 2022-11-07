@@ -83,7 +83,7 @@
                             <tr>
                                 <td>{{$loop->index +1}}</td>
                                 <td>{{$product->products->name}}</td>
-                                <td>{{$product->weight}}</td>
+                                <td>{{number_format($product->weight,2,',',' ')}} </td>
                                 <td>{{$product->date}}</td>
 
                                 <td class="d-flex">

@@ -17,12 +17,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($warehouses as $warehous)
+                        @foreach($warehouses as $key=>$warehous)
                             <tr>
-                                <td>{{$warehous->id}}</td>
+                                <td>{{$key+1}}</td>
                                 <td>{{$warehous->products->name}}</td>
 {{--                                <td>{{$warehous->date}}</td>--}}
-                                <td>{{$warehous->weight}}</td>
+                                <td> {{number_format($warehous->weight,2,',',' ')}}</td>
 
                             </tr>
                         @endforeach

@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{$work->id}}</td>
                         <td>{{$work->pakazaniya}}</td>
-                        <td>{{$work->money_paid}}</td>
+                        <td>{{number_format($work->money_paid,2,',',' ')}} </td>
                         <td>{{$work->date}}</td>
                         <td class="col-2">
                             <form action="{{route('electric_current.destroy',$work->id)}}" method="POST">
