@@ -12,7 +12,7 @@ class WorkController extends Controller
     public function index()
     {
 
-        $works=Work::orderBy('created_at','desc')->paginate(4);
+        $works=Work::orderBy('id','asc')->paginate(4);
         $ishs=[];
         foreach ($works as $ish){
             $ishs[$ish->id]=$ish;

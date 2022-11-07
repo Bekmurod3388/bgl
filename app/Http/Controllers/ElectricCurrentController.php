@@ -53,7 +53,7 @@ class ElectricCurrentController extends Controller
         $gaz=new Electric_Current();
         $gaz->pakazaniya=$request->pakazaniya;
         $gaz->money_paid=$request->money_paid;
-        $gaz['all_sum']=$request['money_paid'];
+
         $gaz->date=$request->date;
         $gaz->save();
         return redirect()->route('electric_current.index')->with('success','Elektr toki yaratildi');
@@ -105,13 +105,11 @@ class ElectricCurrentController extends Controller
         $av=$gaz['all_sum'];
         $gaz->pakazaniya=$request['pakazaniya'];
         $gaz->money_paid=$request['money_paid'];
-        $gaz['all_sum']=$av+$request['money_paid'];
+
 
         $gaz->date=$request['date'];
         $gaz->save();
-//        $data=Electric_Current::find($idd);
-//        $data['all_sum']=$av-$request['all_sum'];
-//        $data->save();
+
 
 
         return redirect()->route('electric_current.index')->with('success','Elektr toki tahrirlandi');
@@ -126,11 +124,7 @@ class ElectricCurrentController extends Controller
     public function destroy($id)
     {
         $gaz=Electric_Current::find($id);
-        $avval=$gaz['all_sum'];
-        $money=$gaz['money_paid'];
-        $gazs=new Electric_Current();
-        $gazs['all_sum']=$avval-$money;
-        $gaz->delete();
+$gaz->delete();
         return redirect()->route('electric_current.index')->with('success','Elektr toki ochirildi');
     }
 }
