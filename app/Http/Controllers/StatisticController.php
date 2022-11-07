@@ -28,9 +28,30 @@ class StatisticController extends Controller
         $moyka = Jobs::where('type_work_id',3)->whereDate('date', Carbon::today()->toDateString())->get();
         $yirik = Jobs::where('type_work_id',1)->whereDate('date', Carbon::today()->toDateString())->get();
         $mayda = Jobs::where('type_work_id',2)->whereDate('date', Carbon::today()->toDateString())->get();
+
+        $tabletka_kg = Jobs::where('type_work_id',5)->whereDate('date', Carbon::today()->toDateString())->get();
+        $tabletka_soat = Jobs::where('type_work_id',6)->whereDate('date', Carbon::today()->toDateString())->get();
+        $all_tabletka_kg = Jobs::where('type_work_id',5)->get();
+        $all_tabletka_soat = Jobs::where('type_work_id',6)->get();
+
+
+        $slays_kg = Jobs::where('type_work_id',7)->whereDate('date', Carbon::today()->toDateString())->get();
+        $slays_soat = Jobs::where('type_work_id',8)->whereDate('date', Carbon::today()->toDateString())->get();
+        $all_slays_kg = Jobs::where('type_work_id',7)->get();
+        $all_slays_soat = Jobs::where('type_work_id',8)->get();
+
         $moykalar=0;
         $yiriklar=0;
         $maydalar=0;
+        $sla_kg = 0;
+        $sla_h = 0;
+        $all_sla_kg = 0;
+        $all_sla_h = 0;
+
+        $tab_kg = 0;
+        $tab_h = 0;
+        $all_tab_kg = 0;
+        $all_tab_h = 0;
 
         foreach ($moyka as $m){
             $moykalar+=$m['type'];
@@ -40,6 +61,34 @@ class StatisticController extends Controller
         }
         foreach ($mayda as $m){
             $maydalar+=$m['type'];
+        }
+
+
+        foreach ($tabletka_kg as $m){
+            $tab_kg+=$m['type'];
+        }
+        foreach ($tabletka_soat as $m){
+            $tab_h+=$m['type'];
+        }
+        foreach ( $all_tabletka_kg as $m){
+            $all_tab_kg+=$m['type'];
+        }
+        foreach ($all_tabletka_soat as $m){
+            $all_tab_h+=$m['type'];
+        }
+
+
+        foreach ($slays_soat as $m){
+            $sla_h+=$m['type'];
+        }
+        foreach ($slays_kg as $m){
+            $sla_kg+=$m['type'];
+        }
+        foreach ($all_slays_kg as $m){
+            $all_sla_kg+=$m['type'];
+        }
+        foreach ($all_slays_soat as $m){
+            $all_sla_h+=$m['type'];
         }
 
 
@@ -211,6 +260,22 @@ class StatisticController extends Controller
             'moykalar'=>$moykalar ?? 0,
             'yirik'=>$yiriklar ?? 0,
             'mayda'=>$maydalar ?? 0,
+
+
+            'sla_kg'=>$sla_kg ?? 0,
+            'sla_h'=>$sla_h ?? 0,
+            'all_sla_kg'=>$all_sla_kg ?? 0,
+            'all_sla_h'=>$all_sla_h ?? 0,
+
+
+            'tab_kg'=>$tab_kg ?? 0,
+            'tab_h'=>$tab_h ?? 0,
+            'all_tab_kg'=>$all_tab_kg ?? 0,
+            'all_tab_h'=>$all_tab_h ?? 0,
+
+
+
+
 
 
         ]);

@@ -83,21 +83,35 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5">
 
                             <div>
-                                <h3> --- </h3>
-                                <p>Shu oy</p>
+                                <h3> {{number_format($all_sla_kg ,0,',', ' ' )}} </h3>
+                                <p>Jami kg </p>
+                            </div>
+                            <div>
+                                <h3> {{number_format($all_sla_h ,0,',', ' ' )}}  </h3>
+                                <p>Jami soat</p>
                             </div>
 
                             <div>
-                                <h3> --- </h3>
-                                <p>Bugun</p>
+                                <p>   </p>
                             </div>
+
+                            <div>
+                                <h3> {{number_format($sla_kg ,0,',', ' ' )}} </h3>
+                                <p>Bugun kg </p>
+                            </div>
+
+                            <div>
+                                <h3> {{number_format($sla_h ,0,',', ' ' )}} </h3>
+                                <p>Bugun soat </p>
+                            </div>
+
 
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
 
-                        <h4 class="small-box-footer">Kesilgan Slays ( kg )</h4>
+                        <h4 class="small-box-footer">Kesilgan Slays </h4>
                     </div>
                 </div>
 
@@ -107,13 +121,26 @@
                         <div class="inner d-flex justify-content-between pl-5 pr-5">
 
                             <div>
-                                <h3> --- </h3>
-                                <p>Shu oy</p>
+                                <h3> {{number_format($all_tab_kg ,0,',', ' ' )}} </h3>
+                                <p>Jami kg </p>
+                            </div>
+                            <div>
+                                <h3> {{number_format($all_tab_h ,0,',', ' ' )}}  </h3>
+                                <p>Jami soat</p>
                             </div>
 
                             <div>
-                                <h3> --- </h3>
-                                <p>Bugun</p>
+                                <p>   </p>
+                            </div>
+
+                            <div>
+                                <h3> {{number_format($tab_kg ,0,',', ' ' )}} </h3>
+                                <p>Bugun kg </p>
+                            </div>
+
+                            <div>
+                                <h3> {{number_format($tab_h ,0,',', ' ' )}} </h3>
+                                <p>Bugun soat </p>
                             </div>
 
                         </div>
@@ -121,7 +148,7 @@
                             <i class="ion ion-stats-bars"></i>
                         </div>
 
-                        <h4 class="small-box-footer">Kesilgan Tabletka ( kg )</h4>
+                        <h4 class="small-box-footer">Kesilgan Tabletka </h4>
 
                     </div>
                 </div>
