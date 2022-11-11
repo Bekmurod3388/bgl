@@ -313,6 +313,8 @@ public function  index(){
         'mayda_palochka'=>$mayda_palochka,
         'komunal'=>$komunal,
         'chiqim'=>$chiqim,
+        'from_date'=>$from_date,
+        'to_date'=>$to_date,
         ]);
 
 }
@@ -348,6 +350,8 @@ public function  index(){
             'mayda_palochka'=>$mayda_palochka,
             'komunal'=>$komunal,
             'chiqim'=>$chiqim,
+            'from_date'=>$from_date,
+            'to_date'=>$to_date,
         ]);
 
     }
@@ -383,6 +387,8 @@ public function  index(){
             'mayda_palochka'=>$mayda_palochka,
             'komunal'=>$komunal,
             'chiqim'=>$chiqim,
+//            'from_date'=>$from_date,
+//            'to_date'=>$to_date,
         ]);
 
     }
