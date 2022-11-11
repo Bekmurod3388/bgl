@@ -13,14 +13,14 @@
             <i class="fa fa-eye"></i> Ko'rish
         </a>
     </div>
-    <form action="{{ route('firm_provided.index') }}" method="get" class="d-flex justify-content-around align-items-center">
+    <form action="{{ route('firm_provided.index') }}" method="get" class="d-flex justify-content-around align-items-center" id="date_form_validate">
         @csrf
         <input type="hidden" name="id" value="{{ $id }}">
-        <input type="date" name="from_date" class="form-control" id="from_date" style="margin-left: 1rem" value="{{ $from_date }}">
+        <input type="date" name="from_date" class="form-control" id="from_date" style="margin-left: 1rem" value="{{ $from_date }}" required>
         <label for="from_date" style="margin-left: 0.5rem">dan</label>
-        <input type="date" name="to_date" class="form-control" id="to_date" style="margin-left: 1rem" value="{{ $to_date }}">
+        <input type="date" name="to_date" class="form-control" id="to_date" style="margin-left: 1rem" value="{{ $to_date }}" required>
         <label for="to_date" style="margin-left: 0.5rem">gacha</label>
-        <button type="submit" class="btn btn-primary" style="margin-left: 1rem">Saqlash</button>
+        <button type="button" onclick="datevalidate()" class="btn btn-primary" style="margin-left: 1rem">Saqlash</button>
     </form>
     <div class="modal fade" id="modal-create">
         <div class="modal-dialog">

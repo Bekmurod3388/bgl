@@ -81,17 +81,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ChartJS -->
 {{--<script src="../../plugins/chart.js/Chart.min.js"></script>--}}
 <script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
 
+<script>
+    function datevalidate(){
+        var from_date = document.getElementById('from_date');
+        var to_date = document.getElementById('to_date');
+        var form = document.getElementById('date_form_validate');
+        var count = 0;
+        if(from_date.value == "" || to_date.value == ""){
+            from_date.style.border = "1px solid red";
+            to_date.style.border = "1px solid red";
+            var msg = "Sanalar kiritilmadi";
+            toastr.error(msg);
+            count++;
+        }
+        else  if(from_date.value > to_date.value){
+            from_date.style.border = "1px solid red";
+            to_date.style.border = "1px solid red";
+            var msg = "Sana oralig'i noto'g'ri kiritildi";
+            toastr.error(msg);
+            count++;
+        } else{
+            from_date.style.border = "1px solid green";
+            to_date.style.border = "1px solid green";
+        }
+        if(count == 0){
+            form.submit();
+        }
+    }
+</script>
 
 @yield('custom-scripts')
 <script>
-
-
-
-
-
-
-
 
     let errors = @json($errors->all());
     @if($errors->any())

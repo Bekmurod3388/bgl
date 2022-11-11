@@ -146,11 +146,11 @@
                                             <input type="date" name="from_date" class="form-control"
                                                    id="edit_from_date">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="edit_to_date">Sanani kiriting:</label>
-                                            <input type="date" name="to_date" class="form-control"
-                                                   id="edit_to_date">
-                                        </div>
+{{--                                        <div class="form-group">--}}
+{{--                                            <label for="edit_to_date">Sanani kiriting:</label>--}}
+{{--                                            <input type="date" name="to_date" class="form-control"--}}
+{{--                                                   id="edit_to_date">--}}
+{{--                                        </div>--}}
                                         <div class="form-group">
                                             <label for="edit_summ">Summasini kiriting:</label>
                                             <input type="number" name="summ" class="form-control"

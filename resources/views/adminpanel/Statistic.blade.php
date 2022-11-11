@@ -2,14 +2,14 @@
 @section('title')
     <div class=" d-flex justify-content ">
         <h1><b>Statistika</b></h1>
-        <form action="{{ route('search') }}" method="post" class="d-flex justify-content-around align-items-center">
+        <form action="{{ route('search') }}" method="post" class="d-flex justify-content-around align-items-center" id="date_form_validate">
             @csrf
             {{--        <input type="hidden" name="id" value="{{ $id }}">--}}
             <input type="date" name="from_date" class="form-control" id="from_date" style="margin-left: 1rem" value="{{$from_date ?? NULL}}" required>
             <label for="from_date" style="margin-left: 0.5rem"> dan </label>
             <input type="date" name="to_date" class="form-control" id="to_date" style="margin-left: 1rem" value="{{$to_date ?? NULL}}" required>
             <label for="to_date" style="margin-left: 0.5rem"> gacha </label>
-            <button type="submit" class="btn btn-primary" style="margin-left: 1rem">Saqlash</button>
+            <button type="button" onclick="datevalidate()" class="btn btn-primary" style="margin-left: 1rem">Saqlash</button>
 
             <a href="{{route('all')}}" class="btn btn-primary" style="margin-left: 1rem">Jami:</a>
         </form>
