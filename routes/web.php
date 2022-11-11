@@ -39,7 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('sell_provided',\App\Http\Controllers\SellProvidedController::class);
     Route::resource('finished_products',\App\Http\Controllers\FinishedProductController::class);
     Route::resource('warehouses',\App\Http\Controllers\WarehouseController::class);
-
+    Route::post('search',[\App\Http\Controllers\StatisticController::class, 'search'])->name('search');
+    Route::get('statistic/all',[\App\Http\Controllers\StatisticController::class, 'all'])->name('all');
 
 });
 

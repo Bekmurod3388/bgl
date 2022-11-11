@@ -1,6 +1,23 @@
 @extends('adminpanel.master')
-@section('title','Statistika')
+@section('title')
+    <div class=" d-flex justify-content ">
+        <h1><b>Statistika</b></h1>
+        <form action="{{ route('search') }}" method="post" class="d-flex justify-content-around align-items-center">
+            @csrf
+            {{--        <input type="hidden" name="id" value="{{ $id }}">--}}
+            <input type="date" name="from_date" class="form-control" id="from_date" style="margin-left: 1rem" value="">
+            <label for="from_date" style="margin-left: 0.5rem"> dan </label>
+            <input type="date" name="to_date" class="form-control" id="to_date" style="margin-left: 1rem" value="">
+            <label for="to_date" style="margin-left: 0.5rem"> gacha </label>
+            <button type="submit" class="btn btn-primary" style="margin-left: 1rem">Saqlash</button>
+
+            <a href="{{route('all')}}" class="btn btn-primary" style="margin-left: 1rem">Jami:</a>
+        </form>
+    </div>
+
+@endsection
 @section('content')
+
 
     <!-- Main content -->
     <section class="content">
@@ -10,67 +27,48 @@
 
                 <div class="col-lg-4 col-6">
                     <div class="small-box bg-info">
-                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+                        <div class="inner pl-5 pr-5">
 
                             <div>
-                                <h3>{{$firms_allsum}}</h3>
-                                <p>Shu oy</p>
+                                <h5> Kg: {{$ildiz}}</h5>
                             </div>
-
-                            <div>
-                                <h3>{{$sum_firms[0]}}</h3>
-                                <p>Bugun</p>
-                            </div>
-
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-
-                        <h4 class="small-box-footer">Sof Ildizlar ( kg )</h4>
+                        <h4 class="small-box-footer">Sof Ildizlar</h4>
                     </div>
                 </div>
 
-
                 <div class="col-lg-4 col-6">
-                    <div class="small-box bg-success">
-                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+                    <div class="small-box bg-gradient-teal">
+                        <div class="inner pl-5 pr-5">
 
                             <div>
-                                <h3>{{ number_format($yirik,0,',',' ') }}</h3>
-                                <p>Yirik Polochka</p>
+                                <h5> Kg: {{number_format($mahsulot,0,',',' ')}}</h5>
                             </div>
-
-                            <div>
-                                <h3>{{ number_format($mayda,0,',',' ') }}</h3>
-                                <p>Mayda Polochka</p>
-                            </div>
-
                         </div>
                         <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
+                            <i class="ion ion-person-add"></i>
                         </div>
-
-                        <h4 class="small-box-footer"> Bugungi ( kg ) </h4>
-
+                        <h4 class="small-box-footer"> Tayyor maxshulot </h4>
                     </div>
                 </div>
 
 
                 <div class="col-lg-4 col-6">
                     <div class="small-box bg-secondary">
-                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+                        <div class="inner  pl-5 pr-5">
 
                             <div>
-                                <h3>{{ number_format($moykalar,0,',',' ') }}</h3>
-                                <p>Bugun</p>
+                                <h5>Dona: {{ number_format($moyka,0,',',' ') }}</h5>
                             </div>
 
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <h4 class="small-box-footer"> Moyka ( dona ) </h4>
+                        <h4 class="small-box-footer"> Moyka </h4>
                     </div>
                 </div>
 
@@ -80,37 +78,19 @@
 
                 <div class="col-lg-4 col-6">
                     <div class="small-box bg-gradient-blue  ">
-                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+                        <div class="inner pl-5 pr-5">
 
                             <div>
-                                <h3> {{number_format($all_sla_kg ,0,',', ' ' )}} </h3>
-                                <p>Jami kg </p>
+                                <h5>Kg: {{number_format($kesilgan_slays_kg,0,',', ' ' )}} </h5>
                             </div>
                             <div>
-                                <h3> {{number_format($all_sla_h ,0,',', ' ' )}}  </h3>
-                                <p>Jami soat</p>
+                                <h5>Soat: {{number_format($kesilgan_slays_soat,0,',', ' ' )}}  </h5>
                             </div>
-
-                            <div>
-                                <p>   </p>
-                            </div>
-
-                            <div>
-                                <h3> {{number_format($sla_kg ,0,',', ' ' )}} </h3>
-                                <p>Bugun kg </p>
-                            </div>
-
-                            <div>
-                                <h3> {{number_format($sla_h ,0,',', ' ' )}} </h3>
-                                <p>Bugun soat </p>
-                            </div>
-
 
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-
                         <h4 class="small-box-footer">Kesilgan Slays </h4>
                     </div>
                 </div>
@@ -118,29 +98,13 @@
 
                 <div class="col-lg-4 col-6">
                     <div class="small-box bg-gradient-indigo">
-                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+                        <div class="inner pl-5 pr-5">
 
                             <div>
-                                <h3> {{number_format($all_tab_kg ,0,',', ' ' )}} </h3>
-                                <p>Jami kg </p>
+                                <h5>Kg: {{number_format($kesilgan_tabletka_kg ,0,',', ' ' )}} </h5>
                             </div>
                             <div>
-                                <h3> {{number_format($all_tab_h ,0,',', ' ' )}}  </h3>
-                                <p>Jami soat</p>
-                            </div>
-
-                            <div>
-                                <p>   </p>
-                            </div>
-
-                            <div>
-                                <h3> {{number_format($tab_kg ,0,',', ' ' )}} </h3>
-                                <p>Bugun kg </p>
-                            </div>
-
-                            <div>
-                                <h3> {{number_format($tab_h ,0,',', ' ' )}} </h3>
-                                <p>Bugun soat </p>
+                                <h5>Soat: {{number_format($kesilgan_tabletka_soat ,0,',', ' ' )}}  </h5>
                             </div>
 
                         </div>
@@ -153,28 +117,30 @@
                     </div>
                 </div>
 
-
                 <div class="col-lg-4 col-6">
-                    <div class="small-box bg-gradient-teal">
-                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+                    <div class="small-box bg-success">
+                        <div class="inner pl-5 pr-5">
 
                             <div>
-                                <h3>{{number_format($finished_moon_allsum,0,',',' ')}}</h3>
-                                <p>Shu oy</p>
+                                <h5>Yirik : {{ number_format($yirik_palochka,0,',',' ') }}</h5>
+                                {{--                                <p>Yirik Polochka</p>--}}
                             </div>
 
                             <div>
-                                <h3>{{number_format($finished_today_allsum,0,',',' ')}}</h3>
-                                <p>Bugun</p>
+                                <h5>Mayda : {{ number_format($mayda_palochka,0,',',' ') }}</h5>
+                                {{--                                <p>Mayda Polochka</p>--}}
                             </div>
 
                         </div>
                         <div class="icon">
-                            <i class="ion ion-person-add"></i>
+                            <i class="ion ion-stats-bars"></i>
                         </div>
-                        <h4 class="small-box-footer"> Tayyor maxshulot ( kg ) </h4>
+
+                        <h4 class="small-box-footer"> Palochka </h4>
+
                     </div>
                 </div>
+
 
             </div>
 
@@ -182,16 +148,10 @@
 
                 <div class="col-lg-4 col-6">
                     <div class="small-box bg-gradient-orange">
-                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+                        <div class="inner pl-5 pr-5">
 
                             <div>
-                                <h3>{{number_format($workers_moon_allsum,0,',',' ')}}</h3>
-                                <p>Shu oy</p>
-                            </div>
-
-                            <div>
-                                <h3> {{ number_format($workers_today_allsum, 0, ',', ' ') }} </h3>
-                                <p>Bugun</p>
+                                <h5>So'm: {{number_format($ishchilar_ish_haqqi,0,',',' ')}}</h5>
                             </div>
 
                         </div>
@@ -199,7 +159,7 @@
                             <i class="ion ion-bag"></i>
                         </div>
 
-                        <h4 class="small-box-footer"> Ishchilar ish haqqi ( so`m ) </h4>
+                        <h4 class="small-box-footer"> Ishchilar ish haqqi </h4>
                     </div>
 
 
@@ -207,16 +167,10 @@
 
                 <div class="col-lg-4 col-6">
                     <div class="small-box bg-warning">
-                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+                        <div class="inner pl-5 pr-5">
 
                             <div>
-                                <h3>{{number_format($communal_moon_allsum,0,',',' ')}}</h3>
-                                <p>Shu oy</p>
-                            </div>
-
-                            <div>
-                                <h3>{{number_format($communal_today_allsum,0,',',' ')}}</h3>
-                                <p>Bugun</p>
+                                <h5>So'm: {{number_format($komunal,0,',',' ')}}</h5>
                             </div>
 
                         </div>
@@ -224,127 +178,33 @@
                             <i class="ion ion-bag"></i>
                         </div>
 
-                        <h4 class="small-box-footer"> Kamunal ( so`m ) </h4>
+                        <h4 class="small-box-footer"> Kamunal </h4>
                     </div>
 
                 </div>
 
                 <div class="col-lg-4 col-6">
                     <div class="small-box bg-danger">
-                        <div class="inner d-flex justify-content-between pl-5 pr-5">
+                        <div class="inner pl-5 pr-5">
 
                             <div>
-                                <h3>{{number_format($outs_all,0,',',' ')}}</h3>
-                                <p>Shu paytgacha</p>
+                                <h5>So'm: {{number_format($chiqim,0,',',' ')}}</h5>
                             </div>
-
-
-                            <div>
-                                <h3>{{number_format($outs_allsum_today,0,',',' ')}}</h3>
-                                <p>Bugun</p>
-                            </div>
-
 
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
 
-                        <h4 class="small-box-footer"> Bugun </h4>
+                        <h4 class="small-box-footer"> Chiqim </h4>
                     </div>
 
                 </div>
 
-
-                <!-- Main row -->
-{{--                <div class="row">--}}
-
-{{--                    <div class="col-lg-6">--}}
-
-{{--                        <div class="card overflow-auto">--}}
-{{--                            <div class="card-header border-0">--}}
-{{--                                <h3 class="card-title">Chiqimlar Umumiy</h3>--}}
-{{--                            </div>--}}
-
-{{--                            <div style="height: 350px; width: 600px; margin: auto;">--}}
-{{--                                <canvas id="barChart">--}}
-{{--                                </canvas>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="card overflow-auto">--}}
-{{--                            <div class="card-header border-0">--}}
-{{--                                <h3 class="card-title"> Sotish Umumiy </h3>--}}
-{{--                            </div>--}}
-
-{{--                            <div style="height: 350px; width: 600px; margin: auto;">--}}
-{{--                                <canvas id="barChart1">--}}
-{{--                                </canvas>--}}
-{{--                            </div>--}}
-
-{{--                        </div>--}}
-
-{{--                        <div class="card overflow-auto">--}}
-{{--                            <div class="card-header border-0">--}}
-{{--                                <h3 class="card-title"> Ishchilar Umumiy </h3>--}}
-{{--                            </div>--}}
-
-{{--                            <div style="height: 350px; width: 600px; margin: auto;">--}}
-{{--                                <canvas id="barChart2">--}}
-{{--                                </canvas>--}}
-{{--                            </div>--}}
-
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-{{--                    <div class="col-lg-6">--}}
-
-{{--                        <div class="card overflow-auto">--}}
-
-{{--                            <div class="card-header border-0">--}}
-{{--                                <h3 class="card-title">Chiqimlar Kundalik</h3>--}}
-{{--                            </div>--}}
-
-{{--                            <div style="height: 350px; width: 600px; margin: auto;">--}}
-{{--                                <canvas id="barChart0">--}}
-{{--                                </canvas>--}}
-{{--                            </div>--}}
-
-{{--                        </div>--}}
-
-{{--                        <div class="card overflow-auto">--}}
-{{--                            <div class="card-header border-0">--}}
-{{--                                <h3 class="card-title">Sotish Kundalik </h3>--}}
-{{--                            </div>--}}
-
-{{--                            <div style="height: 350px; width: 600px; margin: auto;">--}}
-{{--                                <canvas id="barChart01">--}}
-{{--                                </canvas>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="card overflow-auto">--}}
-{{--                            <div class="card-header border-0">--}}
-{{--                                <h3 class="card-title">Ishichlar Kundalik </h3>--}}
-{{--                            </div>--}}
-
-{{--                            <div style="height: 350px; width: 600px; margin: auto;">--}}
-{{--                                <canvas id="barChart02">--}}
-{{--                                </canvas>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-
-
-{{--                </div>--}}
-                <!-- /.row -->
-
-
             </div>
 
         </div>
-{{--        ghhhhhhhjkj--}}
+        {{--        ghhhhhhhjkj--}}
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -365,7 +225,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart">
-                                    <canvas id="barChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    <canvas id="barChart1"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -388,7 +249,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart">
-                                    <canvas id="barChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    <canvas id="barChart2"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -411,7 +273,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart">
-                                    <canvas id="barChart3" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    <canvas id="barChart3"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -437,7 +300,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart">
-                                    <canvas id="barChart4" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    <canvas id="barChart4"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -460,7 +324,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart">
-                                    <canvas id="barChart5" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    <canvas id="barChart5"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -483,7 +348,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart">
-                                    <canvas id="barChart6" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    <canvas id="barChart6"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -497,40 +363,40 @@
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-{{--tyuioouytfghj--}}
-
+        {{--tyuioouytfghj--}}
 
 
     </section>
 
 
     <script>
+        {{--console.log(@json($firms));--}}
         $(function () {
 
             var areaChartData = {
-                labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
                 datasets: [
                     {
-                        label               : 'Digital Goods',
-                        backgroundColor     : 'rgba(60,141,188,0.9)',
-                        borderColor         : 'rgba(60,141,188,0.8)',
-                        pointRadius          : false,
-                        pointColor          : '#3b8bba',
-                        pointStrokeColor    : 'rgba(60,141,188,1)',
-                        pointHighlightFill  : '#fff',
+                        label: 'Ildizlar',
+                        backgroundColor: 'rgba(60,141,188,0.9)',
+                        borderColor: 'rgba(60,141,188,0.8)',
+                        pointRadius: false,
+                        pointColor: '#3b8bba',
+                        pointStrokeColor: 'rgba(60,141,188,1)',
+                        pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data                : [28, 48, 40, 19, 86, 27, 90]
+                        data: [28, 48, 40, 19, 86, 27, 90]
                     },
                     {
-                        label               : 'Electronics',
-                        backgroundColor     : 'rgba(210, 214, 222, 1)',
-                        borderColor         : 'rgba(210, 214, 222, 1)',
-                        pointRadius         : false,
-                        pointColor          : 'rgba(210, 214, 222, 1)',
-                        pointStrokeColor    : '#c1c7d1',
-                        pointHighlightFill  : '#fff',
+                        label: 'Electronics',
+                        backgroundColor: 'rgba(210, 214, 222, 1)',
+                        borderColor: 'rgba(210, 214, 222, 1)',
+                        pointRadius: false,
+                        pointColor: 'rgba(210, 214, 222, 1)',
+                        pointStrokeColor: '#c1c7d1',
+                        pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data                : [65, 59, 80, 81, 56, 55, 40]
+                        data: [65, 59, 80, 81, 56, 55, 40]
                     },
                 ]
             }
@@ -546,9 +412,9 @@
             barChartData.datasets[1] = temp0
 
             var barChartOptions = {
-                responsive              : true,
-                maintainAspectRatio     : false,
-                datasetFill             : false
+                responsive: true,
+                maintainAspectRatio: false,
+                datasetFill: false
             }
 
             new Chart(barChartCanvas, {
@@ -565,9 +431,9 @@
             barChartData.datasets[1] = temp0
 
             var barChartOptions = {
-                responsive              : true,
-                maintainAspectRatio     : false,
-                datasetFill             : false
+                responsive: true,
+                maintainAspectRatio: false,
+                datasetFill: false
             }
 
             new Chart(barChartCanvas, {
@@ -584,9 +450,9 @@
             barChartData.datasets[1] = temp0
 
             var barChartOptions = {
-                responsive              : true,
-                maintainAspectRatio     : false,
-                datasetFill             : false
+                responsive: true,
+                maintainAspectRatio: false,
+                datasetFill: false
             }
 
             new Chart(barChartCanvas, {
@@ -603,9 +469,9 @@
             barChartData.datasets[1] = temp0
 
             var barChartOptions = {
-                responsive              : true,
-                maintainAspectRatio     : false,
-                datasetFill             : false
+                responsive: true,
+                maintainAspectRatio: false,
+                datasetFill: false
             }
 
             new Chart(barChartCanvas, {
@@ -622,9 +488,9 @@
             barChartData.datasets[1] = temp0
 
             var barChartOptions = {
-                responsive              : true,
-                maintainAspectRatio     : false,
-                datasetFill             : false
+                responsive: true,
+                maintainAspectRatio: false,
+                datasetFill: false
             }
 
             new Chart(barChartCanvas, {
@@ -641,9 +507,9 @@
             barChartData.datasets[1] = temp0
 
             var barChartOptions = {
-                responsive              : true,
-                maintainAspectRatio     : false,
-                datasetFill             : false
+                responsive: true,
+                maintainAspectRatio: false,
+                datasetFill: false
             }
 
             new Chart(barChartCanvas, {
@@ -653,262 +519,6 @@
             })
         })
 
-
-        {{--$(function () {--}}
-
-        {{--    // Outs--}}
-        {{--    var firms = @json($firms);--}}
-        {{--    var names = @json($names);--}}
-        {{--    var all_sum = @json($all_sum);--}}
-
-        {{--    var outs_allsum =@json($outs_allsum);--}}
-        {{--    var outs_name =@json($outs_name);--}}
-
-
-        {{--    //sells--}}
-        {{--    var sells = @json($sells);--}}
-        {{--    var sell_names = @json($sell_names);--}}
-        {{--    var sell_sum = @json($sell_value);--}}
-
-        {{--    var sells_allsum = @json($sells_allsum);--}}
-
-        {{--    // workers--}}
-
-        {{--    var workers = @json($workers);--}}
-        {{--    var worker_names = @json($worker_names);--}}
-        {{--    var worker_sum = @json($worker_summ);--}}
-        {{--    var worker_allsum = @json($worker_allsum);--}}
-
-
-        {{--    var barCanvas = $("#barChart");--}}
-        {{--    var barCanvas1 = $("#barChart1");--}}
-        {{--    var barCanvas2 = $("#barChart2");--}}
-
-        {{--    var barCanvas0 = $("#barChart0");--}}
-        {{--    var barCanvas01 = $("#barChart01");--}}
-        {{--    var barCanvas02 = $("#barChart02");--}}
-
-
-        {{--    var barChart = new Chart(barCanvas, {--}}
-        {{--        type: 'bar',--}}
-        {{--        data: {--}}
-        {{--            labels: names,--}}
-        {{--            datasets: [{--}}
-        {{--                label: 'Umumiy summa',--}}
-        {{--                data: all_sum,--}}
-        {{--                backgroundColor: [--}}
-        {{--                    'rgba(255, 99, 132, 0.2)',--}}
-        {{--                    'rgba(54, 162, 235, 0.2)',--}}
-        {{--                    'rgba(255, 206, 86, 0.2)',--}}
-        {{--                    'rgba(75, 192, 192, 0.2)',--}}
-        {{--                    'rgba(153, 102, 255, 0.2)',--}}
-        {{--                    'rgba(255, 159, 64, 0.2)'--}}
-        {{--                ],--}}
-        {{--                borderColor: [--}}
-        {{--                    'rgba(255,99,132,1)',--}}
-        {{--                    'rgba(54, 162, 235, 1)',--}}
-        {{--                    'rgba(255, 206, 86, 1)',--}}
-        {{--                    'rgba(75, 192, 192, 1)',--}}
-        {{--                    'rgba(153, 102, 255, 1)',--}}
-        {{--                    'rgba(255, 159, 64, 1)'--}}
-        {{--                ],--}}
-        {{--                borderWidth: 1--}}
-        {{--            }]--}}
-        {{--        },--}}
-        {{--        options: {--}}
-        {{--            scales: {--}}
-        {{--                yAxes: [{--}}
-        {{--                    ticks: {--}}
-        {{--                        beginAtZero: true--}}
-        {{--                    }--}}
-        {{--                }]--}}
-        {{--            }--}}
-        {{--        }--}}
-        {{--    });--}}
-        {{--    var barChart = new Chart(barCanvas1, {--}}
-        {{--        type: 'bar',--}}
-        {{--        data: {--}}
-        {{--            labels: sell_names,--}}
-        {{--            datasets: [{--}}
-        {{--                label: 'Umumiy summa',--}}
-        {{--                data: sell_sum,--}}
-        {{--                backgroundColor: [--}}
-        {{--                    'rgba(255, 99, 132, 0.2)',--}}
-        {{--                    'rgba(54, 162, 235, 0.2)',--}}
-        {{--                    'rgba(255, 206, 86, 0.2)',--}}
-        {{--                    'rgba(75, 192, 192, 0.2)',--}}
-        {{--                    'rgba(153, 102, 255, 0.2)',--}}
-        {{--                    'rgba(255, 159, 64, 0.2)'--}}
-        {{--                ],--}}
-        {{--                borderColor: [--}}
-        {{--                    'rgba(255,99,132,1)',--}}
-        {{--                    'rgba(54, 162, 235, 1)',--}}
-        {{--                    'rgba(255, 206, 86, 1)',--}}
-        {{--                    'rgba(75, 192, 192, 1)',--}}
-        {{--                    'rgba(153, 102, 255, 1)',--}}
-        {{--                    'rgba(255, 159, 64, 1)'--}}
-        {{--                ],--}}
-        {{--                borderWidth: 1--}}
-        {{--            }]--}}
-        {{--        },--}}
-        {{--        options: {--}}
-        {{--            scales: {--}}
-        {{--                yAxes: [{--}}
-        {{--                    ticks: {--}}
-        {{--                        beginAtZero: true--}}
-        {{--                    }--}}
-        {{--                }]--}}
-        {{--            }--}}
-        {{--        }--}}
-        {{--    });--}}
-        {{--    var barChart = new Chart(barCanvas2, {--}}
-        {{--        type: 'bar',--}}
-        {{--        data: {--}}
-        {{--            labels: worker_names,--}}
-        {{--            datasets: [{--}}
-        {{--                label: 'Umumiy summa',--}}
-        {{--                data: worker_sum,--}}
-        {{--                backgroundColor: [--}}
-        {{--                    'rgba(255, 99, 132, 0.2)',--}}
-        {{--                    'rgba(54, 162, 235, 0.2)',--}}
-        {{--                    'rgba(255, 206, 86, 0.2)',--}}
-        {{--                    'rgba(75, 192, 192, 0.2)',--}}
-        {{--                    'rgba(153, 102, 255, 0.2)',--}}
-        {{--                    'rgba(255, 159, 64, 0.2)'--}}
-        {{--                ],--}}
-        {{--                borderColor: [--}}
-        {{--                    'rgba(255,99,132,1)',--}}
-        {{--                    'rgba(54, 162, 235, 1)',--}}
-        {{--                    'rgba(255, 206, 86, 1)',--}}
-        {{--                    'rgba(75, 192, 192, 1)',--}}
-        {{--                    'rgba(153, 102, 255, 1)',--}}
-        {{--                    'rgba(255, 159, 64, 1)'--}}
-        {{--                ],--}}
-        {{--                borderWidth: 1--}}
-        {{--            }]--}}
-        {{--        },--}}
-        {{--        options: {--}}
-        {{--            scales: {--}}
-        {{--                yAxes: [{--}}
-        {{--                    ticks: {--}}
-        {{--                        beginAtZero: true--}}
-        {{--                    }--}}
-        {{--                }]--}}
-        {{--            }--}}
-        {{--        }--}}
-        {{--    });--}}
-
-
-        {{--    var barChart = new Chart(barCanvas0, {--}}
-        {{--        type: 'bar',--}}
-        {{--        data: {--}}
-        {{--            labels: outs_name,--}}
-        {{--            datasets: [{--}}
-        {{--                label: 'Kundalik Summa',--}}
-        {{--                data: outs_allsum,--}}
-        {{--                backgroundColor: [--}}
-        {{--                    'rgba(255, 99, 132, 0.2)',--}}
-        {{--                    'rgba(54, 162, 235, 0.2)',--}}
-        {{--                    'rgba(255, 206, 86, 0.2)',--}}
-        {{--                    'rgba(75, 192, 192, 0.2)',--}}
-        {{--                    'rgba(153, 102, 255, 0.2)',--}}
-        {{--                    'rgba(255, 159, 64, 0.2)'--}}
-        {{--                ],--}}
-        {{--                borderColor: [--}}
-        {{--                    'rgba(255,99,132,1)',--}}
-        {{--                    'rgba(54, 162, 235, 1)',--}}
-        {{--                    'rgba(255, 206, 86, 1)',--}}
-        {{--                    'rgba(75, 192, 192, 1)',--}}
-        {{--                    'rgba(153, 102, 255, 1)',--}}
-        {{--                    'rgba(255, 159, 64, 1)'--}}
-        {{--                ],--}}
-        {{--                borderWidth: 1--}}
-        {{--            }]--}}
-        {{--        },--}}
-        {{--        options: {--}}
-        {{--            scales: {--}}
-        {{--                yAxes: [{--}}
-        {{--                    ticks: {--}}
-        {{--                        beginAtZero: true--}}
-        {{--                    }--}}
-        {{--                }]--}}
-        {{--            }--}}
-        {{--        }--}}
-        {{--    });--}}
-        {{--    var barChart = new Chart(barCanvas01, {--}}
-        {{--        type: 'bar',--}}
-        {{--        data: {--}}
-        {{--            labels: outs_name,--}}
-        {{--            datasets: [{--}}
-        {{--                label: 'Umumiy summa',--}}
-        {{--                data: sells_allsum,--}}
-        {{--                backgroundColor: [--}}
-        {{--                    'rgba(255, 99, 132, 0.2)',--}}
-        {{--                    'rgba(54, 162, 235, 0.2)',--}}
-        {{--                    'rgba(255, 206, 86, 0.2)',--}}
-        {{--                    'rgba(75, 192, 192, 0.2)',--}}
-        {{--                    'rgba(153, 102, 255, 0.2)',--}}
-        {{--                    'rgba(255, 159, 64, 0.2)'--}}
-        {{--                ],--}}
-        {{--                borderColor: [--}}
-        {{--                    'rgba(255,99,132,1)',--}}
-        {{--                    'rgba(54, 162, 235, 1)',--}}
-        {{--                    'rgba(255, 206, 86, 1)',--}}
-        {{--                    'rgba(75, 192, 192, 1)',--}}
-        {{--                    'rgba(153, 102, 255, 1)',--}}
-        {{--                    'rgba(255, 159, 64, 1)'--}}
-        {{--                ],--}}
-        {{--                borderWidth: 1--}}
-        {{--            }]--}}
-        {{--        },--}}
-        {{--        options: {--}}
-        {{--            scales: {--}}
-        {{--                yAxes: [{--}}
-        {{--                    ticks: {--}}
-        {{--                        beginAtZero: true--}}
-        {{--                    }--}}
-        {{--                }]--}}
-        {{--            }--}}
-        {{--        }--}}
-        {{--    });--}}
-        {{--    var barChart = new Chart(barCanvas02, {--}}
-        {{--        type: 'bar',--}}
-        {{--        data: {--}}
-        {{--            labels: outs_name,--}}
-        {{--            datasets: [{--}}
-        {{--                label: 'Umumiy summa',--}}
-        {{--                data: worker_allsum,--}}
-        {{--                backgroundColor: [--}}
-        {{--                    'rgba(255, 99, 132, 0.2)',--}}
-        {{--                    'rgba(54, 162, 235, 0.2)',--}}
-        {{--                    'rgba(255, 206, 86, 0.2)',--}}
-        {{--                    'rgba(75, 192, 192, 0.2)',--}}
-        {{--                    'rgba(153, 102, 255, 0.2)',--}}
-        {{--                    'rgba(255, 159, 64, 0.2)'--}}
-        {{--                ],--}}
-        {{--                borderColor: [--}}
-        {{--                    'rgba(255,99,132,1)',--}}
-        {{--                    'rgba(54, 162, 235, 1)',--}}
-        {{--                    'rgba(255, 206, 86, 1)',--}}
-        {{--                    'rgba(75, 192, 192, 1)',--}}
-        {{--                    'rgba(153, 102, 255, 1)',--}}
-        {{--                    'rgba(255, 159, 64, 1)'--}}
-        {{--                ],--}}
-        {{--                borderWidth: 1--}}
-        {{--            }]--}}
-        {{--        },--}}
-        {{--        options: {--}}
-        {{--            scales: {--}}
-        {{--                yAxes: [{--}}
-        {{--                    ticks: {--}}
-        {{--                        beginAtZero: true--}}
-        {{--                    }--}}
-        {{--                }]--}}
-        {{--            }--}}
-        {{--        }--}}
-        {{--    });--}}
-
-        {{--})--}}
 
     </script>
 

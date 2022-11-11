@@ -26,11 +26,6 @@
                                 <td>{{$firm->date}}</td>
                                 <td class="d-flex">
 
-                                    {{--                                    <button type="button" onclick="edit({{$firm->id}})" class="btn btn-warning" data-toggle="modal" data-target="#modal-edit">--}}
-                                    {{--                                        <i class="fa fa-pen"></i>--}}
-                                    {{--                                    </button>--}}
-
-
                                     <form action="{{route('worker_gaves.destroy', $firm->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
