@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('sell_incomes.update',1)}}" method="post">
+                <form action="{{route('sell_incomes.update',1 )}}" method="post">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="id" id="edit_idi">
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="price">x kg mavjud </label>
+{{--                            <label for="price"> kg mavjud </label>--}}
                             <label for="price">Hajm (kg):</label>
                             <input type="number" name="kg" class="form-control" id="edit_kg">
                         </div>

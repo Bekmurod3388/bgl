@@ -180,6 +180,7 @@
 
 @section('custom-scripts')
     <script>
+
         @if(session('success'))
             toastr.options =
             {

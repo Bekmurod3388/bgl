@@ -83,6 +83,7 @@
         toastr.warning("{{$message}}");
         @endif
 
+
         let sells =@json($sell_incomes); // firmes jsondan olib kelgan
         let warehous = @json($warehouses);
 
