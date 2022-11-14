@@ -2,14 +2,18 @@
 @section('title')
     <div class=" d-flex justify-content ">
         <h1><b>Statistika</b></h1>
-        <form action="{{ route('search') }}" method="post" class="d-flex justify-content-around align-items-center" id="date_form_validate">
+        <form action="{{ route('search') }}" method="post" class="d-flex justify-content-around align-items-center"
+              id="date_form_validate">
             @csrf
             {{--        <input type="hidden" name="id" value="{{ $id }}">--}}
-            <input type="date" name="from_date" class="form-control" id="from_date" style="margin-left: 1rem" value="{{$from_date ?? NULL}}" required>
+            <input type="date" name="from_date" class="form-control" id="from_date" style="margin-left: 1rem"
+                   value="{{$from_date ?? NULL}}" required>
             <label for="from_date" style="margin-left: 0.5rem"> dan </label>
-            <input type="date" name="to_date" class="form-control" id="to_date" style="margin-left: 1rem" value="{{$to_date ?? NULL}}" required>
+            <input type="date" name="to_date" class="form-control" id="to_date" style="margin-left: 1rem"
+                   value="{{$to_date ?? NULL}}" required>
             <label for="to_date" style="margin-left: 0.5rem"> gacha </label>
-            <button type="button" onclick="datevalidate()" class="btn btn-primary" style="margin-left: 1rem">Saqlash</button>
+            <button type="button" onclick="datevalidate()" class="btn btn-primary" style="margin-left: 1rem">Saqlash
+            </button>
 
             <a href="{{route('all')}}" class="btn btn-primary" style="margin-left: 1rem">Jami:</a>
         </form>
@@ -17,7 +21,6 @@
 
 @endsection
 @section('content')
-
 
     <!-- Main content -->
     <section class="content">
@@ -212,7 +215,7 @@
                         <!-- AREA CHART -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Bar Chart</h3>
+                                <h3 class="card-title">Firmalar</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -236,7 +239,7 @@
                         <!-- DONUT CHART -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Bar Chart</h3>
+                                <h3 class="card-title">Sotish</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -257,10 +260,13 @@
                         </div>
                         <!-- /.card -->
 
-                        <!-- PIE CHART -->
+                    </div>
+                    <!-- /.col (LEFT) -->
+                    <div class="col-md-6">
+                        <!-- LINE CHART -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Bar Chart</h3>
+                                <h3 class="card-title">Ishchilar</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -281,13 +287,10 @@
                         </div>
                         <!-- /.card -->
 
-                    </div>
-                    <!-- /.col (LEFT) -->
-                    <div class="col-md-6">
-                        <!-- LINE CHART -->
+                        <!-- BAR CHART -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Bar Chart</h3>
+                                <h3 class="card-title">Chiqim</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -301,54 +304,6 @@
                             <div class="card-body">
                                 <div class="chart">
                                     <canvas id="barChart4"
-                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-
-                        <!-- BAR CHART -->
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Bar Chart</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart">
-                                    <canvas id="barChart5"
-                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-
-                        <!-- STACKED BAR CHART -->
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Bar Chart</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart">
-                                    <canvas id="barChart6"
                                             style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
@@ -370,14 +325,73 @@
 
 
     <script>
-        {{--console.log(@json($firms));--}}
+        var firm_data = @json($firm_values);
+        var firm_labels = firm_data['labels'];
+        var firm_values = firm_data['values'];
+        var worker_data = @json($worker_values);
+        var worker_labels = worker_data['labels'];
+        var worker_values = worker_data['values'];
+        var sell_data = @json($sell_values);
+        var sell_labels = sell_data['labels'];
+        var sell_values = sell_data['values'];
+        var outlay_data = @json($outlay_values);
+        var outlay_labels = outlay_data['labels'];
+        var outlay_values = outlay_data['values'];
         $(function () {
 
-            var areaChartData = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [
-                    {
-                        label: 'Ildizlar',
+            // var areaChartData = {
+            //     labels  : firm_labels,
+            //     datasets: [
+            //         {
+            //             label               : 'Summa',
+            //             backgroundColor     : 'rgba(60,141,188,0.9)',
+            //             borderColor         : 'rgba(60,141,188,0.8)',
+            //             pointRadius          : false,
+            //             pointColor          : '#3b8bba',
+            //             pointStrokeColor    : 'rgba(60,141,188,1)',
+            //             pointHighlightFill  : '#fff',
+            //             pointHighlightStroke: 'rgba(60,141,188,1)',
+            //             data                : firm_values
+            //         },
+            //         {
+            //
+            //         },
+            //     ]
+            // }
+            // var barChartCanvas = $('#barChart1').get(0).getContext('2d')
+            // var barChartData = $.extend(true, {}, areaChartData)
+            // var temp0 = areaChartData.datasets[0]
+            // var temp1 = areaChartData.datasets[1]
+            // barChartData.datasets[0] = temp1
+            // barChartData.datasets[1] = temp0
+            //
+            // var barChartOptions = {
+            //     responsive              : true,
+            //     maintainAspectRatio     : false,
+            //     datasetFill             : false
+            // }
+            //
+            // new Chart(barChartCanvas, {
+            //     type: 'bar',
+            //     data: barChartData,
+            //     options: barChartOptions
+            // })
+
+            //-------------
+            //- BAR CHART -
+            //-------------
+            var barChartCanvas = $('#barChart1').get(0).getContext('2d')
+            var barChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                datasetFill: false
+            }
+            new Chart(barChartCanvas, {
+                type: 'bar',
+                data: {
+                    labels: firm_labels,
+                    datasets: [{
+                        label: 'Summa',
                         backgroundColor: 'rgba(60,141,188,0.9)',
                         borderColor: 'rgba(60,141,188,0.8)',
                         pointRadius: false,
@@ -385,136 +399,75 @@
                         pointStrokeColor: 'rgba(60,141,188,1)',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: [28, 48, 40, 19, 86, 27, 90]
-                    },
-                    {
-                        label: 'Electronics',
-                        backgroundColor: 'rgba(210, 214, 222, 1)',
-                        borderColor: 'rgba(210, 214, 222, 1)',
-                        pointRadius: false,
-                        pointColor: 'rgba(210, 214, 222, 1)',
-                        pointStrokeColor: '#c1c7d1',
-                        pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [65, 59, 80, 81, 56, 55, 40]
-                    },
-                ]
-            }
-
-            //-------------
-            //- BAR CHART -
-            //-------------
-            var barChartCanvas = $('#barChart1').get(0).getContext('2d')
-            var barChartData = $.extend(true, {}, areaChartData)
-            var temp0 = areaChartData.datasets[0]
-            var temp1 = areaChartData.datasets[1]
-            barChartData.datasets[0] = temp1
-            barChartData.datasets[1] = temp0
-
-            var barChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                datasetFill: false
-            }
-
-            new Chart(barChartCanvas, {
-                type: 'bar',
-                data: barChartData,
-                options: barChartOptions
-            })
-
-            var barChartCanvas = $('#barChart2').get(0).getContext('2d')
-            var barChartData = $.extend(true, {}, areaChartData)
-            var temp0 = areaChartData.datasets[0]
-            var temp1 = areaChartData.datasets[1]
-            barChartData.datasets[0] = temp1
-            barChartData.datasets[1] = temp0
-
-            var barChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                datasetFill: false
-            }
-
-            new Chart(barChartCanvas, {
-                type: 'bar',
-                data: barChartData,
+                        data: firm_values
+                    }]
+                },
                 options: barChartOptions
             })
 
             var barChartCanvas = $('#barChart3').get(0).getContext('2d')
-            var barChartData = $.extend(true, {}, areaChartData)
-            var temp0 = areaChartData.datasets[0]
-            var temp1 = areaChartData.datasets[1]
-            barChartData.datasets[0] = temp1
-            barChartData.datasets[1] = temp0
-
-            var barChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                datasetFill: false
-            }
-
             new Chart(barChartCanvas, {
                 type: 'bar',
-                data: barChartData,
+                data: {
+                    labels: worker_labels,
+                    datasets: [
+                        {
+                            label: 'Maosh',
+                            backgroundColor: 'rgba(60,141,188,0.9)',
+                            borderColor: 'rgba(60,141,188,0.8)',
+                            pointRadius: false,
+                            pointColor: '#3b8bba',
+                            pointStrokeColor: 'rgba(60,141,188,1)',
+                            pointHighlightFill: '#fff',
+                            pointHighlightStroke: 'rgba(60,141,188,1)',
+                            data: worker_values
+                        },
+                    ]
+                },
+                options: barChartOptions
+            })
+
+            var barChartCanvas = $('#barChart2').get(0).getContext('2d')
+            new Chart(barChartCanvas, {
+                type: 'bar',
+                data: {
+                    labels: sell_labels,
+                    datasets: [
+                        {
+                            label: 'Foyda',
+                            backgroundColor: 'rgba(60,141,188,0.9)',
+                            borderColor: 'rgba(60,141,188,0.8)',
+                            pointRadius: false,
+                            pointColor: '#3b8bba',
+                            pointStrokeColor: 'rgba(60,141,188,1)',
+                            pointHighlightFill: '#fff',
+                            pointHighlightStroke: 'rgba(60,141,188,1)',
+                            data: sell_values
+                        },
+                    ]
+                },
                 options: barChartOptions
             })
 
             var barChartCanvas = $('#barChart4').get(0).getContext('2d')
-            var barChartData = $.extend(true, {}, areaChartData)
-            var temp0 = areaChartData.datasets[0]
-            var temp1 = areaChartData.datasets[1]
-            barChartData.datasets[0] = temp1
-            barChartData.datasets[1] = temp0
-
-            var barChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                datasetFill: false
-            }
-
             new Chart(barChartCanvas, {
                 type: 'bar',
-                data: barChartData,
-                options: barChartOptions
-            })
-
-            var barChartCanvas = $('#barChart5').get(0).getContext('2d')
-            var barChartData = $.extend(true, {}, areaChartData)
-            var temp0 = areaChartData.datasets[0]
-            var temp1 = areaChartData.datasets[1]
-            barChartData.datasets[0] = temp1
-            barChartData.datasets[1] = temp0
-
-            var barChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                datasetFill: false
-            }
-
-            new Chart(barChartCanvas, {
-                type: 'bar',
-                data: barChartData,
-                options: barChartOptions
-            })
-
-            var barChartCanvas = $('#barChart6').get(0).getContext('2d')
-            var barChartData = $.extend(true, {}, areaChartData)
-            var temp0 = areaChartData.datasets[0]
-            var temp1 = areaChartData.datasets[1]
-            barChartData.datasets[0] = temp1
-            barChartData.datasets[1] = temp0
-
-            var barChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                datasetFill: false
-            }
-
-            new Chart(barChartCanvas, {
-                type: 'bar',
-                data: barChartData,
+                data: {
+                    labels: outlay_labels,
+                    datasets: [
+                        {
+                            label: 'Foyda',
+                            backgroundColor: 'rgba(60,141,188,0.9)',
+                            borderColor: 'rgba(60,141,188,0.8)',
+                            pointRadius: false,
+                            pointColor: '#3b8bba',
+                            pointStrokeColor: 'rgba(60,141,188,1)',
+                            pointHighlightFill: '#fff',
+                            pointHighlightStroke: 'rgba(60,141,188,1)',
+                            data: outlay_values,
+                        },
+                    ]
+                },
                 options: barChartOptions
             })
         })

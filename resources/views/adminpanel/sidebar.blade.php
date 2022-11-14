@@ -131,6 +131,17 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                                @csrf
+{{--                                <button type="submit" class="btn btn-danger btn-block">Chiqish</button>--}}
+                            </form>
+                            <a onclick="document.getElementById('logout-form').submit();"
+                               class="nav-link cursor-pointer">
+                                <i class="fa fa-door-open  nav-icon"></i>
+                                <p>Chiqish</p>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>

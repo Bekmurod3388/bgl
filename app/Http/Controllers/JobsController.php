@@ -18,7 +18,7 @@ class JobsController extends Controller
     public function index(Request $request)
     {
         $id = $request['id'];
-        $jobs = Jobs::orderBy('created_at', 'desc')->where('worker_id', $id)->paginate(4);
+        $jobs = Jobs::orderBy('created_at', 'desc')->where('worker_id', $id)->get();
         $ishs = [];
         foreach ($jobs as $ish) {
             $ishs[$ish->id] = $ish;
