@@ -13,6 +13,8 @@
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="id" id="edit_idi">
+                    <input type="hidden" name="old_kg" id="edit_kgs">
+
                     <div class="card-body">
 
                         <div class="form-group">

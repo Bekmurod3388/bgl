@@ -27,17 +27,17 @@
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Mahsulot nomini kiriting:</label>
                                                 <input type="text" name="name" class="form-control"
-                                                       id="exampleInputEmail1">
+                                                       id="exampleInputEmail1" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Minimum narxni kiriting:</label>
                                                 <input type="number" name="minimum_price" class="form-control"
-                                                       id="exampleInputEmail1">
+                                                       id="exampleInputEmail1" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Maskimum narxni kiriting:</label>
                                                 <input type="number" name="maximum_price" class="form-control"
-                                                       id="exampleInputEmail1">
+                                                       id="exampleInputEmail1" required>
                                             </div>
 
                                         </div>

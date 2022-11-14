@@ -105,6 +105,7 @@
                     document.getElementById('edit_idi').value = id;
                     document.getElementById('edit_car').value = sell['car_number'];
                     document.getElementById('edit_product').value = sell['product_id'];
+                    document.getElementById('edit_kgs').value = sell['kg'];
                     document.getElementById('edit_kg').value = sell['kg'];
                     document.getElementById('edit_priace').value = sell['how_sum'];
                     break;
