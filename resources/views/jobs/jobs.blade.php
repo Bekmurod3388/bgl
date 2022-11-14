@@ -31,9 +31,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($jobs as $job)
+                        @foreach($jobs as $key => $job)
                             <tr>
-                                <td>{{$job->id}}</td>
+                                <td>{{ $key+1 }}</td>
                                 <td>{{$job->worker->name}}</td>
                                 <td>{{$job->work->name}}</td>
                                 <td>{{$job->date}}</td>
@@ -61,17 +61,17 @@
                         </tbody>
 
                     </table>
-                    <div class="container">
-                        <div class="row justify-content-center">
+{{--                    <div class="container">--}}
+{{--                        <div class="row justify-content-center">--}}
 
-                            @if ($jobs->links())
-                                <div class="mt-4 p-4 box has-text-centered">
-                                    {{ $jobs->links()}}
-                                </div>
-                            @endif
+{{--                            @if ($jobs->links())--}}
+{{--                                <div class="mt-4 p-4 box has-text-centered">--}}
+{{--                                    {{ $jobs->links('pagination::bootstrap-4') }}--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
 
-                        </div>
-                    </div>
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
 

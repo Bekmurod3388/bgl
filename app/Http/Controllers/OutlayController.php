@@ -50,7 +50,6 @@ class OutlayController extends Controller
     {
         $request->validate([
             'from_date'=>'required',
-
             'outlay_name' => 'required',
             'summ' => 'required',
             'one_summ' => 'required',
